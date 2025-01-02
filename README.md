@@ -1,7 +1,7 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
 # Txtmax - Advanced Linux Text Editor
 
-Txtmax is an advanced text editor designed for Linux, featuring syntax highlighting and various file management capabilities. This program allows you to create, view, edit, and delete text files from the command line with ease.
+Txtmax is an advanced text editor designed for Linux, featuring syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files from the command line with ease.
 
 ## Features
 
@@ -10,6 +10,8 @@ Txtmax is an advanced text editor designed for Linux, featuring syntax highlight
 - **Edit Files**: Edit specific lines in existing text files.
 - **List Files**: List all regular files in the current directory.
 - **Delete Files**: Delete specified text files.
+- **Search Files**: Search for files by name in the current directory.
+- **Get File Info**: Retrieve information about a file, including its name, extension, creation time, and modification time.
 
 ## Commands
 
@@ -19,6 +21,8 @@ Txtmax is an advanced text editor designed for Linux, featuring syntax highlight
 - **view <filename>**: View the contents of a file with syntax highlighting.
 - **edit <filename> <line>**: Edit a specific line in the file.
 - **delete <filename>**: Delete a specified file.
+- **search <filename>**: Search for files with the specified name in the current directory.
+- **info <filename>**: Get detailed information about the file (name, extension, creation time, modification time).
 - **exit**: Exit the Txtmax editor.
 
 ## Syntax Highlighting
@@ -45,12 +49,12 @@ To get started with Txtmax, follow these steps:
 
 3. **Compile the code**:
     ```bash
-    gcc txtmax.c -o txtmax
+    gcc txtmax2.c -o txtmax2
     ```
 
 4. **Run the Txtmax editor**:
     ```bash
-    ./txtmax
+    ./txtmax2
     ```
 
 ## Detailed Command Usage
@@ -60,73 +64,72 @@ To get started with Txtmax, follow these steps:
 To create a new file, use the `create` command followed by the filename:
 ```bash
 create <filename>
-```
-You will be prompted to enter the content for the file. Type `:wq` to save and quit.
 
-### List Files
+You will be prompted to enter the content for the file. Type :wq to save and quit.
 
-To list all files in the current directory, use the `files` command:
-```bash
+List Files
+
+To list all files in the current directory, use the files command:
+
 files
-```
 
-### View a File
+View a File
 
-To view the contents of a file with syntax highlighting, use the `view` command followed by the filename:
-```bash
+To view the contents of a file with syntax highlighting, use the view command followed by the filename:
+
 view <filename>
-```
 
-### Edit a File
+Edit a File
 
-To edit a specific line in a file, use the `edit` command followed by the filename and the line number:
-```bash
+To edit a specific line in a file, use the edit command followed by the filename and the line number:
+
 edit <filename> <line>
-```
+
 You will be prompted to enter the new content for the specified line.
 
-### Delete a File
+Delete a File
 
-To delete a file, use the `delete` command followed by the filename:
-```bash
+To delete a file, use the delete command followed by the filename:
+
 delete <filename>
-```
 
-### Help
+Search Files
 
-To display the help message with a list of available commands, use the `help` command:
-```bash
+To search for files with a specified name in the current directory, use the search command followed by the search string:
+
+search <filename>
+
+Get File Info
+
+To view detailed information about a file, such as its name, extension, creation time, and modification time, use the info command followed by the filename:
+
+info <filename>
+
+Help
+
+To display the help message with a list of available commands, use the help command:
+
 $ help
-```
 
-### Exit
+Exit
 
-To exit the Txtmax editor, use the `exit` command:
-```bash
+To exit the Txtmax editor, use the exit command:
+
 exit
 ```
 
 ## License
-This project is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).  
-You are free to use, modify, and distribute this software under the terms of the license. See the [LICENSE](LICENSE) file for more information.
 
-# Table of Contents
-- [Features](#features)
-- [Commands](#commands)
-- [Syntax Highlighting](#syntax-highlighting)
-- [Installation and Usage](#installation-and-usage)
-- [Detailed Command Usage](#detailed-command-usage)
-- [License](#license)
-- [Contributing](#contributing)
-- [Contact](#contact)
+This project is licensed under the GNU General Public License v3.0.
+You are free to use, modify, and distribute this software under the terms of the license. See the LICENSE file for more information.
 
 ## Contributing
-## Contributing
+
 Contributions are welcome! Here's how you can help:
-- Report bugs or request features using [GitHub Issues](https://github.com/Calestial2/Txtmax/issues).
+- Report bugs or request features using [GitHub Issue](https://github.com/Calestial2/Txtmax/issue)
 - Submit pull requests with clear descriptions of changes.
 - Ensure your code follows the style and design of the project.
 
-## Contact
+### Contact
 
 For any questions or feedback, please contact the project maintainer.
