@@ -106,12 +106,25 @@ exit
 ```
 
 ## License
+This project is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).  
+You are free to use, modify, and distribute this software under the terms of the license. See the [LICENSE](LICENSE) file for more information.
 
-This project is licensed under the GNU General Public License (GPL). See the [LICENSE](LICENSE) file for details.
+# Table of Contents
+- [Features](#features)
+- [Commands](#commands)
+- [Syntax Highlighting](#syntax-highlighting)
+- [Installation and Usage](#installation-and-usage)
+- [Detailed Command Usage](#detailed-command-usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Contact](#contact)
 
 ## Contributing
-
-Contributions are welcome! Feel free to submit issues and pull requests to improve Txtmax.
+## Contributing
+Contributions are welcome! Here's how you can help:
+- Report bugs or request features using [GitHub Issues](https://github.com/Calestial2/Txtmax/issues).
+- Submit pull requests with clear descriptions of changes.
+- Ensure your code follows the style and design of the project.
 
 ## Contact
 
