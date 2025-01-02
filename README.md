@@ -11,7 +11,7 @@ Txtmax is an advanced text editor designed for Linux, featuring syntax highlight
 - **List Files**: List all regular files in the current directory.
 - **Delete Files**: Delete specified text files.
 - **Search Files**: Search for files by name in the current directory.
-- **Get File Info**: Retrieve information about a file, including its name, extension, creation time, and modification time.
+- **Get File Info**: Retrieve Detailed information about a file, including its name, extension, creation time, and modification time.
 
 ## Commands
 
@@ -49,12 +49,12 @@ To get started with Txtmax, follow these steps:
 
 3. **Compile the code**:
     ```bash
-    gcc txtmax2.c -o txtmax2
+    gcc txtmax3.c -o txtmax3
     ```
 
 4. **Run the Txtmax editor**:
     ```bash
-    ./txtmax2
+    ./txtmax3
     ```
 
 ## Detailed Command Usage
