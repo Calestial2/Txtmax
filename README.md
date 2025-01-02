@@ -1,3 +1,4 @@
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
 # Txtmax - Advanced Linux Text Editor
 
 Txtmax is an advanced text editor designed for Linux, featuring syntax highlighting and various file management capabilities. This program allows you to create, view, edit, and delete text files from the command line with ease.
