@@ -49,12 +49,12 @@ To get started with Txtmax, follow these steps:
 
 3. **Compile the code**:
     ```bash
-    gcc txtmax3.c -o txtmax3
+    gcc txtmax5.c -o txtmax5
     ```
 
 4. **Run the Txtmax editor**:
     ```bash
-    ./txtmax3
+    ./txtmax5
     ```
 
 ## Detailed Command Usage
@@ -104,6 +104,12 @@ Get File Info
 To view detailed information about a file, such as its name, extension, creation time, and modification time, use the info command followed by the filename:
 
 info <filename>
+
+Examples
+
+Examples of Hello World in Different Programming Languages type:
+
+examples
 
 Help
 
