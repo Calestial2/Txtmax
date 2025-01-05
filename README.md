@@ -23,6 +23,7 @@ Txtmax is an advanced text editor designed for Linux, featuring syntax highlight
 - **delete <filename>**: Delete a specified file.
 - **search <filename>**: Search for files with the specified name in the current directory.
 - **info <filename>**: Get detailed information about the file (name, extension, creation time, modification time).
+- **Git Integration**: Supports Git Branch, Version 
 - **exit**: Exit the Txtmax editor.
 
 ## Syntax Highlighting
@@ -49,7 +50,7 @@ To get started with Txtmax, follow these steps:
 
 3. **Compile the code**:
     ```bash
-    gcc txtmax5.c -o txtmax5
+    gcc txtmax6.c -o txtmax6
     ```
 
 4. **Run the Txtmax editor**:
