@@ -1,3 +1,5 @@
+![Image](https://github.com/Calestial2/Txtmax/blob/f7a65e499d29e184e6d06263250e8f16b753b5ba/ascii-text-art.png)
+          
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
 # Txtmax - Advanced Linux Text Editor
 
