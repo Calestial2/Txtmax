@@ -19,7 +19,6 @@
 #define COLOR_FUNCTION "\033[1;36m"
 
 // Keywords for different programming languages
-
 const char *keywords_c[] = {"int", "return", "if", "else", "while", "for", "void", "char", "include", "define", NULL};
 const char *keywords_python[] = {"def", "return", "if", "else", "while", "for", "import", "in", "from", "print", "class", NULL};
 const char *keywords_java[] = {"public", "private", "protected", "class", "static", "void", "new", "return", "if", "else", "while", "for", "import", NULL};
@@ -39,8 +38,6 @@ const char *keywords_php[] = {"<?php", "echo", "if", "else", "for", "while", "fu
 const char *keywords_lua[] = {"local", "function", "if", "else", "for", "while", "return", "end", "require", "print", NULL};
 const char *keywords_objc[] = {"@interface", "@implementation", "if", "else", "return", "int", "char", "void", "NSString", "NSLog", "while", "for", "id", NULL};
 const char *keywords_groovy[] = {"def", "if", "else", "for", "while", "return", "class", "package", "public", "private", "static", NULL};
-
-// New programming languages with additional keywords
 const char *keywords_erlang[] = {"module", "export", "import", "if", "case", "receive", "fun", "end", "apply", "spawn", "node", "catch", NULL};
 const char *keywords_bash[] = {"if", "then", "else", "elif", "fi", "for", "while", "until", "do", "done", "function", "return", NULL};
 const char *keywords_julia[] = {"function", "end", "if", "else", "elseif", "for", "while", "return", "begin", "mutable", "const", "global", NULL};
@@ -52,6 +49,11 @@ const char *keywords_fortran[] = {"program", "end", "if", "else", "do", "return"
 const char *keywords_cobol[] = {"IDENTIFICATION", "PROGRAM", "DIVISION", "DATA", "SECTION", "PROCEDURE", "IF", "ELSE", "END-IF", "DISPLAY", "MOVE", "ACCEPT", NULL};
 const char *keywords_vhdl[] = {"architecture", "entity", "if", "else", "process", "begin", "end", "signal", "variable", "constant", "port", "procedure", NULL};
 const char *keywords_lisp[] = {"defun", "if", "else", "cond", "lambda", "let", "setq", "setq", "defvar", "loop", NULL};
+
+// New programming languages
+const char *keywords_sql[] = {"SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "CREATE", "DROP", "ALTER", "JOIN", "INNER", "OUTER", "GROUP BY", "ORDER BY", "LIMIT", "HAVING", "AND", "OR", "NOT", "NULL", "IS", "IN", "BETWEEN", "LIKE", "DISTINCT", "UNION", NULL};
+const char *keywords_matlab[] = {"if", "else", "elseif", "for", "while", "end", "return", "function", "switch", "case", "otherwise", "try", "catch", "global", "persistent", "import", "clear", "clc", "disp", "fprintf", NULL};
+const char *keywords_perl[] = {"sub", "if", "else", "elsif", "foreach", "while", "return", "my", "use", "require", "package", "print", "chomp", "open", "close", "exit", "die", "qw", "eval", "BEGIN", "END", NULL};
 
 // Function to check if a word is a keyword
 int is_keyword(const char *word, const char **keywords) {
@@ -71,45 +73,51 @@ void syntax_highlight(const char *line, const char *extension) {
     const char **keywords;
 
     // Match file extension to keywords
-    if (strcmp(extension, ".py") == 0) {
-        keywords = keywords_python;
-    } else if (strcmp(extension, ".java") == 0) {
-        keywords = keywords_java;
-    } else if (strcmp(extension, ".js") == 0) {
-        keywords = keywords_js;
-    } else if (strcmp(extension, ".cpp") == 0 || strcmp(extension, ".cc") == 0) {
-        keywords = keywords_cpp;
-    } else if (strcmp(extension, ".rs") == 0) {
-        keywords = keywords_rust;
-    } else if (strcmp(extension, ".rb") == 0) {
-        keywords = keywords_ruby;
-    } else if (strcmp(extension, ".ex") == 0 || strcmp(extension, ".exs") == 0) {
-        keywords = keywords_elixir;
-    } else if (strcmp(extension, ".kt") == 0) {
-        keywords = keywords_kotlin;
-    } else if (strcmp(extension, ".swift") == 0) {
-        keywords = keywords_swift;
-    } else if (strcmp(extension, ".ts") == 0) {
-        keywords = keywords_typescript;
-    } else if (strcmp(extension, ".dart") == 0) {
-        keywords = keywords_dart;
-    } else if (strcmp(extension, ".go") == 0) {
-        keywords = keywords_go;
-    } else if (strcmp(extension, ".hs") == 0) {
-        keywords = keywords_haskell;
-    } else if (strcmp(extension, ".r") == 0) {
-        keywords = keywords_r;
-    } else if (strcmp(extension, ".php") == 0) {
-        keywords = keywords_php;
-    } else if (strcmp(extension, ".lua") == 0) {
-        keywords = keywords_lua;
-    } else if (strcmp(extension, ".m") == 0 || strcmp(extension, ".h") == 0) {
-        keywords = keywords_objc;
-    } else if (strcmp(extension, ".groovy") == 0) {
-        keywords = keywords_groovy;
-    } else {
-        keywords = keywords_c; // Default to C
-    }
+if (strcmp(extension, ".py") == 0) {
+    keywords = keywords_python;
+} else if (strcmp(extension, ".java") == 0) {
+    keywords = keywords_java;
+} else if (strcmp(extension, ".js") == 0) {
+    keywords = keywords_js;
+} else if (strcmp(extension, ".cpp") == 0 || strcmp(extension, ".cc") == 0) {
+    keywords = keywords_cpp;
+} else if (strcmp(extension, ".rs") == 0) {
+    keywords = keywords_rust;
+} else if (strcmp(extension, ".rb") == 0) {
+    keywords = keywords_ruby;
+} else if (strcmp(extension, ".ex") == 0 || strcmp(extension, ".exs") == 0) {
+    keywords = keywords_elixir;
+} else if (strcmp(extension, ".kt") == 0) {
+    keywords = keywords_kotlin;
+} else if (strcmp(extension, ".swift") == 0) {
+    keywords = keywords_swift;
+} else if (strcmp(extension, ".ts") == 0) {
+    keywords = keywords_typescript;
+} else if (strcmp(extension, ".dart") == 0) {
+    keywords = keywords_dart;
+} else if (strcmp(extension, ".go") == 0) {
+    keywords = keywords_go;
+} else if (strcmp(extension, ".hs") == 0) {
+    keywords = keywords_haskell;
+} else if (strcmp(extension, ".r") == 0) {
+    keywords = keywords_r;
+} else if (strcmp(extension, ".php") == 0) {
+    keywords = keywords_php;
+} else if (strcmp(extension, ".lua") == 0) {
+    keywords = keywords_lua;
+} else if (strcmp(extension, ".m") == 0 || strcmp(extension, ".h") == 0) {
+    keywords = keywords_objc;
+} else if (strcmp(extension, ".groovy") == 0) {
+    keywords = keywords_groovy;
+} else if (strcmp(extension, ".sql") == 0) {
+    keywords = keywords_sql;
+} else if (strcmp(extension, ".m") == 0) {
+    keywords = keywords_matlab;
+} else if (strcmp(extension, ".pl") == 0) {
+    keywords = keywords_perl;
+} else {
+    keywords = keywords_c; // Default to C
+}
         
        
 
