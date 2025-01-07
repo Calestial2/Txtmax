@@ -50,7 +50,7 @@ To get started with Txtmax, follow these steps:
 
 3. **Compile the code**:
     ```bash
-    gcc txtmax6.c -o txtmax6
+    gcc txtmax7.c -o txtmax7
     ```
 
 4. **Run the Txtmax editor**:
