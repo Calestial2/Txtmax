@@ -57,7 +57,7 @@ To get started with Txtmax, follow these steps:
 
 4. **Run the Txtmax editor**:
     ```bash
-    ./txtmax5
+    ./txtmax7
     ```
 
 ## Detailed Command Usage
