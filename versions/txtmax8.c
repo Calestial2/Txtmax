@@ -296,9 +296,8 @@ void view_file(const char *filename) {
     printf("Contents of '%s':\n", filename);
     while (fgets(line, sizeof(line), file)) {
         printf("%3d | ", line_number++);
-        // Syntax highlighting function (omitted for brevity)
-        // syntax_highlight(line, ext);
-        printf("%s", line); // Simple print for now
+        // Call the syntax_highlight function to highlight keywords and syntax
+        syntax_highlight(line, ext);
     }
     fclose(file);
 }
