@@ -50,14 +50,18 @@ To get started with Txtmax, follow these steps:
     cd Txtmax
     ```
 
+3. **Navigate to Folder**:
+      ```bash
+      cd versions
+
 3. **Compile the code**:
     ```bash
-    gcc txtmax7.c -o txtmax7
+    gcc txtmax8.c -o txtmax8
     ```
 
 4. **Run the Txtmax editor**:
     ```bash
-    ./txtmax7
+    ./txtmax8
     ```
 
 ## Detailed Command Usage
@@ -113,6 +117,12 @@ Examples
 Examples of Hello World in Different Programming Languages type:
 
 examples
+
+SQL
+
+Get SQL Examples in SQL, PostgreSQL, NoSQL using the following command:
+
+sql
 
 Help
 
