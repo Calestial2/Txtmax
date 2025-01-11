@@ -131,9 +131,6 @@ if (strcmp(extension, ".py") == 0) {
     keywords = keywords_c; // Default to C
 }
 
-
-
-
     for (int i = 0; line[i]; i++) {
         if (line[i] == '\"') {
             if (!in_comment) {
@@ -527,7 +524,7 @@ int main() {
     printf("Welcome to txtmax! Type 'help' for a list of commands.\n");
 
     while (1) {
-        printf("\ntxtmax> ");
+        printf("\n~/txtmax ");
         fgets(command, MAX_INPUT_SIZE, stdin);
         command[strcspn(command, "\n")] = 0;  // Remove the newline at the end of input
 
