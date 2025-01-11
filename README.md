@@ -25,6 +25,7 @@ Txtmax is an advanced text editor designed for Linux, featuring syntax highlight
 - **delete <filename>**: Delete a specified file.
 - **search <filename>**: Search for files with the specified name in the current directory.
 - **info <filename>**: Get detailed information about the file (name, extension, creation time, modification time).
+- **run**: Run your code Quickly without exiting with various compilers such as GCC, Clang, Python, Node
 - **Git Integration**: Supports Git Branch, Version 
 - **exit**: Exit the Txtmax editor.
 
@@ -56,86 +57,13 @@ To get started with Txtmax, follow these steps:
 
 3. **Compile the code**:
     ```bash
-    gcc txtmax8.c -o txtmax8
+    gcc txtmax9.c -o txtmax9
     ```
 
 4. **Run the Txtmax editor**:
     ```bash
-    ./txtmax8
+    ./txtmax9
     ```
-
-## Detailed Command Usage
-
-### Create a File
-
-To create a new file, use the `create` command followed by the filename:
-```bash
-create <filename>
-
-You will be prompted to enter the content for the file. Type :wq to save and quit.
-
-List Files
-
-To list all files in the current directory, use the files command:
-
-files
-
-View a File
-
-To view the contents of a file with syntax highlighting, use the view command followed by the filename:
-
-view <filename>
-
-Edit a File
-
-To edit a specific line in a file, use the edit command followed by the filename and the line number:
-
-edit <filename> <line>
-
-You will be prompted to enter the new content for the specified line.
-
-Delete a File
-
-To delete a file, use the delete command followed by the filename:
-
-delete <filename>
-
-Search Files
-
-To search for files with a specified name in the current directory, use the search command followed by the search string:
-
-search <filename>
-
-Get File Info
-
-To view detailed information about a file, such as its name, extension, creation time, and modification time, use the info command followed by the filename:
-
-info <filename>
-
-Examples
-
-Examples of Hello World in Different Programming Languages type:
-
-examples
-
-SQL
-
-Get SQL Examples in SQL, PostgreSQL, NoSQL using the following command:
-
-sql
-
-Help
-
-To display the help message with a list of available commands, use the help command:
-
-$ help
-
-Exit
-
-To exit the Txtmax editor, use the exit command:
-
-exit
-```
 
 ## License
 
