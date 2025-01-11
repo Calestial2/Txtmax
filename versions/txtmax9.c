@@ -376,11 +376,34 @@ void search_files(const char *filename) {
     }
 
     printf("Searching for files with name '%s':\n", filename);
+    
+    char path[MAX_INPUT_SIZE];
+    struct stat file_stat;
+
     while ((entry = readdir(dir)) != NULL) {
-        if (entry->d_type == DT_REG && strstr(entry->d_name, filename)) {
-            printf("  %s\n", entry->d_name);
+        // Skip '.' and '..'
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+            continue;
+
+        // Get file/directory stats
+        stat(entry->d_name, &file_stat);
+
+        if (S_ISDIR(file_stat.st_mode)) {
+            // If it's a directory, recursively search
+            if (chdir(entry->d_name) == 0) { // Change directory
+                search_files(filename); // Recursive call
+                chdir(".."); // Go back to the parent directory
+            }
+        } else if (S_ISREG(file_stat.st_mode)) {
+            // If it's a regular file, check for match
+            if (strstr(entry->d_name, filename)) {
+                // Get the full path
+                realpath(entry->d_name, path);
+                printf("  %s\n", path);
+            }
         }
     }
+
     closedir(dir);
 }
 
@@ -504,6 +527,7 @@ void help() {
     printf("  edit <filename> <line>  Edit a specific line in the file\n");
     printf("  delete <filename>       Delete a file\n");
     printf("  info <filename>         Show file info (name, extension, creation time, modification time)\n");
+    printf("  run                     Excute Your Code without exiting\n");
     printf("  examples                Show Hello World examples in various languages\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
