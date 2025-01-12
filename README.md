@@ -18,6 +18,7 @@ Txtmax is an advanced text editor designed for Linux, featuring syntax highlight
 ## Commands
 
 - **help**: Show the help message with a list of available commands.
+- **man txtmax**: Comprehensive Manual
 - **create <filename>**: Create a new file and save it locally.
 - **files**: List all files in the current directory.
 - **view <filename>**: View the contents of a file with syntax highlighting.
