@@ -65,6 +65,16 @@ const char *keywords_assembly[] = {"mov", "add", "sub", "jmp", "cmp", "je", "jne
 const char *keywords_prolog[] = {":-", "if", "else", "end", "assert", "fail", "true", "false", "query", "fact", NULL};
 const char *keywords_zig[] = {"const", "var", "fn", "return", "if", "else", "while", "for", "try", "catch", "defer", NULL};
 const char *keywords_brainfuck[] = {">", "<", "+", "-", ".", ",", "[", "]", NULL};
+const char *keywords_algol[] = {"begin", "end", "if", "then", "else", "for", "while", "procedure", "function", "integer", "real", "boolean", "array", NULL};
+const char *keywords_labview[] = {"while", "for", "if", "case", "end", "else", "true", "false", "break", "continue", "function", "subVI", NULL};
+const char *keywords_mercury[] = {"module", "end_module", "import", "type", "func", "pred", "if", "then", "else", "true", "false", "forall", NULL};
+const char *keywords_dart_shell[] = {"#!/bin/bash", "echo", "if", "then", "else", "fi", "for", "while", "return", "function", "export", NULL};
+const char *keywords_ocaml[] = {"let", "in", "if", "then", "else", "match", "with", "type", "module", "open", "rec", "and", "fun", NULL};
+const char *keywords_txl[] = {"def", "if", "then", "else", "while", "for", "return", "class", "module", "type", "eval", NULL};
+const char *keywords_xojo[] = {"dim", "if", "then", "else", "for", "while", "return", "function", "class", "end", "public", "private", NULL};
+const char *keywords_forth[] = {"if", "else", "then", "begin", "again", "loop", "do", "while", "return", "create", "colon", "exit", NULL};
+const char *keywords_verilog[] = {"module", "endmodule", "input", "output", "wire", "assign", "always", "if", "else", "begin", "end", "for", NULL};
+const char *keywords_awk[] = {"BEGIN", "END", "if", "else", "while", "for", "print", "next", "return", "function", "match", "split", NULL};
 
 // Function to check if a word is a keyword
 int is_keyword(const char *word, const char **keywords) {
@@ -154,6 +164,26 @@ if (strcmp(extension, ".py") == 0) {
     keywords = keywords_zig;
 } else if (strcmp(extension, ".bf") == 0) {
     keywords = keywords_brainfuck;
+} else if (strcmp(extension, ".algol") == 0) {
+    keywords = keywords_algol;
+} else if (strcmp(extension, ".lv") == 0) {
+    keywords = keywords_labview;
+} else if (strcmp(extension, ".m") == 0) {
+    keywords = keywords_mercury;
+} else if (strcmp(extension, ".sh") == 0) {
+    keywords = keywords_dart_shell;
+} else if (strcmp(extension, ".ml") == 0) {
+    keywords = keywords_ocaml;
+} else if (strcmp(extension, ".txl") == 0) {
+    keywords = keywords_txl;
+} else if (strcmp(extension, ".xojo") == 0) {
+    keywords = keywords_xojo;
+} else if (strcmp(extension, ".4th") == 0) {
+    keywords = keywords_forth;
+} else if (strcmp(extension, ".v") == 0) {
+    keywords = keywords_verilog;
+} else if (strcmp(extension, ".awk") == 0) {
+    keywords = keywords_awk;
 } else {
     keywords = keywords_c; // Default to C
 }
@@ -607,7 +637,7 @@ void man_txtmax() {
     printf("       C, Python, Java, JavaScript, C++, Rust, Ruby, Kotlin, Swift, TypeScript, Dart, Go, Haskell,\n");
     printf("       R, PHP, Lua, Objective-C, Groovy, Erlang, Bash, Julia, F#, C#, Scheme, Clojure, Fortran, Cobol,\n");
     printf("       VHDL, Lisp, SQL, Matlab, Perl, Scala, PostgreSQL, NoSQL, ActionScript, Ada, Nim, Crystal,\n");
-    printf("       D, Assembly, Purescript, Prolog, Zig, Brainfu*k, HTML\n\n");
+    printf("       D, Assembly, Purescript, Prolog, Zig, Brainfu*k, HTML and many More\n\n");
 
     printf("                    LICENSE\n");
     printf("       Txtmax is licensed under the GNU General Public License v3.0. You are free to use, modify, and distribute the software according to the terms of the license.\n\n");
