@@ -714,6 +714,8 @@ int main() {
             sql_examples();
 } else if (strcmp(command, "run") == 0) {
         quick_run();
+            } else if (strcmp(command, "packages") == 0) {
+        packages();
         } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
