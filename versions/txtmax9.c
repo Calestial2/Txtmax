@@ -506,6 +506,116 @@ void packages() {
     }
 }
 
+void man_txtmax() {
+    printf("                     Txtmax Manual                      \n\n");
+    printf("NAME\n");
+    printf("       txtmax - Lightweight Advanced Text Editor for Linux\n\n");
+
+    printf("                      DESCRIPTION\n");
+    printf("       Txtmax is a lightweight, fast, and fully open-source text editor designed for Linux and Unix-like\n");
+    printf("       systems. It provides an easy-to-use command-line interface for text file creation, editing,\n");
+    printf("       viewing, and management. Txtmax supports syntax highlighting, integrated code execution, file\n");
+    printf("       versioning via Git, and many advanced features for developers.\n\n");
+
+    printf("                      COMMANDS\n");
+    printf("       help\n");
+    printf("           Display a list of all available commands and their descriptions.\n\n");
+
+    printf("       create <filename>\n");
+    printf("           Create a new text file and save it locally. You can write code in over 50 programming\n");
+    printf("           languages, with syntax highlighting and support for version control (commit message, branch, version).\n\n");
+
+    printf("       files\n");
+    printf("           List all regular files in the current directory.\n\n");
+
+    printf("       view <filename>\n");
+    printf("           View the contents of a specified text file with syntax highlighting for code readability.\n\n");
+
+    printf("       edit <filename> <line>\n");
+    printf("           Edit a specific line in an existing file.\n\n");
+
+    printf("       delete <filename>\n");
+    printf("           Delete the specified file from the current directory.\n\n");
+
+    printf("       search <filename>\n");
+    printf("           Search for files by name across all directories.\n\n");
+
+    printf("       info <filename>\n");
+    printf("           Retrieve detailed information about a file, including its name, extension, creation time,\n");
+    printf("           modification time, version control, commit message, branch, and version.\n\n");
+
+    printf("       examples\n");
+    printf("           Show example code snippets for popular programming languages like C, Python, Java, JavaScript,\n");
+    printf("           C++, Rust, Ruby, Kotlin, and more.\n\n");
+
+    printf("       sql\n");
+    printf("           Show SQL examples and query syntax for relational and NoSQL databases like MySQL, PostgreSQL, and MongoDB.\n\n");
+
+    printf("       run\n");
+    printf("           Run code written in the text file. Txtmax supports running code using compilers and interpreters\n");
+    printf("           like GCC, Clang, Python, Node.js, and more.\n\n");
+
+    printf("       packages\n");
+    printf("           Install Python (pip) or Node.js (npm) packages from the terminal. You can choose the package manager\n");
+    printf("           and install the required package.\n\n");
+
+    printf("       exit\n");
+    printf("           Exit the Txtmax editor.\n\n");
+
+    printf("                      FEATURES\n");
+    printf("       - File Creation, Viewing, Editing, Deletion, and Management\n");
+    printf("       - Syntax Highlighting for Programming Languages\n");
+    printf("       - Run Code Quickly with Integrated Compilers and Interpreters\n");
+    printf("       - Git Integration for Version Control and Commit Management\n");
+    printf("       - Support for Over 40 Programming Languages\n");
+    printf("       - Installation of Python and Node.js Packages\n\n");
+
+    printf("USAGE\n");
+    printf("       To start using Txtmax:\n");
+    printf("           1. Clone the repository:\n");
+    printf("              git clone https://github.com/Calestial2/Txtmax.git\n");
+    printf("           2. Navigate to the directory:\n");
+    printf("              cd Txtmax\n");
+    printf("           3. Compile the code:\n");
+    printf("              gcc txtmax9.c -o txtmax9\n");
+    printf("           4. Run Txtmax:\n");
+    printf("              ./txtmax9\n\n");
+
+    printf("       Alternatively, use the Makefile to install the latest version with:\n");
+    printf("           make ./txtmax\n\n");
+
+    printf("EXAMPLES\n");
+    printf("       - Create a new C file:\n");
+    printf("           create hello.c\n\n");
+
+    printf("       - View a file with syntax highlighting:\n");
+    printf("           view hello.c\n\n");
+
+    printf("       - Edit the first line of the file:\n");
+    printf("           edit hello.c 1\n\n");
+
+    printf("       - Run the C code:\n");
+    printf("           run\n\n");
+
+    printf("       - Install a Python package:\n");
+    printf("           packages pip requests\n\n");
+
+    printf("       - Search for a file:\n");
+    printf("           search hello.c\n\n");
+
+    printf("SUPPORTED LANGUAGES\n");
+    printf("       C, Python, Java, JavaScript, C++, Rust, Ruby, Kotlin, Swift, TypeScript, Dart, Go, Haskell,\n");
+    printf("       R, PHP, Lua, Objective-C, Groovy, Erlang, Bash, Julia, F#, C#, Scheme, Clojure, Fortran, Cobol,\n");
+    printf("       VHDL, Lisp, SQL, Matlab, Perl, Scala, PostgreSQL, NoSQL, ActionScript, Ada, Nim, Crystal,\n");
+    printf("       D, Assembly, Purescript, Prolog, Zig, Brainfu*k, HTML\n\n");
+
+    printf("                    LICENSE\n");
+    printf("       Txtmax is licensed under the GNU General Public License v3.0. You are free to use, modify, and distribute the software according to the terms of the license.\n\n");
+
+    printf("                   AUTHOR\n");
+    printf("             Calestial Ashley <calestialashley@gmail.com>\n");
+}
+
 void file_info(const char *filename) {
     struct stat file_stat;
     if (stat(filename, &file_stat) == -1) {
@@ -554,6 +664,7 @@ void file_info(const char *filename) {
 void help() {
     printf("Commands:\n");
     printf("  help                    Show this help message\n");
+    printf("  man txtmax              Comprehensive Manual\n");
     printf("  create <filename>       Create a new file and save locally\n");
     printf("  files                   List all files in the current directory\n");
     printf("  search <filename>       Search for files with the specified name\n");
@@ -563,6 +674,7 @@ void help() {
     printf("  info <filename>         Show file info (name, extension, creation time, modification time)\n");
     printf("  run                     Excute Your Code without exiting\n");
     printf("  packages                Install Packages\n");
+    printf("  man txtmax              Comprehensive Manual\n");
     printf("  examples                Show Hello World examples in various languages\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
@@ -712,10 +824,12 @@ int main() {
             examples();
         } else if (strcmp(command, "sql") == 0) {
             sql_examples();
-} else if (strcmp(command, "run") == 0) {
+        } else if (strcmp(command, "run") == 0) {
         quick_run();
             } else if (strcmp(command, "packages") == 0) {
         packages();
+            } else if (strcmp(command, "man txtmax") == 0) {
+        man_txtmax();
         } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
