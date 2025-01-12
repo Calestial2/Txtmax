@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -std=c11 -O2
 TARGET = txtmax
 
 # Source files
-SRC = txtmax8.c
+SRC = txtmax9.c
 
 # Object files
 OBJ = $(SRC:.c=.o)
