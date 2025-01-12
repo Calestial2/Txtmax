@@ -25,7 +25,8 @@ Txtmax is an advanced text editor designed for Linux, featuring syntax highlight
 - **delete <filename>**: Delete a specified file.
 - **search <filename>**: Search for files with the specified name in the current directory.
 - **info <filename>**: Get detailed information about the file (name, extension, creation time, modification time).
-- **run**: Run your code Quickly without exiting with various compilers such as GCC, Clang, Python, Node
+- **run**: Run your code Quickly without exiting with various compilers and interpretors such as GCC, Clang, Python, Node
+- **packages**: install pip and npm packages (must install python and nodejs)
 - **Git Integration**: Supports Git Branch, Version 
 - **exit**: Exit the Txtmax editor.
 
