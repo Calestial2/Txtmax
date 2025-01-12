@@ -459,7 +459,7 @@ void quick_run() {
             return;
         }
     } else {
-        printf("Error: Unsupported compiler or interpreter '%s'.\n", compiler);
+   printf("Error: Unsupported compiler or interpreter '%s'.\n", compiler);
         return;
     }
 
@@ -469,6 +469,40 @@ void quick_run() {
         printf("Error: Failed to execute the command.\n");
     } else {
         printf("Execution completed successfully.\n");
+    }
+}
+
+void packages() {
+    char package_manager[MAX_INPUT_SIZE];
+    char package_name[MAX_INPUT_SIZE];
+    char command[MAX_INPUT_SIZE];
+
+    printf("Enter package manager (pip/npm): ");
+    fgets(package_manager, sizeof(package_manager), stdin);
+    package_manager[strcspn(package_manager, "\n")] = 0; // Remove trailing newline
+
+    if (strcmp(package_manager, "pip") != 0 && strcmp(package_manager, "npm") != 0) {
+        printf("Error: Unsupported package manager '%s'.\n", package_manager);
+        return;
+    }
+
+    printf("Enter package name: ");
+    fgets(package_name, sizeof(package_name), stdin);
+    package_name[strcspn(package_name, "\n")] = 0; // Remove trailing newline
+
+    // Construct the installation command
+    if (strcmp(package_manager, "pip") == 0) {
+        snprintf(command, sizeof(command), "pip install %s", package_name);
+    } else if (strcmp(package_manager, "npm") == 0) {
+        snprintf(command, sizeof(command), "npm install %s", package_name);
+    }
+
+    // Execute the installation command
+    printf("Running command: %s\n", command);
+    if (system(command) != 0) {
+        printf("Error: Failed to install the package '%s' using %s.\n", package_name, package_manager);
+    } else {
+        printf("Package '%s' installed successfully using %s.\n", package_name, package_manager);
     }
 }
 
@@ -528,6 +562,7 @@ void help() {
     printf("  delete <filename>       Delete a file\n");
     printf("  info <filename>         Show file info (name, extension, creation time, modification time)\n");
     printf("  run                     Excute Your Code without exiting\n");
+    printf("  packages                Install Packages\n");
     printf("  examples                Show Hello World examples in various languages\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
