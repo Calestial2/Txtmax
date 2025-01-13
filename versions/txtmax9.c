@@ -681,7 +681,6 @@ void help() {
     printf("  info <filename>         Show file info (name, extension, creation time, modification time)\n");
     printf("  run                     Excute Your Code without exiting\n");
     printf("  packages                Install Packages\n");
-    printf("  man txtmax              Comprehensive Manual\n");
     printf("  examples                Show Hello World examples in various languages\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
