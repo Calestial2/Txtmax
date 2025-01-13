@@ -406,34 +406,11 @@ void search_files(const char *filename) {
     }
 
     printf("Searching for files with name '%s':\n", filename);
-    
-    char path[MAX_INPUT_SIZE];
-    struct stat file_stat;
-
     while ((entry = readdir(dir)) != NULL) {
-        // Skip '.' and '..'
-        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-            continue;
-
-        // Get file/directory stats
-        stat(entry->d_name, &file_stat);
-
-        if (S_ISDIR(file_stat.st_mode)) {
-            // If it's a directory, recursively search
-            if (chdir(entry->d_name) == 0) { // Change directory
-                search_files(filename); // Recursive call
-                chdir(".."); // Go back to the parent directory
-            }
-        } else if (S_ISREG(file_stat.st_mode)) {
-            // If it's a regular file, check for match
-            if (strstr(entry->d_name, filename)) {
-                // Get the full path
-                realpath(entry->d_name, path);
-                printf("  %s\n", path);
-            }
+        if (entry->d_type == DT_REG && strstr(entry->d_name, filename)) {
+            printf("  %s\n", entry->d_name);
         }
     }
-
     closedir(dir);
 }
 
