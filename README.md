@@ -43,29 +43,16 @@ Txtmax uses ANSI colors for syntax highlighting to enhance readability. The foll
 
 To get started with Txtmax, follow these steps:
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/Calestial2/Txtmax.git
-    ```
-   
-2. **Navigate to the Txtmax directory**:
-    ```bash
-    cd Txtmax
-    ```
-
-3. **Navigate to Folder**:
-      ```bash
-      cd versions
-
-3. **Compile the code**:
-    ```bash
-    gcc txtmax9.c -o txtmax9
-    ```
-
-4. **Run the Txtmax editor**:
-    ```bash
-    ./txtmax9
-    ```
+1. **Download**: Download txtmax_packages.deb from https://github.com/Calestial2/Txtmax/releases/tag/v0.0.9 or wget https://github.com/Calestial2/Txtmax/releases/tag/v0.0.9
+2. **Install**: Type
+```bash
+apt install ./txtmax-packages.deb
+```
+3. **Run**: Type
+```bash
+txtmax
+```
+and start using it
 
 ## License
 
