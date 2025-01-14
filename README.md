@@ -39,6 +39,8 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **sql:** Show example queries for SQL databases such as SQL, PostgreSQL, NoSQL (MongoDB).
 - **run:** Run your code quickly without exiting Txtmax with compilers and interpreters such as GCC, Clang, Python, Node. First, it will ask for the file name and extension, then the compiler name, and it will run it.
 - **packages:** Install pip and npm packages. First, it will ask which package manager to choose (pip or npm), then type the package name, and it will install it. (Must have Python and Node.js installed already)
+- **api**: Test Restful APIs Directly in the Editor, It will ask for Putting an url and it will fetch via curl.
+- **advance**: Allows to open Files view them and then Allows to Jump to an line and allows to search an specific text/code
 - **exit:** Exit the Txtmax editor.
 
 ## UI
@@ -158,7 +160,7 @@ Supports:
 63. ChucK 
 64. natural 
 65. Pike
- 
+
 ### Markup Languages:
 1. HTML
 
