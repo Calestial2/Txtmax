@@ -9,6 +9,7 @@
 
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
+#define MAX_URL_LENGTH 2048
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -586,6 +587,42 @@ void packages() {
     }
 }
 
+void api() {
+    char url[MAX_URL_LENGTH];
+    char command[MAX_URL_LENGTH + 10]; // To accommodate "curl " and null terminator
+
+    // Prompt the user for a URL
+    printf("Enter the URL to fetch data from: ");
+    if (fgets(url, sizeof(url), stdin) == NULL) {
+        fprintf(stderr, "Error reading input.\n");
+        return;
+    }
+
+    // Remove newline character from the URL, if present
+    size_t len = strlen(url);
+    if (len > 0 && url[len - 1] == '\n') {
+        url[len - 1] = '\0';
+    }
+
+    // Validate the URL
+    if (strlen(url) == 0) {
+        fprintf(stderr, "Error: URL cannot be empty.\n");
+        return;
+    }
+
+    // Ensure the command does not exceed the buffer size
+    if (snprintf(command, sizeof(command), "curl \"%s\"", url) >= sizeof(command)) {
+        fprintf(stderr, "Error: URL is too long.\n");
+        return;
+    }
+
+    // Execute the curl command using system()
+    int ret = system(command);
+    if (ret == -1) {
+        perror("Error executing system command");
+    }
+}
+
 void man_txtmax() {
     printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -909,6 +946,8 @@ int main() {
         packages();
             } else if (strcmp(command, "man txtmax") == 0) {
         man_txtmax();
+            } else if (strcmp(command, "api") == 0) {
+        api();
         } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
@@ -919,4 +958,3 @@ int main() {
 
     return 0;
 }
-
