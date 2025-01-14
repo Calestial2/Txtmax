@@ -10,6 +10,7 @@
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
 #define MAX_URL_LENGTH 2048
+#define MAX_LINE_LENGTH 1024
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -623,6 +624,73 @@ void api() {
     }
 }
 
+// Function prototypes
+void jumpToLine(FILE *file, int lineNumber);
+void searchInFile(FILE *file, const char *searchTerm);
+
+void advance() {
+    char fileName[256];
+    char searchTerm[256];
+    int lineNumber;
+
+    // Prompt for file name
+    printf("Enter the file name (with extension): ");
+    scanf("%255s", fileName);
+
+    // Open the file
+    FILE *file = fopen(fileName, "r");
+    if (file == NULL) {
+        perror("Error opening file");
+        return;
+    }
+
+    // Jump to a specific line
+    printf("Jumping: Enter the line number to jump to: ");
+    scanf("%d", &lineNumber);
+    jumpToLine(file, lineNumber);
+
+    // Search for a term in the file
+    printf("Search: Enter the term to search for: ");
+    scanf(" %[^\n]s", searchTerm); // Read including spaces
+    searchInFile(file, searchTerm);
+
+    // Close the file
+    fclose(file);
+}
+
+void jumpToLine(FILE *file, int lineNumber) {
+    char buffer[MAX_LINE_LENGTH];
+    int currentLine = 1;
+
+    rewind(file); // Reset file pointer to the beginning
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        if (currentLine == lineNumber) {
+            printf("Line %d: %s", currentLine, buffer);
+            return;
+        }
+        currentLine++;
+    }
+    printf("Line %d not found.\n", lineNumber);
+}
+
+void searchInFile(FILE *file, const char *searchTerm) {
+    char buffer[MAX_LINE_LENGTH];
+    int lineNumber = 0;
+    int found = 0;
+
+    rewind(file); // Reset file pointer to the beginning
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        lineNumber++;
+        if (strstr(buffer, searchTerm) != NULL) {
+            printf("Found '%s' at line %d: %s", searchTerm, lineNumber, buffer);
+            found = 1;
+        }
+    }
+    if (!found) {
+        printf("Search term '%s' not found in the file.\n", searchTerm);
+    }
+}
+
 void man_txtmax() {
     printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -673,9 +741,15 @@ void man_txtmax() {
     printf("           like GCC, Clang, Python, Node.js, and more.\n\n");
 
     printf("       packages\n");
-    printf("           Install Python (pip) or Node.js (npm) or Gem (Ruby) or Go (Golang) packages from the terminal. You can choose the package manager\n");
+    printf("           Install Python (pip) or Node.js (npm) or Gem (Ruby) or Go (Golang) and many other packages from the terminal. You can choose the package manager\n");
     printf("           and install the required package.\n\n");
 
+    printf("       api\n");
+    printf("           Test Restful APIs Directly in the Editor.\n\n");
+
+    printf("       advance\n");
+    printf("           Open File and jump into an content and search for specific text/code in it.\n\n");
+    
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
 
@@ -791,6 +865,8 @@ void help() {
     printf("  info <filename>         Show file info (name, extension, creation time, modification time)\n");
     printf("  run                     Excute Your Code without exiting\n");
     printf("  packages                Install Packages\n");
+    printf("  api                     Test Restful APis directly in the editor\n");
+    printf("  advance                 Open Files and Jump to Specfic line of it and Search for an Specfic Text/Code\n");
     printf("  examples                Show Hello World examples in various languages\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
