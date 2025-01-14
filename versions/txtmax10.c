@@ -87,6 +87,9 @@ const char *keywords_chuck[] = {"if", "else", "for", "while", "until", "spork", 
 const char *keywords_natural[] = {"DEFINE", "IF", "THEN", "ELSE", "END-DEFINE", "READ", "WRITE", "DISPLAY", "MOVE", "ADD", "DELETE", "RETURN", NULL};
 const char *keywords_pike[] = {"int", "float", "string", "if", "else", "while", "for", "return", "function", "class", "inherit", "void", NULL};
 const char *keywords_oberon[] = {"MODULE", "IMPORT", "BEGIN", "END", "IF", "THEN", "ELSE", "ELSIF", "WHILE", "DO", "PROCEDURE", "VAR", "CONST", "TYPE", "RECORD", "ARRAY", "OF", "RETURN", NULL};
+const char *keywords_xml[] = {"<", "</", ">", "/>", "<?", "?>", "<!--", "-->", "<![CDATA[", "DOCTYPE", "ELEMENT", "ATTLIST", "ENTITY", NULL};
+const char *keywords_yaml[] = {"-", ":", "?", "|", ">", "true", "false", "null", "~", ">", "|", "!!", "key", "value", NULL};
+const char *keywords_json[] = {"{", "}", "[", "]", ":", ",", "true", "false", "null", "\"", "key", "value", NULL};
 
 // Function to check if a word is a keyword
 int is_keyword(const char *word, const char **keywords) {
@@ -105,8 +108,7 @@ void syntax_highlight(const char *line, const char *extension) {
 
 const char **keywords;
 
-// Match All File Extensions
-    if (strcmp(extension, ".py") == 0) {
+if (strcmp(extension, ".py") == 0) {
     keywords = keywords_python;
 } else if (strcmp(extension, ".java") == 0) {
     keywords = keywords_java;
@@ -214,10 +216,16 @@ const char **keywords;
     keywords = keywords_natural;
 } else if (strcmp(extension, ".pike") == 0) {
     keywords = keywords_pike;
+} else if (strcmp(extension, ".xml") == 0) { // XML
+    keywords = keywords_xml;
+} else if (strcmp(extension, ".yaml") == 0 || strcmp(extension, ".yml") == 0) { // YAML
+    keywords = keywords_yaml;
+} else if (strcmp(extension, ".json") == 0) { // JSON
+    keywords = keywords_json;
 } else {
     keywords = keywords_c; // Default to C
 }
- 
+    
     for (int i = 0; line[i]; i++) {
         if (line[i] == '\"') {
             if (!in_comment) {
