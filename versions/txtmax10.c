@@ -462,7 +462,7 @@ void quick_run() {
     fclose(file);
 
     // Prompt for compiler/interpreter
-    printf("Enter the compiler or interpreter (gcc, clang, python, node, lua, ruby): ");
+    printf("Enter the compiler or interpreter (gcc, clang, python, node, nasm, tcl, bash): ");
     fgets(compiler, sizeof(compiler), stdin);
     compiler[strcspn(compiler, "\n")] = 0; // Remove trailing newline
 
@@ -487,20 +487,6 @@ void quick_run() {
             printf("Error: Python is only compatible with .py files.\n");
             return;
         }
-        } else if (strcmp(compiler, "lua") == 0) {
-        if (strcmp(ext, ".lua") == 0) {
-            snprintf(command, sizeof(command), "lua %s", filename);
-        } else {
-            printf("Error: Lua is only compatible with .lua files.\n");
-            return;
-        }
-        } else if (strcmp(compiler, "ruby") == 0) {
-        if (strcmp(ext, ".rb") == 0) {
-            snprintf(command, sizeof(command), "ruby %s", filename);
-        } else {
-            printf("Error: Ruby is only compatible with .rb files.\n");
-            return;
-        }
     } else if (strcmp(compiler, "node") == 0) {
         if (strcmp(ext, ".js") == 0) {
             snprintf(command, sizeof(command), "node %s", filename);
@@ -508,12 +494,33 @@ void quick_run() {
             printf("Error: Node.js is only compatible with .js files.\n");
             return;
         }
+    } else if (strcmp(compiler, "nasm") == 0) {
+        if (strcmp(ext, ".asm") == 0) {
+            snprintf(command, sizeof(command), "nasm -f elf64 %s -o output.o && gcc output.o -o output && ./output", filename);
+        } else {
+            printf("Error: NASM is only compatible with .asm files.\n");
+            return;
+        }
+    } else if (strcmp(compiler, "tcl") == 0) {
+        if (strcmp(ext, ".tcl") == 0) {
+            snprintf(command, sizeof(command), "tclsh %s", filename);
+        } else {
+            printf("Error: TCL is only compatible with .tcl files.\n");
+            return;
+        }
+    } else if (strcmp(compiler, "bash") == 0) {
+        if (strcmp(ext, ".sh") == 0) {
+            snprintf(command, sizeof(command), "bash %s", filename);
+        } else {
+            printf("Error: Bash is only compatible with .sh files.\n");
+            return;
+        }
     } else {
-   printf("Error: Unsupported compiler or interpreter '%s'.\n", compiler);
+        printf("Error: Unsupported compiler or interpreter '%s'.\n", compiler);
         return;
     }
 
-    // Execute the command
+    // Execute the commandgfg
     printf("Running command: %s\n", command);
     if (system(command) != 0) {
         printf("Error: Failed to execute the command.\n");
@@ -527,14 +534,20 @@ void packages() {
     char package_name[MAX_INPUT_SIZE];
     char command[MAX_INPUT_SIZE];
 
-    printf("Enter package manager (pip/npm/gem/go): ");
+    printf("Enter package manager (pip/npm/gem/go/yarn/composer/cargo/nuget/apt): ");
     fgets(package_manager, sizeof(package_manager), stdin);
     package_manager[strcspn(package_manager, "\n")] = 0; // Remove trailing newline
 
+    // Check for valid package manager
     if (strcmp(package_manager, "pip") != 0 &&
         strcmp(package_manager, "npm") != 0 &&
         strcmp(package_manager, "gem") != 0 &&
-        strcmp(package_manager, "go") != 0) {
+        strcmp(package_manager, "go") != 0 &&
+        strcmp(package_manager, "yarn") != 0 &&
+        strcmp(package_manager, "composer") != 0 &&
+        strcmp(package_manager, "cargo") != 0 &&
+        strcmp(package_manager, "nuget") != 0 &&
+        strcmp(package_manager, "apt") != 0) {
         printf("Error: Unsupported package manager '%s'.\n", package_manager);
         return;
     }
@@ -543,7 +556,7 @@ void packages() {
     fgets(package_name, sizeof(package_name), stdin);
     package_name[strcspn(package_name, "\n")] = 0; // Remove trailing newline
 
-    // Construct the installation command
+    // Construct the installation command based on the package manager
     if (strcmp(package_manager, "pip") == 0) {
         snprintf(command, sizeof(command), "pip install %s", package_name);
     } else if (strcmp(package_manager, "npm") == 0) {
@@ -552,6 +565,16 @@ void packages() {
         snprintf(command, sizeof(command), "gem install %s", package_name);
     } else if (strcmp(package_manager, "go") == 0) {
         snprintf(command, sizeof(command), "go install %s@latest", package_name);
+    } else if (strcmp(package_manager, "yarn") == 0) {
+        snprintf(command, sizeof(command), "yarn add %s", package_name);
+    } else if (strcmp(package_manager, "composer") == 0) {
+        snprintf(command, sizeof(command), "composer require %s", package_name);
+    } else if (strcmp(package_manager, "cargo") == 0) {
+        snprintf(command, sizeof(command), "cargo install %s", package_name);
+    } else if (strcmp(package_manager, "nuget") == 0) {
+        snprintf(command, sizeof(command), "nuget install %s", package_name);
+    } else if (strcmp(package_manager, "apt") == 0) {
+        snprintf(command, sizeof(command), "sudo apt-get install %s", package_name);
     }
 
     // Execute the installation command
