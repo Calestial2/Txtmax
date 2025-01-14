@@ -1,15 +1,16 @@
 ![Image](https://github.com/Calestial2/Txtmax/blob/f7a65e499d29e184e6d06263250e8f16b753b5ba/ascii-text-art.png)
           
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
-Text Management And Extended Editor (known as Txtmax) is a powerful, lightweight, fast, completely free, open-source advanced text editor designed for Linux Built from Termux. It features syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files from the command line with ease.
+## Text Management And Extended Editor (Txtmax)
+Txtmax is a powerful, lightweight, fast, completely free, open-source advanced text editor designed for Linux Built from Termux. It features syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files and jumping to line and searching spectic line from the command line with ease.
 
 **Programming Language:** C (main) (100% code is in C)  
 **Developer:** Calestial Ashley  
 **Nature:** Fully and completely open source  
 **Contact:** Contact at calestialashley@gmail.com, or friend Calestial Ashley (username: calestial_ashley) on Discord and DM  
 **Release Date:** January 2, 2025 (12 days old)  
-**Size:** 90 KB (It's weird because the code is too long but it’s small in size due to many libraries)  
-**Lines of Code:** 921 (close to 1000)
+**Size:** 44 KB (It's weird because the code is too long but it’s small in size due to many libraries)  
+**Lines of Code:** 1044
 
 ## Features
 
