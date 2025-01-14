@@ -1032,6 +1032,8 @@ int main() {
         man_txtmax();
             } else if (strcmp(command, "api") == 0) {
         api();
+            } else if (strcmp(command, "advance") == 0) {
+        advance();
         } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
