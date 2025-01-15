@@ -932,6 +932,7 @@ void help() {
     printf("  packages                Install Packages\n");
     printf("  api                     Test Restful APis directly in the editor\n");
     printf("  advance                 Open Files and Jump to Specfic line of it and Search for an Specfic Text/Code\n");
+    printf("  axios                   Fetch Data with Axios\n");
     printf("  examples                Show Hello World examples in various languages\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
