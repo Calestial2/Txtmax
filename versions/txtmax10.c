@@ -11,6 +11,8 @@
 #define MAX_CONTENT 1024
 #define MAX_URL_LENGTH 2048
 #define MAX_LINE_LENGTH 1024
+#define MAX_FILENAME_LENGTH 256
+#define MAX_CONTENT_LENGTH 1024
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -90,6 +92,7 @@ const char *keywords_oberon[] = {"MODULE", "IMPORT", "BEGIN", "END", "IF", "THEN
 const char *keywords_xml[] = {"<", "</", ">", "/>", "<?", "?>", "<!--", "-->", "<![CDATA[", "DOCTYPE", "ELEMENT", "ATTLIST", "ENTITY", NULL};
 const char *keywords_yaml[] = {"-", ":", "?", "|", ">", "true", "false", "null", "~", ">", "|", "!!", "key", "value", NULL};
 const char *keywords_json[] = {"{", "}", "[", "]", ":", ",", "true", "false", "null", "\"", "key", "value", NULL};
+const char *keywords_vb[] = {"Dim", "If", "Then", "Else", "ElseIf", "End If", "For", "Each", "Next", "While", "Do", "Loop", "Sub", "Function", "End Sub", "End Function", "Return", "Class", "Public", "Private", "Protected", "Static", "New", "Set", "Get", "Property", "Module", "Imports", "Try", "Catch", "Finally", "Throw", "True", "False", "Nothing", "And", "Or", "Not", "Is", "As", NULL};
 
 // Function to check if a word is a keyword
 int is_keyword(const char *word, const char **keywords) {
@@ -222,6 +225,8 @@ if (strcmp(extension, ".py") == 0) {
     keywords = keywords_yaml;
 } else if (strcmp(extension, ".json") == 0) { // JSON
     keywords = keywords_json;
+} else if (strcmp(extension, ".vb") == 0) { // JSON
+    keywords = keywords_vb;
 } else {
     keywords = keywords_c; // Default to C
 }
@@ -699,6 +704,55 @@ void searchInFile(FILE *file, const char *searchTerm) {
     }
 }
 
+void api_axios() {
+    char filename[MAX_FILENAME_LENGTH];
+    char content[MAX_CONTENT_LENGTH];
+    char command[MAX_FILENAME_LENGTH + 10]; // +10 to store "node " and ".js"
+
+    // Ask for the filename
+    printf("Enter the filename (without extension): ");
+    fgets(filename, MAX_FILENAME_LENGTH, stdin);
+    filename[strcspn(filename, "\n")] = 0; // Remove trailing newline if any
+
+    // Open the file for writing
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        perror("Error opening file");
+        return;
+    }
+
+    // Ask for the content
+    printf("Enter content (type ':wq' to save and quit):\n");
+    while (1) {
+        // Get user input
+        if (fgets(content, MAX_CONTENT_LENGTH, stdin) == NULL) {
+            break; // Exit on EOF or error
+        }
+
+        // Check for ":wq" to quit and save
+        if (strncmp(content, ":wq", 3) == 0) {
+            break; // Exit loop to save and quit
+        }
+
+        // Write content to the file
+        fputs(content, file);
+    }
+
+    // Close the file after saving
+    fclose(file);
+    printf("File saved as %s.js\n", filename);
+
+    // Create and execute the command to run the file with Node.js
+    snprintf(command, sizeof(command), "node %s.js", filename);
+    int result = system(command);
+    
+    if (result == -1) {
+        perror("Error running system command");
+    } else {
+        printf("Node.js command executed successfully.\n");
+    }
+}
+
 void man_txtmax() {
     printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -757,6 +811,9 @@ void man_txtmax() {
 
     printf("       advance\n");
     printf("           Open File and jump into an content and search for specific text/code in it.\n\n");
+
+    printf("       axios\n");
+    printf("           Fetch Data from URL.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1034,6 +1091,8 @@ int main() {
         api();
             } else if (strcmp(command, "advance") == 0) {
         advance();
+            } else if (strcmp(command, "axios") == 0) {
+        api_axios();
         } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
