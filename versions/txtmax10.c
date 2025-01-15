@@ -930,6 +930,7 @@ void help() {
     printf("  info <filename>         Show file info (name, extension, creation time, modification time)\n");
     printf("  run                     Excute Your Code without exiting\n");
     printf("  packages                Install Packages\n");
+    printf("  axios                   Fetch Data with Axios\n");
     printf("  api                     Test Restful APis directly in the editor\n");
     printf("  advance                 Open Files and Jump to Specfic line of it and Search for an Specfic Text/Code\n");
     printf("  examples                Show Hello World examples in various languages\n");
