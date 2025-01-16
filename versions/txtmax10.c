@@ -753,6 +753,57 @@ void api_axios() {
     }
 }
 
+void deploy() {
+    char choice[10];
+    char command[50];
+
+    // Prompt the user to choose between 'railway' or 'render'
+    printf("Choose 'railway' or 'render': ");
+    fgets(choice, sizeof(choice), stdin);
+    choice[strcspn(choice, "\n")] = '\0';  // Remove newline character
+
+    // Check if the user chose 'railway'
+    if (strcmp(choice, "railway") == 0) {
+        // Execute the command "railway init"
+        system("railway init");
+        
+        // Prompt user for additional command "railway up"
+        while (1) {
+            printf("Type command (e.g., railway up): ");
+            fgets(command, sizeof(command), stdin);
+            command[strcspn(command, "\n")] = '\0';  // Remove newline character
+
+            if (strcmp(command, "railway up") == 0) {
+                system("railway up");
+            } else {
+                printf("Invalid command. Try again.\n");
+            }
+        }
+    }
+    // Check if the user chose 'render'
+    else if (strcmp(choice, "render") == 0) {
+        // Execute the command "render init"
+        system("render init");
+
+        // Prompt user for additional command "render deploy"
+        while (1) {
+            printf("Type command (e.g., render deploy): ");
+            fgets(command, sizeof(command), stdin);
+            command[strcspn(command, "\n")] = '\0';  // Remove newline character
+
+            if (strcmp(command, "render deploy") == 0) {
+                system("render deploy");
+            } else {
+                printf("Invalid command. Try again.\n");
+            }
+        }
+    }
+    // If the input is neither 'railway' nor 'render'
+    else {
+        printf("Invalid choice! Please choose 'railway' or 'render'.\n");
+    }
+}
+
 void man_txtmax() {
     printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -814,7 +865,10 @@ void man_txtmax() {
 
     printf("       axios\n");
     printf("           Fetch Data from URL.\n\n");
-    
+
+    printf("       deploy\n");
+    printf("           Deploy your code to Railway or Render..\n\n");
+  
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
 
@@ -833,9 +887,9 @@ void man_txtmax() {
     printf("           2. Navigate to the directory:\n");
     printf("              cd Txtmax\n");
     printf("           3. Compile the code:\n");
-    printf("              gcc txtmax9.c -o txtmax9\n");
+    printf("              gcc txtmax10.c -o txtmax10\n");
     printf("           4. Run Txtmax:\n");
-    printf("              ./txtmax9\n\n");
+    printf("              ./txtmax10\n\n");
 
     printf("       Alternatively, use the Makefile to install the latest version with:\n");
     printf("           make ./txtmax\n\n");
@@ -933,6 +987,7 @@ void help() {
     printf("  axios                   Fetch Data with Axios\n");
     printf("  api                     Test Restful APis directly in the editor\n");
     printf("  advance                 Open Files and Jump to Specfic line of it and Search for an Specfic Text/Code\n");
+    printf("  deploy                  Deploy your code to Railway and Render\n");
     printf("  examples                Show Hello World examples in various languages\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
@@ -1094,6 +1149,8 @@ int main() {
         advance();
             } else if (strcmp(command, "axios") == 0) {
         api_axios();
+            } else if (strcmp(command, "deploy") == 0) {
+        deploy();
         } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
