@@ -1,16 +1,17 @@
 ![Image](https://github.com/Calestial2/Txtmax/blob/f7a65e499d29e184e6d06263250e8f16b753b5ba/ascii-text-art.png)
           
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
-## Text Management And Extended Editor (Txtmax)
-Txtmax is a powerful, lightweight, fast, completely free, open-source advanced text editor designed for Linux Built from Termux. It features syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files and jumping to line and searching spectic line from the command line with ease.
+## Text Management And Extended Editor (known as Txtmax)
+
+Txtmax is a powerful, lightweight, fast, completely free, open-source advanced text editor designed for Linux. It features syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files from the command line with ease.
 
 **Programming Language:** C (main) (100% code is in C)  
 **Developer:** Calestial Ashley  
 **Nature:** Fully and completely open source  
 **Contact:** Contact at calestialashley@gmail.com, or friend Calestial Ashley (username: calestial_ashley) on Discord and DM  
-**Release Date:** January 2, 2025 (12 days old)  
-**Size:** 44 KB (It's weird because the code is too long but it’s small in size due to many libraries)  
-**Lines of Code:** 1044
+**Release Date:** January 2, 2025 (15 days old)  
+**Size:** 49 KB (It's weird because the code is too long but it’s small in size due to many libraries)  
+**Lines of Code:** 1163
 
 ## Features
 
@@ -21,6 +22,12 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **Delete Files:** Delete specified text files.
 - **Search Files:** Search for files by name.
 - **Get File Info:** Retrieve detailed information about a file, including its name, extension, creation time, modification time, and version control.
+- **Line Numbering and Jumping to Specific line**
+- **Search and Replace**
+- **Compiling and Running Code**
+- **Test and Fetch Data's of Restful APIs**
+- **Deploy Codes**
+- **Package and Dependencies Management**
 - **Robust Error Handling:** Better error handling.
 - **Robust Git Integration:** Supports Git branch, version, commit, and version tracking.
 
@@ -28,7 +35,8 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 
 - **help:** List all available commands.
 - **man txtmax:** Comprehensive manual.
-- **create <filename>:** Create a new file and type code in 60+ languages, save and quit with :wq, provide a commit message, branch, and version, and save it locally.
+- **create <filename>:** Create a new file and type code in 70 languages, save and quit with :wq, type a commit message, branch, and version, and save it locally.
+- **man txtmax**: comprehensive manual
 - **files:** List all files in the current directory.
 - **view <filename>:** View the contents of a file with syntax highlighting.
 - **edit <filename> <line>:** Edit a specific line in the file.
@@ -37,10 +45,12 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **info <filename>:** Get detailed information about the file (name, extension, creation time, modification time, version control such as commit message, branch, version).
 - **examples:** Show examples of "Hello, World!" programs in C, Python, Java, JavaScript, C++, Rust, Ruby, Elixir, Kotlin, TypeScript, Dart, Objective-C, Go, etc.
 - **sql:** Show example queries for SQL databases such as SQL, PostgreSQL, NoSQL (MongoDB).
-- **run:** Run your code quickly without exiting Txtmax with compilers and interpreters such as GCC, Clang, Python, Node. First, it will ask for the file name and extension, then the compiler name, and it will run it.
-- **packages:** Install pip and npm packages. First, it will ask which package manager to choose (pip or npm), then type the package name, and it will install it. (Must have Python and Node.js installed already)
-- **api**: Test Restful APIs Directly in the Editor, It will ask for Putting an url and it will fetch via curl.
-- **advance**: Allows to open Files view them and then Allows to Jump to an line and allows to search an specific text/code
+- **run:** Run your code quickly without exiting Txtmax with compilers and interpreters such as GCC, Clang, Python, Lua, Ruby, nasm, tcl, Node. First, it will ask for the file name and extension, then the compiler name, and it will run it.
+- **packages:** Install Packages. First, it will ask which package manager to choose (pip or npm or gem or go or yarn or composer or cargo or nuget or apt), then type the package name, and it will install it. (Must have Python and Node.js and the others installed installed already)
+- **api**: Test Restful APIs Data Directly in the Editor, First will ask for putting url and it will fetch data via curl
+- **axios**: Another Command allows to Fetch Restful APIs Data From their Url, First it will ask for filename and then allows to write codes and quit with :wq and it will run it
+- **advance**: type an file name with it's extension, it will show it's content and allows to jump into an specific line in it and Search and Replace
+- **deploy**: Deploy your code to Railway CLI or Render CLI, First Txtmax will prompt you for choosing Railway or Render and then it will initialize an one and you can type commands and deploy with railway up or render deploy
 - **exit:** Exit the Txtmax editor.
 
 ## UI
@@ -61,15 +71,12 @@ To get started with Txtmax, follow these steps:
 
 1. **Install:** Install it by running:
 ```bash
-git clone https://github.com/Calestial2/Txtmax cd Txtmax cd versions gcc gcc txtmax10.c -o txtmax10 ./txtmax10
+git clone https://github.com/Calestial2/Txtmax cd Txtmax cd versions gcc txtmax10.c -o txtmax10 ./txtmax10
 ```
 
 ## OS Compatibility 
 
-Available on Linux and Unix-like systems (macOS and BSD) 🐧🐧🐧. Other OS:
-
-- **Windows:** Run an emulator like WSL 🙃 (because dirent.h is not available by default)
-- **Android:** Use Termux (works well on Termux because itself developed from Termux)
+Available on Linux and Unix-like systems (macOS and BSD) 🐧🐧🐧. For Other OS use Emulators
 
 ## Performance 
 
@@ -93,12 +100,14 @@ Contributions are welcome! Here's how you can help:
 
 ## Supported Languages
 
+Supports Popular Programming Language (Low Level and High Level of such many categories) and many Functional Languages and Many Old Languages that are still used today and Game Engine Language and Educational Languages and Many Rare Less common language 
+
 Supports:
 
 1. C
 2. Python
 3. Java
-4. JavaScript
+4. JavaScript (JS)
 5. C++
 6. Rust
 7. Ruby
@@ -112,57 +121,60 @@ Supports:
 15. R
 16. PHP
 17. Lua
-18. Objective-C
+18. Objective-C (ObjC)
 19. Groovy
 20. Erlang
 21. Bash
 22. Julia
-23. F#
-24. C#
+23. F# (F-sharp)
+24. C# (C-sharp)
 25. Scheme
 26. Clojure
 27. Fortran
-28. Cobol
+28. COBOL
 29. VHDL
 30. Lisp
 31. SQL
-32. Matlab
+32. MATLAB
 33. Perl
 34. Scala
-35. PostgreSQL
-36. NoSQL
-37. ActionScript
-38. Ada 
-39. Nim
-40. Crystal
-41. D
-42. Assembly Language 
-43. PureScript 
-44. Prolog 
-45. Zig
-46. Brainfuck
-47. OCaml 
-48. Txl
-49. Xojo
-50. Forth
-51. Verilog 
-52. Algol
-53. LabVIEW 
-54. Mercury 
-55. Shellscript 
-56. Turing
-57. GDscript 
-58. fantom 
-59. Zsh 
-60. Oberon 
-61. Auto Hotkey
-62. Ceylon 
-63. ChucK 
-64. natural 
-65. Pike
-
-### Markup Languages:
-1. HTML
+35. HTML
+36. PostgreSQL
+37. NoSQL
+38. ActionScript
+39. Ada
+40. Nim
+41. Crystal
+42. D
+43. PureScript
+44. Assembly
+45. Prolog
+46. Zig
+47. Brainfuck
+48. Algol
+49. LabVIEW
+50. Mercury
+51. Shellscript 
+52. OCaml
+53. TXL
+54. Xojo
+55. Forth
+56. Verilog
+57. AWK
+58. Turing
+59. GDScript
+60. Fantom
+61. Zsh
+62. AutoHotKey
+63. Ceylon
+64. ChucK
+65. Natural
+66. Pike
+67. Oberon
+68. XML
+69. Yaml
+70. JSON 
+71. Visual Basic 
 
 ## Libraries
 
@@ -183,29 +195,34 @@ The Txtmax text editor code is in the versions folder.
 
 In the versions folder, there are files such as:
 
-- **txtmax1.c:** The first version of Txtmax (0.0.1)
-- **txtmax2.c:** The second version of Txtmax (0.0.2)
-- **txtmax3.c:** The third version of Txtmax (0.0.3)
+- **txtmax1.c:** The first version of Txtmax (0.0.1) it is now missed in the versions folder somehow for no reason but it is the Foundation 
+- **txtmax2.c:** The second version of Txtmax (0.0.2) 
+- **txtmax3.c:** The third version of Txtmax (0.0.3) 
 - **txtmax4.c:** Skipped
-- **txtmax5.c:** The fifth version of Txtmax (0.0.5)
+- **txtmax5.c:** The fifth version of Txtmax (0.0.5)  
 - **txtmax6.c:** The sixth version of Txtmax (0.0.6) 
 - **txtmax7.c:** The seventh version of Txtmax (0.0.7) 
-- **txtmax8.c:** The eighth version of Txtmax (0.0.8)
-- **txtmax9.c:** The ninth version of Txtmax (0.0.9)
-- **txtmax10.c:** The tenth and Latest Version of Txtmax (0.1.0)
+- **txtmax8.c:** The eighth version of Txtmax (0.0.8) 
+- **txtmax9.c:** The ninth version of Txtmax (0.0.9) 
+- **txtmax10.c:** The tenth and Latest Version of Txtmax (0.1.0) 
+
+When we Release an Update we keep updating it until another version 
+
+We Recommend You use Latest Version 
 
 ## Why Choose Txtmax?
 
-- **Comprehensive File Management:** Txtmax offers comprehensive file management, including creating, listing, viewing, searching, deleting, and editing files.
-- **Version Control and Git Integration:** Supports robust Git integration and error handling for every command.
+- **Comprehensive File Management:** Txtmax offers comprehensive file management, including creating, listing, viewing, searching files, deleting, and editing files and jumping to specific lines and Search And Replace.
+- **Version Control and Git Integration:** Supports robust Git integration and robust error handling for every command.
 - **Open Source and Free:** Fully open source and completely free (no hidden costs) under the GNU General Public License.
-- **Syntax Highlighting and Multi-Language Support:** Supports 50+ languages with extensive syntax highlighting.
-- **Compiling and Running Code:** Compile and run C, Python, JavaScript codes with compilers and interpreters such as GCC, Clang, Python, Node without leaving Txtmax.
+- **Syntax Highlighting and Multi-Language Support:** Supports 70 languages with extensive syntax highlighting.
+- **Compiling and Running Code:** Compile and run C, Python, JavaScript codes with compilers and interpreters such as GCC, Clang, Python, Node, Nasm, Tcl, Bash. without leaving Txtmax.
+- **Deploying Code**: Deploy your code to Railway CLI and Render CLI Directly in the Editor without leaving Txtmax 
 - **Package and Dependency Management:** Install packages directly from the editor easily.
-- **Rich Documentation:** Detailed help and comprehensive manual for beginners.
+- **Rich Documentation:** Detailed help and comprehensive manual for beginners and Had Examples of Hello world for various languages to get started 
 - **Extremely Fast and Easy to Use:** Faster than GNU Nano and Vim, and very easy to use with commands that are easy to understand and use, offering a lower learning curve.
-- **Frequent Major Updates:** Frequent new major updates 
+- **Frequent Major Updates:** Frequent new major updates
 
  ## Reviews 
 
-We're Having Very Good Positive Reviews by our users. So what are you waiting for? use the 5-star tool now 🔥
+We're Having Very Good Positive Reviews by our users. So what are you waiting for? use the 5-star tool right now 🔥
