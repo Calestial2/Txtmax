@@ -1287,6 +1287,8 @@ int main() {
         deploy();
             } else if (strcmp(command, "debug") == 0) {
         dewarn();
+            } else if (strcmp(command, "templates") == 0) {
+        show_templates();
         } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
