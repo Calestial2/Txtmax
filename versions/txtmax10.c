@@ -848,94 +848,7 @@ void dewarn() {
     }
 }
 
-// Template structure to hold template details
-typedef struct {
-    char *id;
-    char *content;
-} Template;
-
-// Templates storage
-Template templates[] = {
-    {"nodejsexpressstartup", "const express = require('express');\nconst app = express();\napp.get('/', (req, res) => {\n    res.send('Hello World!');\n});\napp.listen(3000, () => {\n    console.log('Server started at http://localhost:3000');\n});"},
-    {"flaskpythonapi", "from flask import Flask, jsonify\napp = Flask(__name__)\n\n@app.route('/api')\ndef api():\n    return jsonify({'message': 'Hello, World!'})\n\nif __name__ == '__main__':\n    app.run(debug=True)"},
-    {"flaskpythonembedhtml", "from flask import Flask, render_template\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return render_template('index.html')\n\nif __name__ == '__main__':\n    app.run(debug=True)"}
-};
-
-// Function to show templates list
-void show_templates() {
-    printf("Templates:\n");
-    for (int i = 0; i < sizeof(templates) / sizeof(Template); i++) {
-        printf("%d. %s: %s (ID: %s)\n", i + 1, templates[i].id, templates[i].content, templates[i].id);
-    }
-}
-
-// Function to find template by ID
-Template* find_template_by_id(const char *id) {
-    for (int i = 0; i < sizeof(templates) / sizeof(Template); i++) {
-        if (strcmp(templates[i].id, id) == 0) {
-            return &templates[i];
-        }
-    }
-    return NULL;
-}
-
-// Function to edit a template (a basic text editor simulation)
-void edit_template(Template *template) {
-    char input[MAX_INPUT_SIZE];
-    printf("\nEditing template with ID '%s'. Type ':wq' to save and quit.\n", template->id);
-    
-    // Open the template content for editing
-    printf("Current Template Content:\n%s\n", template->content);
-
-    // Allow the user to edit the template
-    printf("\nEnter new content for the template:\n");
-    while (1) {
-        printf(">> ");
-        fgets(input, MAX_INPUT_SIZE, stdin);
-        
-        // Check if user wants to save and quit
-        if (strcmp(input, ":wq\n") == 0) {
-            break;
-        }
-
-        // Append the input content to the template
-        strcat(template->content, input);
-    }
-    
-    // Save the content to a file
-    FILE *file = fopen("template_output.txt", "w");
-    if (file) {
-        fputs(template->content, file);
-        fclose(file);
-        printf("Template content saved to 'template_output.txt'.\n");
-    } else {
-        printf("Failed to save the template content.\n");
-    }
-}
-
-int main() {
-    char id[MAX_INPUT_SIZE];
-    
-    // Show available templates
-    show_templates();
-
-    // Ask user for template ID
-    printf("\nEnter the Template ID to edit: ");
-    fgets(id, MAX_INPUT_SIZE, stdin);
-    id[strcspn(id, "\n")] = '\0';  // Remove newline character from the input
-
-    // Find template by ID
-    Template *selected_template = find_template_by_id(id);
-    if (selected_template) {
-        // Edit the selected template
-        edit_template(selected_template);
-    } else {
-        printf("Template with ID '%s' not found.\n", id);
-    }
-}
-
-void man_txtmax() {
-    printf("                     Txtmax Manual                      \n\n");
+   printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
     printf("       txtmax - Lightweight Advanced Text Editor for Linux\n\n");
 
@@ -1286,10 +1199,8 @@ int main() {
             } else if (strcmp(command, "deploy") == 0) {
         deploy();
             } else if (strcmp(command, "debug") == 0) {
-        dewarn();
-            } else if (strcmp(command, "templates") == 0) {
-        show_templates();
-        } else if (strcmp(command, "exit") == 0) {
+        dewarn()!
+           } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
         } else {
