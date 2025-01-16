@@ -804,6 +804,48 @@ void deploy() {
     }
 }
 
+void dewarn() {
+    char mode[10], project[100], filename[200], command[500];
+
+    // Prompt user for "debug" or "warning"
+    while (1) {
+        printf("Enter mode (debug/warning): ");
+        scanf("%9s", mode);
+
+        if (strcmp(mode, "debug") == 0 || strcmp(mode, "warning") == 0) {
+            break; // Valid input, exit loop
+        } else {
+            printf("Invalid input! Please type 'debug' or 'warning'.\n");
+        }
+    }
+
+    // Get the project name
+    printf("Enter project name: ");
+    scanf("%99s", project);
+
+    // Get the filename with extension
+    printf("Enter filename with extension (e.g., main.c): ");
+    scanf("%199s", filename);
+
+    // Construct the GCC command based on the mode
+    if (strcmp(mode, "debug") == 0) {
+        snprintf(command, sizeof(command), "gcc -g %s -o %s", filename, project);
+    } else {
+        snprintf(command, sizeof(command), "gcc -Wall %s -o %s", filename, project);
+    }
+
+    // Execute the compiled command
+    printf("Running: %s\n", command);
+    int status = system(command);
+
+    // Check for compilation success
+    if (status == 0) {
+        printf("Compilation successful! Executable: %s\n", project);
+    } else {
+        printf("Compilation failed! Please check your file and try again.\n");
+    }
+}
+
 void man_txtmax() {
     printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -868,7 +910,10 @@ void man_txtmax() {
 
     printf("       deploy\n");
     printf("           Deploy your code to Railway or Render..\n\n");
-  
+
+    printf("       debug\n");
+    printf("           Debug and Warning your C Code.\n\n");
+    
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
 
@@ -989,6 +1034,7 @@ void help() {
     printf("  advance                 Open Files and Jump to Specfic line of it and Search for an Specfic Text/Code\n");
     printf("  deploy                  Deploy your code to Railway and Render\n");
     printf("  examples                Show Hello World examples in various languages\n");
+    printf("  debug                   Debug and Warning C Files\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
 }
@@ -1151,6 +1197,8 @@ int main() {
         api_axios();
             } else if (strcmp(command, "deploy") == 0) {
         deploy();
+            } else if (strcmp(command, "debug") == 0) {
+        dewarn();
         } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
