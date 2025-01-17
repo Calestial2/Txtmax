@@ -1227,7 +1227,9 @@ int main() {
             } else if (strcmp(command, "deploy") == 0) {
         deploy();
             } else if (strcmp(command, "debug") == 0) {
-        dewarn()!
+        dewarn();
+            } else if (strcmp(command, "terminal") == 0) {
+        terminal();
            } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
