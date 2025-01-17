@@ -848,6 +848,30 @@ void dewarn() {
     }
 }
 
+void terminal() {
+    char command[256];  // Buffer to hold the command input
+
+    while (1) {
+        // Display the prompt
+        printf("Type Commands: ");
+        
+        // Get the command from user input
+        if (fgets(command, sizeof(command), stdin) != NULL) {
+            // Remove trailing newline character from fgets
+            command[strcspn(command, "\n")] = '\0';
+
+            // If the user types "exit", break out of the loop
+            if (strcmp(command, "exit") == 0) {
+                break;
+            }
+
+            // Run the system command
+            system(command);
+        }
+    }
+}
+
+void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
     printf("       txtmax - Lightweight Advanced Text Editor for Linux\n\n");
@@ -914,7 +938,10 @@ void dewarn() {
 
     printf("       debug\n");
     printf("           Debug and Warning your C Code.\n\n");
-    
+
+    printf("       terminal\n");
+    printf("           Built-in Terminal.\n\n");
+
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
 
@@ -1036,6 +1063,7 @@ void help() {
     printf("  deploy                  Deploy your code to Railway and Render\n");
     printf("  examples                Show Hello World examples in various languages\n");
     printf("  debug                   Debug and Warning C Files\n");
+    printf("  terminal                Built-in Terminal\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
 }
