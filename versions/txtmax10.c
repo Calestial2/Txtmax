@@ -755,57 +755,6 @@ void api_axios() {
     }
 }
 
-void deploy() {
-    char choice[10];
-    char command[50];
-
-    // Prompt the user to choose between 'railway' or 'render'
-    printf("Choose 'railway' or 'render': ");
-    fgets(choice, sizeof(choice), stdin);
-    choice[strcspn(choice, "\n")] = '\0';  // Remove newline character
-
-    // Check if the user chose 'railway'
-    if (strcmp(choice, "railway") == 0) {
-        // Execute the command "railway init"
-        system("railway init");
-        
-        // Prompt user for additional command "railway up"
-        while (1) {
-            printf("Type command (e.g., railway up): ");
-            fgets(command, sizeof(command), stdin);
-            command[strcspn(command, "\n")] = '\0';  // Remove newline character
-
-            if (strcmp(command, "railway up") == 0) {
-                system("railway up");
-            } else {
-                printf("Invalid command. Try again.\n");
-            }
-        }
-    }
-    // Check if the user chose 'render'
-    else if (strcmp(choice, "render") == 0) {
-        // Execute the command "render init"
-        system("render init");
-
-        // Prompt user for additional command "render deploy"
-        while (1) {
-            printf("Type command (e.g., render deploy): ");
-            fgets(command, sizeof(command), stdin);
-            command[strcspn(command, "\n")] = '\0';  // Remove newline character
-
-            if (strcmp(command, "render deploy") == 0) {
-                system("render deploy");
-            } else {
-                printf("Invalid command. Try again.\n");
-            }
-        }
-    }
-    // If the input is neither 'railway' nor 'render'
-    else {
-        printf("Invalid choice! Please choose 'railway' or 'render'.\n");
-    }
-}
-
 void dewarn() {
     char mode[10], project[100], filename[200], command[500];
 
@@ -932,10 +881,7 @@ void man_txtmax() {
 
     printf("       axios\n");
     printf("           Fetch Data from URL.\n\n");
-
-    printf("       deploy\n");
-    printf("           Deploy your code to Railway or Render..\n\n");
-
+    
     printf("       debug\n");
     printf("           Debug and Warning your C Code.\n\n");
 
@@ -1060,7 +1006,6 @@ void help() {
     printf("  axios                   Fetch Data with Axios\n");
     printf("  api                     Test Restful APis directly in the editor\n");
     printf("  advance                 Open Files and Jump to Specfic line of it and Search for an Specfic Text/Code\n");
-    printf("  deploy                  Deploy your code to Railway and Render\n");
     printf("  examples                Show Hello World examples in various languages\n");
     printf("  debug                   Debug and Warning C Files\n");
     printf("  terminal                Built-in Terminal\n");
@@ -1224,9 +1169,7 @@ int main() {
         advance();
             } else if (strcmp(command, "axios") == 0) {
         api_axios();
-            } else if (strcmp(command, "deploy") == 0) {
-        deploy();
-            } else if (strcmp(command, "debug") == 0) {
+           } else if (strcmp(command, "debug") == 0) {
         dewarn();
             } else if (strcmp(command, "terminal") == 0) {
         terminal();
