@@ -5,12 +5,18 @@
 
 Txtmax is a powerful, lightweight, fast, completely free, open-source advanced text editor designed for Linux. It features syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files from the command line with ease.
 
-**Programming Language:** C and Makefile 
+**Programming Language:** C and Makefile
+
 **Developer:** Calestial Ashley; Solo Developer And Student from 5th Grade. Check CalestialAshley35 and Calestial2 GitHub for more Information 
+
 **Nature:** Fully and completely open source  
+
 **Contact:** Contact at calestialashley@gmail.com, or friend Calestial Ashley (username: calestial_ashley) on Discord and DM  
+
 **Release Date:** January 2, 2025 
+
 **Size:** 48.6 KB
+
 **Lines of Code:** 1185
 
 ## Features
