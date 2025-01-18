@@ -26,7 +26,6 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **Search and Replace**
 - **Compiling and Running Code**
 - **Test and Fetch Data's of Restful APIs**
-- **Deploy Codes**
 - **Debug and Warn C Files**
 - **Built-in Terminal**
 - **Package and Dependencies Management**
