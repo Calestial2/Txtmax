@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <errno.h>
+#include <regex.h>
 
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
@@ -13,7 +14,6 @@
 #define MAX_LINE_LENGTH 1024
 #define MAX_FILENAME_LENGTH 256
 #define MAX_CONTENT_LENGTH 1024
-#define MAX_TEMPLATE_SIZE 1024
 #define MAX_INPUT_SIZE 256
 
 // ANSI Colors for Syntax Highlighting
@@ -665,11 +665,13 @@ void api() {
 
 // Function prototypes
 void jumpToLine(FILE *file, int lineNumber);
-void searchInFile(FILE *file, const char *searchTerm);
+void searchInFile(FILE *file, const char *searchPattern);
+void countWordOccurrences(FILE *file, const char *word);
 
 void advance() {
     char fileName[256];
-    char searchTerm[256];
+    char searchPattern[256];
+    char wordToCount[256];
     int lineNumber;
 
     // Prompt for file name
@@ -688,10 +690,15 @@ void advance() {
     scanf("%d", &lineNumber);
     jumpToLine(file, lineNumber);
 
-    // Search for a term in the file
-    printf("Search: Enter the term to search for: ");
-    scanf(" %[^\n]s", searchTerm); // Read including spaces
-    searchInFile(file, searchTerm);
+    // Search using regex
+    printf("Regex Search: Enter the pattern to search for: ");
+    scanf(" %[^\n]s", searchPattern); // Read pattern including spaces
+    searchInFile(file, searchPattern);
+
+    // Word count
+    printf("Word Count: Enter the word to count occurrences: ");
+    scanf(" %[^\n]s", wordToCount);
+    countWordOccurrences(file, wordToCount);
 
     // Close the file
     fclose(file);
@@ -712,22 +719,51 @@ void jumpToLine(FILE *file, int lineNumber) {
     printf("Line %d not found.\n", lineNumber);
 }
 
-void searchInFile(FILE *file, const char *searchTerm) {
+void searchInFile(FILE *file, const char *searchPattern) {
     char buffer[MAX_LINE_LENGTH];
     int lineNumber = 0;
     int found = 0;
 
+    regex_t regex;
+    if (regcomp(&regex, searchPattern, REG_EXTENDED | REG_NOSUB) != 0) {
+        printf("Invalid regex pattern.\n");
+        return;
+    }
+
     rewind(file); // Reset file pointer to the beginning
     while (fgets(buffer, sizeof(buffer), file) != NULL) {
         lineNumber++;
-        if (strstr(buffer, searchTerm) != NULL) {
-            printf("Found '%s' at line %d: %s", searchTerm, lineNumber, buffer);
+        if (regexec(&regex, buffer, 0, NULL, 0) == 0) {
+            printf("Found match at line %d: %s", lineNumber, buffer);
             found = 1;
         }
     }
+
+    regfree(&regex); // Free regex memory
+
     if (!found) {
-        printf("Search term '%s' not found in the file.\n", searchTerm);
+        printf("No matches found for pattern '%s'.\n", searchPattern);
     }
+}
+
+void countWordOccurrences(FILE *file, const char *word) {
+    char buffer[MAX_LINE_LENGTH];
+    int count = 0;
+    int wordLength = strlen(word);
+
+    rewind(file); // Reset file pointer to the beginning
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        char *pos = buffer;
+        while ((pos = strstr(pos, word)) != NULL) {
+            // Ensure it's a standalone word
+            if ((pos == buffer || !isalnum(*(pos - 1))) && !isalnum(*(pos + wordLength))) {
+                count++;
+            }
+            pos += wordLength; // Move past the found word
+        }
+    }
+
+    printf("The word '%s' appears %d times in the file.\n", word, count);
 }
 
 void api_axios() {
