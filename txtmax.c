@@ -7,6 +7,7 @@
 #include <time.h>
 #include <errno.h>
 #include <regex.h>
+#include <unistd.h>
 
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
