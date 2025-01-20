@@ -15,6 +15,8 @@
 #define MAX_FILENAME_LENGTH 256
 #define MAX_CONTENT_LENGTH 1024
 #define MAX_INPUT_SIZE 256
+#define MAX_FILENAME 256
+#define MAX_LINE 1024
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -880,6 +882,53 @@ void terminal() {
     }
 }
 
+void latex() {
+    char filename[MAX_FILENAME];
+    FILE *file;
+    char line[MAX_LINE];
+
+    // Prompt for filename with extension
+    printf("Enter LaTeX filename (with extension, e.g., document.tex): ");
+    scanf("%255s", filename);
+    getchar(); // Clear newline from buffer
+
+    // Open the file for writing
+    file = fopen(filename, "w");
+    if (file == NULL) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    printf("Enter LaTeX code (type ':wq' on a new line to save and exit):\n");
+
+    // Read user input and write to file
+    while (1) {
+        fgets(line, MAX_LINE, stdin);
+
+        // Check for save and quit command
+        if (strcmp(line, ":wq\n") == 0) {
+            break;
+        }
+
+        // Write input to file
+        fputs(line, file);
+    }
+
+    fclose(file);
+    printf("File saved as %s\n", filename);
+
+    // Construct and execute the pdflatex command
+    char command[MAX_FILENAME + 20];
+    snprintf(command, sizeof(command), "pdflatex %s", filename);
+    printf("Running: %s\n", command);
+    int status = system(command);
+
+    if (status == 0) {
+        printf("LaTeX compilation successful!\n");
+    } else {
+        printf("Error: LaTeX compilation failed!\n");
+ }
+
 void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -948,6 +997,9 @@ void man_txtmax() {
     printf("       terminal\n");
     printf("           Built-in Terminal.\n\n");
 
+    printf("       latex\n");
+    printf("           Edit Latex Files.\n\n");
+    
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
 
@@ -1069,6 +1121,7 @@ void help() {
     printf("  examples                Show Hello World examples in various languages\n");
     printf("  debug                   Debug and Warning C Files\n");
     printf("  terminal                Built-in Terminal\n");
+    printf("  latex                   Edit Latex Files\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
 }
@@ -1233,6 +1286,8 @@ int main() {
         dewarn();
             } else if (strcmp(command, "terminal") == 0) {
         terminal();
+            } else if (strcmp(command, "latec") == 0) {
+        latex();
            } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
