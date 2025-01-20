@@ -3,7 +3,7 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
 ## Text Management And Extended Editor (known as Txtmax)
 
-Txtmax is a powerful, lightweight, fast, completely free, open-source advanced text editor designed for Linux. It features syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files from the command line with ease.
+Txtmax is a powerful, lightweight, fast, completely free, open-source advanced text editor designed for Linux. It features syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files and more from the command line with ease.
 
 **Programming Language:** C and Makefile
 
@@ -34,6 +34,8 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **Test and Fetch Data's of Restful APIs**
 - **Debug and Warn C Files**
 - **Built-in Terminal**
+- **Edit Latex Files**
+- **Convert Files to Tarball**
 - **Package and Dependencies Management**
 - **Robust Error Handling:** Better error handling.
 - **Robust Git Integration:** Supports Git branch, version, commit, and version tracking.
@@ -57,7 +59,9 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **api**: Test Restful APIs Data Directly in the Editor, First will ask for putting url and it will fetch data via curl
 - **axios**: Another Command allows to Fetch Restful APIs Data From their Url, First it will ask for filename and then allows to write codes and quit with :wq and it will run it
 - **advance**: type an file name with it's extension, it will show it's content and allows to jump into an specific line in it and Search and Replace
-- **debug**: Get Debug And Warns for C Files, first will ask for debugging code or running code, if choose debugging code it will ask for project name and then filename including it's extension and then you can see debug, of choose warning it will ask for project name and then filename including it's extension and then it will run it 
+- **debug**: Get Debug And Warns for C Files, first will ask for debugging code or running code, if choose debugging code it will ask for project name and then filename including it's extension and then you can see debug, of choose warning it will ask for project name and then filename including it's extension and then it will run it
+- **latex**: Edit Latex Files
+- **tarball**: Convert your files to Tarball 
 - **terminal**: A Built-in Terminal to type commands directly on the editor 
 - **exit:** Exit the Txtmax editor.
 
@@ -195,6 +199,13 @@ Supports:
 69. Yaml
 70. JSON 
 71. Visual Basic 
+72. HTML5
+73. Sass
+74. Babel
+75. SAS
+76. Pl SQL
+77. Graphql
+78. SQLite
 
 ## Libraries
 
@@ -207,6 +218,8 @@ Supports:
 #include <sys/stat.h>
 #include <time.h>
 #include <errno.h>
+#include <regex.h>
+#include <unistd.h>
 ```
 
 ## Txtmax Source Code Files
@@ -217,21 +230,6 @@ Supports:
 When we Release an Update we keep updating it until another version 
 
 We Recommend You use Latest Version always
-
-## Version Evolution 
-
-Txtmax Updates:
-
-Txtmax 0.0.1: The First Version of Txtmax introduced C Syntax Highlights and Creating, Viewing, Deleting, editing 
-Txtmax 0.0.2: an Significant Update which Introduced Python alongside C and introduced Search command and info command (which later improved in later versions) The prompt was txtmax>
-Txtmax 0.0.3: introduces many programming language supports 
-Txtmax 0.0.4: Skipped
-Txtmax 0.0.5: Added Elixir Kotlin alongside other languages and added Error Handling and added Examples command (which is also updated in later versions) the prompt was txtmax>
-Txtmax 0.0.6: Added Support for Many Languages also and improved Examples command of adding more language's the prompt was txtmax>
-Txtmax 0.0.7: Added Far more language's and Extensive Languages Support and Added Git Integration and Improved File Info command for Version Control info the prompt was txtmax>
-Txtmax 0.0.8: Added Far more language's and improved Git Integration and added example for SQL databases Changed the prompt from txtmax> to ~/txtmax>
-Txtmax 0.0.9: Added Far more language's as always and added run command (which later improved in later versions) and added packages command (which is also improved in later versions) and added Comprehensive Manual 
-Txtmax 0.1.0: the latest update that added far more language's and improved run and packages command and introduced deploy command and added API Fetching with curl and axios and added advance command and added debugging and warning for c files and added built in terminal 
 
 ## Why Choose Txtmax?
 
