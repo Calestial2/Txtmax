@@ -932,7 +932,7 @@ void latex() {
     file = fopen(filename, "w");
     if (file == NULL) {
         perror("Error opening file");
-        return 1;
+        return;  // Fixed: No return value in a void function
     }
 
     printf("Enter LaTeX code (type ':wq' on a new line to save and exit):\n");
@@ -942,7 +942,7 @@ void latex() {
         fgets(line, MAX_LINE, stdin);
 
         // Check for save and quit command
-        if (strcmp(line, ":wq\n") == 0) {
+        if (strncmp(line, ":wq", 3) == 0 && (line[3] == '\n' || line[3] == '\0')) {
             break;
         }
 
@@ -963,7 +963,8 @@ void latex() {
         printf("LaTeX compilation successful!\n");
     } else {
         printf("Error: LaTeX compilation failed!\n");
- }
+    }
+}
 
 void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
