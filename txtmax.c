@@ -768,6 +768,42 @@ void countWordOccurrences(FILE *file, const char *word) {
     printf("The word '%s' appears %d times in the file.\n", word, count);
 }
 
+void tarball() {
+    char project_name[100], filename[100], command[300];
+
+    // Get project name
+    printf("Enter the project name: ");
+    if (fgets(project_name, sizeof(project_name), stdin) == NULL) {
+        perror("Error reading project name");
+        return;
+    }
+    project_name[strcspn(project_name, "\n")] = '\0'; // Remove newline
+
+    // Get filename (with extension)
+    printf("Enter the filename (including extension, e.g., file.txt): ");
+    if (fgets(filename, sizeof(filename), stdin) == NULL) {
+        perror("Error reading filename");
+        return;
+    }
+    filename[strcspn(filename, "\n")] = '\0'; // Remove newline
+
+    // Check if the file exists
+    if (access(filename, F_OK) != 0) {
+        printf("Error: File '%s' does not exist!\n", filename);
+        return;
+    }
+
+    // Construct and execute tar command
+    snprintf(command, sizeof(command), "tar -czvf %s.tar.gz %s", project_name, filename);
+    printf("Executing: %s\n", command);
+    
+    if (system(command) == -1) {
+        perror("Error executing tar command");
+    } else {
+        printf("Tarball created successfully: %s.tar.gz\n", project_name);
+    }
+}
+
 void api_axios() {
     char filename[MAX_FILENAME_LENGTH];
     char content[MAX_CONTENT_LENGTH];
@@ -999,6 +1035,9 @@ void man_txtmax() {
 
     printf("       latex\n");
     printf("           Edit Latex Files.\n\n");
+
+    printf("       tarball\n");
+    printf("           Convert Files to Tarball.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1018,7 +1057,7 @@ void man_txtmax() {
     printf("           2. Navigate to the directory:\n");
     printf("              cd Txtmax\n");
     printf("           3. Compile the code:\n");
-    printf("              gcc txtmax10.c -o txtmax10\n");
+    printf("              gcc txtmax.c -o txtmax\n");
     printf("           4. Run Txtmax:\n");
     printf("              ./txtmax10\n\n");
 
@@ -1122,6 +1161,7 @@ void help() {
     printf("  debug                   Debug and Warning C Files\n");
     printf("  terminal                Built-in Terminal\n");
     printf("  latex                   Edit Latex Files\n");
+    printf("  tarball                 Convert your Files to Tarball\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
 }
@@ -1286,8 +1326,10 @@ int main() {
         dewarn();
             } else if (strcmp(command, "terminal") == 0) {
         terminal();
-            } else if (strcmp(command, "latec") == 0) {
+            } else if (strcmp(command, "latex") == 0) {
         latex();
+            } else if (strcmp(command, "tarball") == 0) {
+        tarball();
            } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
