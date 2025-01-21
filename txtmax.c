@@ -967,11 +967,6 @@ void latex() {
     }
 }
 
-void run_package() {
-    // Compile the txtmax_package.c file using gcc
-    system("gcc txtmax_package.c -o txtmax_package");
-}
-
 void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -1048,18 +1043,6 @@ void man_txtmax() {
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
-
-    printf("                      PACKAGE\n");
-    printf("       installpkg\n");
-    printf("           Install Txtmax Packages.\n\n");
-    
-    printf("       list\n");
-    printf("           List all available Package.\n\n");
-    
-    printf("       pkg install <package name>\n");
-    printf("           Install an Package by it's name.\n\n");
-    
-   
   
     printf("                      FEATURES\n");
     printf("       - File Creation, Viewing, Editing, Deletion, and Management\n");
@@ -1071,7 +1054,7 @@ void man_txtmax() {
 
     printf("USAGE\n");
     printf("       To start using Txtmax:\n");
-    printf("           1. Clone the repository:\n");
+    printf("         1. Clone the repository:\n");
     printf("              git clone https://github.com/Calestial2/Txtmax.git\n");
     printf("           2. Navigate to the directory:\n");
     printf("              cd Txtmax\n");
@@ -1183,9 +1166,6 @@ void help() {
     printf("  tarball                 Convert your Files to Tarball\n");
     printf("  sql                     Show SQL code examples\n");
     printf("  exit                    Exit txtmax\n");
-    printf("  installpkg              Install Txtmax Packages\n");
-    printf("  list                    List all Available Packages on Txtmax Packages\n");
-    printf("  pkg install <package name>  Install an package \n");
 }
 
 void examples() {
@@ -1352,8 +1332,6 @@ int main() {
         latex();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
-            } else if (strcmp(command, "installpkg") == 0) {
-        run_package();
            } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
