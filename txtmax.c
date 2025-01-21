@@ -968,11 +968,8 @@ void latex() {
 }
 
 void run_package() {
-    // Change directory to txtmax-package
-    system("cd txtmax-package");
-
     // Compile the txtmax_package.c file using gcc
-    system("gcc txtmax-package.c -o txtmax_package");
+    system("gcc txtmax_package.c -o txtmax_package");
 }
 
 void man_txtmax() {
