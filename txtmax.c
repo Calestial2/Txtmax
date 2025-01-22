@@ -309,6 +309,13 @@ if (strcmp(extension, ".html5") == 0) { // HTML5
     }
 }
 
+// Function to convert input to lowercase for case-insensitive matching
+void to_lowercase(char *str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = tolower(str[i]);
+    }
+}
+
 // Improved Git Integration with better error handling
 void git_commit(const char *filename, const char *commit_message, const char *branch, const char *version) {
     char command[MAX_INPUT_SIZE];
@@ -966,6 +973,82 @@ void latex() {
         printf("Error: LaTeX compilation failed!\n");
     }
 }
+// Function to convert input to lowercase for case-insensitive matching
+void to_lowercase(char *str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = tolower(str[i]);
+    }
+}
+
+// Simple AI function for pattern matching
+void ai() {
+    char input[256]; // User query
+
+    printf("Ask me something about Txtmax:\n> ");
+    fgets(input, sizeof(input), stdin);
+    input[strcspn(input, "\n")] = 0; // Remove newline character
+
+    // Convert input to lowercase for case-insensitive matching
+    to_lowercase(input);
+
+    // Pattern Matching Responses
+    if (strstr(input, "run my code") || strstr(input, "how to run")) {
+        printf("\nSure, You can run your code by following these steps:\n\n");
+        printf("- Step 1: \"Run Command\"\n  Type \"run\" in Txtmax and it will ask for the filename including its extension.\n");
+        printf("- Step 2: \"Choosing Compiler\"\n  Choose a compiler or interpreter such as GCC, Clang, Python, Node, Ruby, etc.\n");
+        printf("- Step 3: \"Run Your Code\"\n  Txtmax will seamlessly run your code.\n");
+    } 
+    else if (strstr(input, "examples of hello world") || strstr(input, "hello world example")) {
+        printf("\nType 'examples' command in Txtmax to get Examples of Hello World! in Various Languages.\n");
+    } 
+    else if (strstr(input, "create a file") || strstr(input, "how to create")) {
+        printf("\nSure, You can create a file by following these steps:\n\n");
+        printf("- Step 1: \"Create a File\"\n  Type \"create\" command in Txtmax, and it will prompt for a filename including its extension.\n");
+        printf("- Step 2: \"Writing File Contents\"\n  Write all file contents, save and quit with :wq, and the file will save locally.\n");
+    } 
+    else if (strstr(input, "delete a file") || strstr(input, "remove file")) {
+        printf("\nTo delete a file in Txtmax, type:\n  \"delete <filename>\"\nThis will remove the specified file from your system.\n");
+    }
+    else if (strstr(input, "search a file") || strstr(input, "find file")) {
+        printf("\nTo search for a file in Txtmax, type:\n  \"search <filename>\"\nIt will locate files matching the given name.\n");
+    } 
+    else if (strstr(input, "list all files") || strstr(input, "view files in directory")) {
+        printf("\nTo list all files in the current directory, type:\n  \"files\"\nThis will show all regular text files in the directory.\n");
+    } 
+    else if (strstr(input, "edit file") || strstr(input, "modify file")) {
+        printf("\nTo edit a file in Txtmax, type:\n  \"edit <filename> <line>\"\nThis will allow you to modify a specific line in the file.\n");
+    } 
+    else if (strstr(input, "get file info") || strstr(input, "file details")) {
+        printf("\nTo get detailed information about a file, type:\n  \"info <filename>\"\nThis will display details such as name, extension, creation time, modification time, version control info, etc.\n");
+    } 
+    else if (strstr(input, "debug c files") || strstr(input, "check c code errors")) {
+        printf("\nTo debug and check warnings in a C file, follow these steps:\n\n");
+        printf("- Step 1: \"Debugging\"\n  Type \"debug\", then provide the project name and filename with extension.\n");
+        printf("- Step 2: \"Warnings\"\n  If you choose warning mode, it will check for issues in your C code and display errors or warnings.\n");
+    }
+    else if (strstr(input, "test apis") || strstr(input, "fetch restful api data")) {
+        printf("\nTo test RESTful APIs in Txtmax:\n\n");
+        printf("- Use the \"api\" command.\n  It will prompt for a URL and fetch data using curl.\n");
+        printf("- Use the \"axios\" command.\n  It allows you to write Node.js code and run it to fetch API data.\n");
+    }
+    else if (strstr(input, "convert file to tarball") || strstr(input, "make tar file")) {
+        printf("\nTo convert a file to tarball format, type:\n  \"tarball\"\nThen provide the filename (must be in the current directory), and it will create a .tar.gz file.\n");
+    }
+    else if (strstr(input, "install package") || strstr(input, "package manager")) {
+        printf("\nTo install packages in Txtmax, follow these steps:\n\n");
+        printf("- Step 1: \"Use the 'packages' command\"\n  It will prompt you to select a package manager (pip, npm, gem, cargo, apt, etc.).\n");
+        printf("- Step 2: \"Install the package\"\n  Type the package name, and it will install it using the chosen package manager.\n");
+    }
+    else if (strstr(input, "latex files") || strstr(input, "edit latex")) {
+        printf("\nTo create and edit LaTeX files in Txtmax:\n\n");
+        printf("- Type \"latex\" and provide a filename (with .tex extension).\n");
+        printf("- Write LaTeX content and save using :wq.\n");
+        printf("- The file will be converted into a PDF if LaTeX is installed.\n");
+    }
+    else {
+        printf("\nI'm sorry, I don't understand your query. Try asking something related to Txtmax commands!\n");
+    }
+}
 
 void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
@@ -1098,6 +1181,86 @@ void man_txtmax() {
     printf("             Calestial Ashley <calestialashley@gmail.com>\n");
 }
 
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Function to convert input to lowercase for case-insensitive matching
+void to_lowercase(char *str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = tolower(str[i]);
+    }
+}
+
+// Function to explain how to use the AI
+void manualai() {
+    printf("Welcome to the Txtmax Assistant AI! Here's how to use it:\n\n");
+
+    printf("1. **How to Ask Questions:**\n");
+    printf("   - Simply type your question or query related to Txtmax, and the AI will try to match it with predefined patterns.\n");
+    printf("   - Example queries: \"How to run my code on Txtmax?\" or \"How to create a file in Txtmax?\"\n\n");
+
+    printf("2. **Understanding the AI's Responses:**\n");
+    printf("   - The AI responds based on recognized patterns in the question. If your query matches any of the known patterns, the AI will provide an appropriate response.\n");
+    printf("   - Example: For \"How to run my code on Txtmax?\", the AI will provide detailed steps on running your code.\n\n");
+
+    printf("3. **Common Queries and Commands:**
+
+    - *Running Your Code*: Ask questions like \"How to run my code on Txtmax?\" or \"How do I execute my program?\" and the AI will guide you.
+    - *Creating Files*: To learn how to create files, simply ask: \"How to create a file in Txtmax?\" and it will explain the process.
+    - *Examples*: To get sample Hello World examples in different languages, ask: \"How to see examples of Hello World in Txtmax?\" or \"Show me hello world examples!\".
+    - *Debugging*: To ask about debugging C code, try questions like \"How do I debug C code in Txtmax?\".
+    - *File Operations*: You can ask about file management such as deleting, searching, or editing files by asking specific queries like \"How to delete a file in Txtmax?\" or \"How to search a file in Txtmax?\".\n\n");
+
+    printf("4. **Tips for Better Interaction:**\n");
+    printf("   - The AI performs better if you use clear and direct queries related to Txtmax commands.\n");
+    printf("   - Use phrases like \"How to...\", \"What is...\", or simply type the command you want help with.\n");
+    printf("   - If the AI does not understand a query, try to rephrase your question or be more specific.\n\n");
+
+    printf("5. **Examples of Questions to Ask:**
+    - \"How to run my code in Txtmax?\"
+    - \"What are examples of Hello World in Txtmax?\"
+    - \"How to create a new file in Txtmax?\"
+    - \"How to delete a file in Txtmax?\"
+    - \"How to install a package using pip in Txtmax?\"\n\n");
+
+    printf("6. **Getting Help:**\n");
+    printf("   - If you ever need help, just ask: \"Help\" or \"Manual\" and the AI will provide assistance.\n\n");
+
+    printf("Enjoy using Txtmax Assistant AI!\n");
+}
+
+// Simple AI function for pattern matching (you can reuse this from your previous code)
+void ai() {
+    char input[256]; // User query
+
+    printf("Ask me something about Txtmax:\n> ");
+    fgets(input, sizeof(input), stdin);
+    input[strcspn(input, "\n")] = 0; // Remove newline character
+
+    // Convert input to lowercase for case-insensitive matching
+    to_lowercase(input);
+
+    // Pattern Matching Responses
+    if (strstr(input, "run my code") || strstr(input, "how to run")) {
+        printf("\nSure, You can run your code by following these steps:\n\n");
+        printf("- Step 1: \"Run Command\"\n  Type \"run\" in Txtmax and it will ask for the filename including its extension.\n");
+        printf("- Step 2: \"Choosing Compiler\"\n  Choose a compiler or interpreter such as GCC, Clang, Python, Node, Ruby, etc.\n");
+        printf("- Step 3: \"Run Your Code\"\n  Txtmax will seamlessly run your code.\n");
+    } 
+    else if (strstr(input, "examples of hello world") || strstr(input, "hello world example")) {
+        printf("\nType 'examples' command in Txtmax to get Examples of Hello World! in Various Languages.\n");
+    } 
+    else if (strstr(input, "create a file") || strstr(input, "how to create")) {
+        printf("\nSure, You can create a file by following these steps:\n\n");
+        printf("- Step 1: \"Create a File\"\n  Type \"create\" command in Txtmax, and it will prompt for a filename including its extension.\n");
+        printf("- Step 2: \"Writing File Contents\"\n  Write all file contents, save and quit with :wq, and the file will save locally.\n");
+    } 
+    else {
+        printf("\nI'm sorry, I don't understand your query. Try asking something related to Txtmax commands!\n");
+    }
+}
+
 void file_info(const char *filename) {
     struct stat file_stat;
     if (stat(filename, &file_stat) == -1) {
@@ -1165,6 +1328,8 @@ void help() {
     printf("  latex                   Edit Latex Files\n");
     printf("  tarball                 Convert your Files to Tarball\n");
     printf("  sql                     Show SQL code examples\n");
+    printf("  ai                      Use and Chat with the AI\n");
+    printf("  manai                   Comprehensive Manual of How to use Txtmax\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -1330,6 +1495,8 @@ int main() {
         terminal();
             } else if (strcmp(command, "latex") == 0) {
         latex();
+            } else if (strcmp(command, "ai") == 0) {
+        ai();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
