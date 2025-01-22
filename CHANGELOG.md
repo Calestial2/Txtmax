@@ -6,9 +6,6 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - LaTeX file editing and PDF export functionality.
+- Improved advance Command with Regex Support and Wordcount
+- Added More Language Support
 - Tarball command for converting files into `.tar.gz` format.
-  
-### Changed
-- Improved Git integration for better version control management.
-- Refined syntax highlighting to better support diverse languages.
-- Changed the prompt from `txtmax>` to `~/txtmax>` for better clarity.
