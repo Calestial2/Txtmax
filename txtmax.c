@@ -21,9 +21,8 @@
 #define MAX_LINE 1024
 #define MAX_FILES 100
 #define MAX_FILENAME 256
-#define MAX_PATH 512
-#define MAX_FILE_NAME 255
-#define MAX_PATH 1024
+#define MAX_PATH 1024   
+#define MAX_FILE_NAME 255 
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -1129,7 +1128,7 @@ void movef() {
     }
 
     printf("File move operation completed.\n");
-}
+} 
 
 // Function to copy a file
 void copy_file(const char *source_file, const char *destination_file) {
@@ -1161,7 +1160,7 @@ void copy_file(const char *source_file, const char *destination_file) {
 
 // Function to copy multiple files to the given folder
 void copy_files_to_folder() {
-    char files[10][MAX_FILE_NAME]; // to store the filenames, can handle up to 10 files
+    char files[10][MAX_FILE_NAME];  // Array to store up to 10 filenames
     char folder[MAX_PATH];
     char destination[MAX_PATH];
     int num_files = 0;
@@ -1194,7 +1193,7 @@ void copy_files_to_folder() {
     // Copy each file to the folder
     for (int i = 0; i < num_files; i++) {
         snprintf(destination, sizeof(destination), "%s%s", folder, files[i]);
-        copy_file(files[i], destination);
+        copy_file(files[i], destination);  // Call the copy_file function with the right arguments
     }
 }
 
@@ -1590,7 +1589,7 @@ int main() {
             } else if (strcmp(command, "movef") == 0) {
         movef();
             } else if (strcmp(command, "copy") == 0) {
-        copy_file();
+        copy_files_to_folder();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
