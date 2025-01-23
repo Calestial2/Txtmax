@@ -8,6 +8,7 @@
 #include <errno.h>
 #include <regex.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
@@ -21,6 +22,8 @@
 #define MAX_FILES 100
 #define MAX_FILENAME 256
 #define MAX_PATH 512
+#define MAX_FILE_NAME 255
+#define MAX_PATH 1024
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -1128,6 +1131,73 @@ void movef() {
     printf("File move operation completed.\n");
 }
 
+// Function to copy a file
+void copy_file(const char *source_file, const char *destination_file) {
+    FILE *src = fopen(source_file, "rb");
+    if (src == NULL) {
+        perror("Error opening source file");
+        return;
+    }
+
+    FILE *dest = fopen(destination_file, "wb");
+    if (dest == NULL) {
+        perror("Error opening destination file");
+        fclose(src);
+        return;
+    }
+
+    // Copy content from source file to destination file
+    char buffer[1024];
+    size_t bytes;
+    while ((bytes = fread(buffer, 1, sizeof(buffer), src)) > 0) {
+        fwrite(buffer, 1, bytes, dest);
+    }
+
+    printf("Successfully copied: %s to %s\n", source_file, destination_file);
+
+    fclose(src);
+    fclose(dest);
+}
+
+// Function to copy multiple files to the given folder
+void copy_files_to_folder() {
+    char files[10][MAX_FILE_NAME]; // to store the filenames, can handle up to 10 files
+    char folder[MAX_PATH];
+    char destination[MAX_PATH];
+    int num_files = 0;
+
+    // Prompt for filenames
+    printf("Enter filenames with extension (separate with spaces, max 10 files): ");
+    while (scanf("%s", files[num_files]) == 1 && num_files < 10) {
+        num_files++;
+        if (getchar() == '\n') break;  // break if user presses Enter (no more filenames)
+    }
+
+    // Prompt for destination folder
+    printf("Enter the folder name where files will be copied: ");
+    scanf("%s", folder);
+
+    // Ensure folder path ends with a '/'
+    if (folder[strlen(folder) - 1] != '/') {
+        strcat(folder, "/");
+    }
+
+    // Try to create the folder if it does not exist
+    struct stat st = {0};
+    if (stat(folder, &st) == -1) {
+        if (mkdir(folder, 0700) == -1) {
+            perror("Error creating directory");
+            return;
+        }
+    }
+
+    // Copy each file to the folder
+    for (int i = 0; i < num_files; i++) {
+        snprintf(destination, sizeof(destination), "%s%s", folder, files[i]);
+        copy_file(files[i], destination);
+    }
+}
+
 void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -1149,6 +1219,9 @@ void man_txtmax() {
 
     printf("       rename\n");
     printf("           Rename Files\n\n");
+
+    printf("       copy\n");
+    printf("           Copy Single or Multiple Files to an Folder\n\n");
 
     printf("       movef\n");
     printf("           Move Single or Multiple Files to an folder\n\n");
@@ -1342,6 +1415,7 @@ void help() {
     printf("  sql                     Show SQL code examples\n");
     printf("  ai                      Use and Chat with the AI\n");
     printf("  manai                   Comprehensive Manual of How to use Txtmax\n");
+    printf("  copy                    Copy Single or Multiple files to an Folder\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -1515,6 +1589,8 @@ int main() {
         renameFile();
             } else if (strcmp(command, "movef") == 0) {
         movef();
+            } else if (strcmp(command, "copy") == 0) {
+        copy_file();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
