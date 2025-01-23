@@ -1051,6 +1051,31 @@ void ai() {
     }
 }
 
+void renameFile() {
+    char oldName[256], newName[256];
+
+    // Prompt user for old file name
+    printf("Enter the current filename (with extension): ");
+    fgets(oldName, sizeof(oldName), stdin);
+    
+    // Remove newline character if present
+    oldName[strcspn(oldName, "\n")] = 0;
+
+    // Prompt user for new file name
+    printf("Enter the new filename (with extension): ");
+    fgets(newName, sizeof(newName), stdin);
+    
+    // Remove newline character if present
+    newName[strcspn(newName, "\n")] = 0;
+
+    // Attempt to rename the file
+    if (rename(oldName, newName) == 0) {
+        printf("File renamed successfully from \"%s\" to \"%s\".\n", oldName, newName);
+    } else {
+        perror("Error renaming file");
+    }
+}
+
 void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -1070,6 +1095,9 @@ void man_txtmax() {
     printf("           Create a new text file and save it locally. You can write code in over 50 programming\n");
     printf("           languages, with syntax highlighting and support for version control (commit message, branch, version).\n\n");
 
+    printf("       rename\n");
+    printf("           Rename Files\n\n");
+    
     printf("       files\n");
     printf("           List all regular files in the current directory.\n\n");
 
@@ -1238,6 +1266,7 @@ void help() {
     printf("  help                    Show this help message\n");
     printf("  man txtmax              Comprehensive Manual\n");
     printf("  create <filename>       Create a new file and save locally\n");
+    printf("  rename                  Rename Files\n");
     printf("  files                   List all files in the current directory\n");
     printf("  search <filename>       Search for files with the specified name\n");
     printf("  view <filename>         View file contents with syntax highlighting\n");
@@ -1426,6 +1455,8 @@ int main() {
         ai();
             } else if (strcmp(command, "manai") == 0) {
         manualAI();
+            } else if (strcmp(command, "rename") == 0) {
+        renameFile();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
