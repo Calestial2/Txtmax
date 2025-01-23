@@ -17,6 +17,10 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **Line Numbering and Jumping to Specific line**
 - **Search and Replace**
 - **Compiling and Running Code**
+- **Move Multiple Files to a Folder**
+- **Copy Multiple Files to an Folder**
+- **Pattern-Matching AI for Helping Users use Txtmax**
+- **Rename an File**
 - **Test and Fetch Data's of Restful APIs**
 - **Debug and Warn C Files**
 - **Built-in Terminal**
@@ -32,6 +36,9 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **man txtmax:** Comprehensive manual.
 - **create <filename>:** Create a new file and type code in 70 languages, save and quit with :wq, type a commit message, branch, and version, and save it locally.
 - **man txtmax**: comprehensive manual
+- **rename**: Rename an file
+- **movef**: Move Multiple Files to an Folder
+- **copy**: Copy Multiple Files to an Folder
 - **files:** List all files in the current directory.
 - **view <filename>:** View the contents of a file with syntax highlighting.
 - **edit <filename> <line>:** Edit a specific line in the file.
@@ -50,6 +57,68 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **tarball**: Convert your files to Tarball 
 - **terminal**: A Built-in Terminal to type commands directly on the editor 
 - **exit:** Exit the Txtmax editor.
+
+## AI
+
+We Introduced an Pattern-Matching AI to help users use Txtmax Better it's had many Predefined Questions 
+Conversations:
+1. **Running Code**
+   - Queries: "run my code", "how to run"
+   - Response: Steps to run code in Txtmax:
+     - Step 1: Type "run" in Txtmax, and it will ask for the filename including its extension.
+     - Step 2: Choose a compiler or interpreter such as GCC, Clang, Python, Node, Ruby, etc.
+     - Step 3: Txtmax will seamlessly run your code.
+
+2. **Hello World Examples**
+   - Queries: "examples of hello world", "hello world example"
+   - Response: Type "examples" command in Txtmax to get Hello World examples in various languages.
+
+3. **Creating a File**
+   - Queries: "create a file", "how to create"
+   - Response: To create a file in Txtmax, type "create <filename>". Then write contents and save with :wq.
+
+4. **Deleting a File**
+   - Queries: "delete a file", "remove file"
+   - Response: To delete a file, type "delete <filename>". This will remove the specified file.
+
+5. **Searching for a File**
+   - Queries: "search a file", "find file"
+   - Response: To search for a file, type "search <filename>". It will locate files matching the given name.
+
+6. **Listing All Files**
+   - Queries: "list all files", "view files in directory"
+   - Response: To list all files in the current directory, type "files".
+
+7. **Editing a File**
+   - Queries: "edit file", "modify file"
+   - Response: To edit a file, type "edit <filename> <line>".
+
+8. **Getting File Information**
+   - Queries: "get file info", "file details"
+   - Response: To get file details, type "info <filename>".
+
+9. **Debugging C Files**
+   - Queries: "debug c files", "check c code errors"
+   - Response: To debug C files, type "debug" and provide the project name and filename.
+
+10. **Testing APIs**
+    - Queries: "test apis", "fetch restful api data"
+    - Response: To test RESTful APIs, use "api" or "axios" command.
+
+11. **Creating a Tarball**
+    - Queries: "convert file to tarball", "make tar file"
+    - Response: To create a tarball file, type "tarball <filename>".
+
+12. **Installing Packages**
+    - Queries: "install package", "package manager"
+    - Response: To install a package, use "packages" command and choose a package manager.
+
+13. **Editing LaTeX Files**
+    - Queries: "latex files", "edit latex"
+    - Response: To create and edit LaTeX files, use "latex <filename>.tex".
+
+14. **Unrecognized Queries**
+    - Response: If the query is not understood, it will respond with "I'm sorry, I don't understand your query. Try asking something related to Txtmax commands!".
 
 ## UI
 
@@ -98,7 +167,7 @@ Extremely fast and lightweight, faster than GNU Nano and Vim because:
 ## License
 
 This project is licensed under the GNU General Public License v3.0.
-You are free to use, modify, and distribute this software under the terms of the license. See the LICENSE file for more information.
+You are free to use, modify, and distribute this software under the terms of the license. See the [LICENSE](LICENSE) file for more information.
 
 ## Contributing
 
@@ -207,6 +276,7 @@ Supports:
 #include <time.h>
 #include <errno.h>
 #include <regex.h>
+#include <fcntl.h>
 #include <unistd.h>
 ```
 
