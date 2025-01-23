@@ -18,6 +18,9 @@
 #define MAX_INPUT_SIZE 256
 #define MAX_FILENAME 256
 #define MAX_LINE 1024
+#define MAX_FILES 100
+#define MAX_FILENAME 256
+#define MAX_PATH 512
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -1076,6 +1079,55 @@ void renameFile() {
     }
 }
 
+void movef() {
+    char files[MAX_FILES][MAX_FILENAME];  // Array to store filenames
+    char folder[MAX_FILENAME];            // Destination folder
+    int file_count = 0;
+
+    printf("Enter filenames (type 'done' to finish):\n");
+
+    // Input filenames
+    while (file_count < MAX_FILES) {
+        printf("File %d: ", file_count + 1);
+        fgets(files[file_count], MAX_FILENAME, stdin);
+        files[file_count][strcspn(files[file_count], "\n")] = '\0';  // Remove newline
+
+        if (strcmp(files[file_count], "done") == 0) {
+            break;  // Stop if user enters "done"
+        }
+
+        file_count++;
+    }
+
+    if (file_count == 0) {
+        printf("No files entered.\n");
+        return;
+    }
+
+    // Input destination folder
+    printf("Enter destination folder name: ");
+    fgets(folder, MAX_FILENAME, stdin);
+    folder[strcspn(folder, "\n")] = '\0';  // Remove newline
+
+    // Moving files
+    for (int i = 0; i < file_count; i++) {
+        if (strcmp(files[i], "done") == 0) {
+            break;
+        }
+
+        char new_path[MAX_PATH];
+        snprintf(new_path, MAX_PATH, "%s/%s", folder, files[i]);
+
+        if (rename(files[i], new_path) == 0) {
+            printf("Moved: %s -> %s\n", files[i], new_path);
+        } else {
+            perror("Error moving file");
+        }
+    }
+
+    printf("File move operation completed.\n");
+}
+
 void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -1097,6 +1149,9 @@ void man_txtmax() {
 
     printf("       rename\n");
     printf("           Rename Files\n\n");
+
+    printf("       movef\n");
+    printf("           Move Single or Multiple Files to an folder\n\n");
     
     printf("       files\n");
     printf("           List all regular files in the current directory.\n\n");
@@ -1168,7 +1223,7 @@ void man_txtmax() {
     printf("       - Run Code Quickly with Integrated Compilers and Interpreters\n");
     printf("       - Git Integration for Version Control and Commit Management\n");
     printf("       - Support for Over 40 Programming Languages\n");
-    printf("       - Installation of Python and Node.js Packages\n\n");
+    printf("       - Installation of Python and Node.js Packages and many more!\n\n");
 
     printf("USAGE\n");
     printf("       To start using Txtmax:\n");
@@ -1179,7 +1234,7 @@ void man_txtmax() {
     printf("           3. Compile the code:\n");
     printf("              gcc txtmax.c -o txtmax\n");
     printf("           4. Run Txtmax:\n");
-    printf("              ./txtmax10\n\n");
+    printf("              ./txtmax\n\n");
 
     printf("       Alternatively, use the Makefile to install the latest version with:\n");
     printf("           make ./txtmax\n\n");
@@ -1267,6 +1322,7 @@ void help() {
     printf("  man txtmax              Comprehensive Manual\n");
     printf("  create <filename>       Create a new file and save locally\n");
     printf("  rename                  Rename Files\n");
+    printf("  movef                   Move Single or Multiple Files to an Folder.\n");
     printf("  files                   List all files in the current directory\n");
     printf("  search <filename>       Search for files with the specified name\n");
     printf("  view <filename>         View file contents with syntax highlighting\n");
@@ -1457,6 +1513,8 @@ int main() {
         manualAI();
             } else if (strcmp(command, "rename") == 0) {
         renameFile();
+            } else if (strcmp(command, "movef") == 0) {
+        movef();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
