@@ -12,5 +12,6 @@ All notable changes to this project will be documented in this file.
 - Added Txtmax AI
 - Renaming Files
 - Moving Files
+- Build and test project with make
 - Copying Files
 - Tarball command for converting files into `.tar.gz` format.
