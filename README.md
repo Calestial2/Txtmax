@@ -27,6 +27,7 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **Edit Latex Files**
 - **Convert Files to Tarball**
 - **Package and Dependencies Management**
+- **Build and Test a Project with make**
 - **Robust Error Handling:** Better error handling.
 - **Robust Git Integration:** Supports Git branch, version, commit, and version tracking.
 
@@ -54,6 +55,7 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **advance**: type an file name with it's extension, it will show it's content and allows to jump into an specific line in it and Search and Replace
 - **debug**: Get Debug And Warns for C Files, first will ask for debugging code or running code, if choose debugging code it will ask for project name and then filename including it's extension and then you can see debug, of choose warning it will ask for project name and then filename including it's extension and then it will run it
 - **latex**: Edit Latex Files
+- **make**: Build and Test a project with make, first will ask for project name and filename including it's extension and Txtmax will generate an code and run it
 - **tarball**: Convert your files to Tarball 
 - **terminal**: A Built-in Terminal to type commands directly on the editor 
 - **exit:** Exit the Txtmax editor.
@@ -61,6 +63,7 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 ## AI
 
 We Introduced an Pattern-Matching AI to help users use Txtmax Better it's had many Predefined Questions 
+
 Conversations:
 1. **Running Code**
    - Queries: "run my code", "how to run"
