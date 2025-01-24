@@ -23,6 +23,7 @@
 #define MAX_FILENAME 256
 #define MAX_PATH 1024   
 #define MAX_FILE_NAME 255 
+#define MAX_LEN 100
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -1197,6 +1198,66 @@ void copy_files_to_folder() {
     }
 }
 
+void make() {
+    char projectName[MAX_LEN];
+    char fileName[MAX_LEN];
+    char compilerName[MAX_LEN];
+    char makefileName[MAX_LEN] = "Makefile";
+    FILE *makefile;
+    
+    // Prompt for project name
+    printf("Enter the project name: ");
+    fgets(projectName, MAX_LEN, stdin);
+    projectName[strcspn(projectName, "\n")] = '\0';  // Remove newline character
+
+    // Prompt for file name including extension
+    printf("Enter the filename (with extension, e.g., main.c): ");
+    fgets(fileName, MAX_LEN, stdin);
+    fileName[strcspn(fileName, "\n")] = '\0';  // Remove newline character
+
+    // Prompt for compiler name
+    printf("Enter the compiler name (e.g., gcc, g++, clang): ");
+    fgets(compilerName, MAX_LEN, stdin);
+    compilerName[strcspn(compilerName, "\n")] = '\0';  // Remove newline character
+
+    // Create a Makefile
+    makefile = fopen(makefileName, "w");
+    if (makefile == NULL) {
+        perror("Error opening Makefile");
+        return;
+    }
+
+    // Write the Makefile content
+    fprintf(makefile, "# Makefile for project: %s\n", projectName);
+    fprintf(makefile, "CC = %s\n", compilerName);
+    fprintf(makefile, "CFLAGS = -Wall -g\n");  // Default flags; can be adjusted
+    fprintf(makefile, "OBJ = %s.o\n", fileName);  // Object file name from the source file
+
+    // Target to compile the program
+    fprintf(makefile, "\n%s: $(OBJ)\n", projectName);
+    fprintf(makefile, "\t$(CC) $(OBJ) -o %s\n", projectName);
+
+    // Target to compile the .c file to .o
+    fprintf(makefile, "\n$(OBJ): %s\n", fileName);
+    fprintf(makefile, "\t$(CC) $(CFLAGS) -c %s\n", fileName);
+
+    // Clean target
+    fprintf(makefile, "\nclean:\n");
+    fprintf(makefile, "\trm -f $(OBJ) %s\n", projectName);
+
+    // Close the Makefile
+    fclose(makefile);
+    printf("Makefile generated successfully.\n");
+
+    // Run the makefile using system()
+    printf("Running 'make' command...\n");
+    if (system("make") != 0) {
+        printf("Error: make command failed.\n");
+    } else {
+        printf("Make completed successfully.\n");
+    }
+}
+
 void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -1285,6 +1346,9 @@ void man_txtmax() {
 
     printf("       ai\n");
     printf("          Chat with the Txtmax AI.\n\n");
+
+    printf("       make\n");
+    printf("           Build an Test an Project with make.\n\n");
   
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1415,6 +1479,7 @@ void help() {
     printf("  ai                      Use and Chat with the AI\n");
     printf("  manai                   Comprehensive Manual of How to use Txtmax\n");
     printf("  copy                    Copy Single or Multiple files to an Folder\n");
+    printf("  make                    Build and Test a Project with Make\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -1590,6 +1655,8 @@ int main() {
         movef();
             } else if (strcmp(command, "copy") == 0) {
         copy_files_to_folder();
+            } else if (strcmp(command, "make") == 0) {
+        make();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
