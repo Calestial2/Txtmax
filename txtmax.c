@@ -1198,6 +1198,70 @@ void copy_files_to_folder() {
     }
 }
 
+void generateGradleScript() {
+    char pluginName[100], dependencyName[100], dirName[100], taskName[100], printMessage[100];
+    FILE *gradleFile;
+    
+    // Prompt for plugin name
+    printf("Enter plugin name (e.g., 'java', 'application'): ");
+    scanf("%s", pluginName);
+
+    // Prompt for dependency name
+    printf("Enter dependency name (e.g., 'com.google.guava:guava:30.1-jre'): ");
+    scanf("%s", dependencyName);
+
+    // Prompt for directory name
+    printf("Enter the directory name for the project: ");
+    scanf("%s", dirName);
+
+    // Prompt for task name
+    printf("Enter the task name to run (e.g., 'build', 'test'): ");
+    scanf("%s", taskName);
+
+    // Prompt for a message to print
+    printf("Enter the message that the task should print: ");
+    scanf(" %[^\n]%*c", printMessage);  // To allow spaces in the input
+
+    // Create the directory if it doesn't exist
+    char createDirCmd[150];
+    snprintf(createDirCmd, sizeof(createDirCmd), "mkdir -p %s", dirName);
+    system(createDirCmd);
+
+    // Navigate into the directory
+    chdir(dirName);
+
+    // Create the build.gradle file
+    gradleFile = fopen("build.gradle", "w");
+    if (gradleFile == NULL) {
+        printf("Error: Unable to create build.gradle file.\n");
+        return;
+    }
+
+    // Write the Gradle script to the file
+    fprintf(gradleFile, "plugins {\n");
+    fprintf(gradleFile, "    id '%s'\n", pluginName);
+    fprintf(gradleFile, "}\n\n");
+
+    fprintf(gradleFile, "dependencies {\n");
+    fprintf(gradleFile, "    implementation '%s'\n", dependencyName);
+    fprintf(gradleFile, "}\n\n");
+
+    fprintf(gradleFile, "task %s {\n", taskName);
+    fprintf(gradleFile, "    doLast {\n");
+    fprintf(gradleFile, "        println '%s'\n", printMessage);
+    fprintf(gradleFile, "    }\n");
+    fprintf(gradleFile, "}\n");
+
+    // Close the file
+    fclose(gradleFile);
+
+    // Run Gradle command to execute the task
+    char gradleCmd[150];
+    snprintf(gradleCmd, sizeof(gradleCmd), "gradle %s", taskName);
+    printf("Running Gradle task '%s'...\n", taskName);
+    system(gradleCmd);
+}
+
 void make() {
     char projectName[MAX_LEN];
     char fileName[MAX_LEN];
@@ -1349,7 +1413,10 @@ void man_txtmax() {
 
     printf("       make\n");
     printf("           Build an Test an Project with make.\n\n");
-  
+
+    printf("       gradle\n");
+    printf("           Build and Test an Java Project with Gradle.\n\n");
+    
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
   
@@ -1480,6 +1547,7 @@ void help() {
     printf("  manai                   Comprehensive Manual of How to use Txtmax\n");
     printf("  copy                    Copy Single or Multiple files to an Folder\n");
     printf("  make                    Build and Test a Project with Make\n");
+    printf("  gradle                  Build and Test an Java Project with Gradle\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -1657,6 +1725,8 @@ int main() {
         copy_files_to_folder();
             } else if (strcmp(command, "make") == 0) {
         make();
+            } else if (strcmp(command, "gradle") == 0) {
+        generateGradleScript();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
