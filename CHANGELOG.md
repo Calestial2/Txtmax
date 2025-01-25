@@ -13,5 +13,6 @@ All notable changes to this project will be documented in this file.
 - Renaming Files
 - Moving Files
 - Build and test project with make
+- Build and test java project with Gradle
 - Copying Files
 - Tarball command for converting files into `.tar.gz` format.
