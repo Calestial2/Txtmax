@@ -1269,6 +1269,77 @@ void generateGradleScript() {
     system(gradleCmd);
 }
 
+void create_dotnet_project() {
+    char component[20];
+    char filename[100];
+    char file_content[500];
+    char file_path[200];
+    FILE *file;
+
+    // Step 1: Ask the user to choose a component
+    printf("Choose a component (dotnet sdk / asp.dotnet): ");
+    fgets(component, sizeof(component), stdin);
+    component[strcspn(component, "\n")] = 0;  // Remove newline character
+
+    if (strcmp(component, "dotnet sdk") != 0 && strcmp(component, "asp.dotnet") != 0) {
+        printf("Invalid component. Exiting...\n");
+        return;
+    }
+
+    // Step 2: Ask for the directory path (optional, default is current directory)
+    printf("Enter the directory to save the file (or press enter to save in the current directory): ");
+    fgets(file_path, sizeof(file_path), stdin);
+    file_path[strcspn(file_path, "\n")] = 0;  // Remove newline character
+
+    // Default to the current directory if no path is provided
+    if (strlen(file_path) == 0) {
+        getcwd(file_path, sizeof(file_path));  // Get the current working directory
+    }
+
+    // Step 3: Ask for the filename (including extension)
+    printf("Enter the filename (including extension, e.g., MyProgram.cs): ");
+    fgets(filename, sizeof(filename), stdin);
+    filename[strcspn(filename, "\n")] = 0;  // Remove newline character
+
+    // Combine directory path and filename
+    snprintf(file_path, sizeof(file_path), "%s/%s", file_path, filename);
+
+    // Step 4: Open file for writing content
+    file = fopen(file_path, "w");
+    if (file == NULL) {
+        printf("Error opening file. Exiting...\n");
+        return;
+    }
+
+    // Step 5: Prompt user to write content
+    printf("Write the .NET file content (type :wq to finish):\n");
+    while (1) {
+        fgets(file_content, sizeof(file_content), stdin);
+        if (strcmp(file_content, ":wq\n") == 0) {
+            break;
+        }
+        fprintf(file, "%s", file_content);
+    }
+
+    // Close the file after writing
+    fclose(file);
+
+    // Step 6: Run system commands
+    printf("Building and running the .NET project...\n");
+
+    // Run dotnet build (assuming the file is part of a .NET project)
+    char build_command[200];
+    snprintf(build_command, sizeof(build_command), "dotnet build %s", file_path);
+    system(build_command);
+
+    // Run dotnet run (assuming the file is a runnable .NET program)
+    char run_command[200];
+    snprintf(run_command, sizeof(run_command), "dotnet run %s", file_path);
+    system(run_command);
+
+    printf("Process completed.\n");
+}
+
 void make() {
     char projectName[MAX_LEN];
     char fileName[MAX_LEN];
@@ -1423,6 +1494,9 @@ void man_txtmax() {
 
     printf("       gradle\n");
     printf("           Build and Test an Java Project with Gradle.\n\n");
+
+    printf("       dotnet\n");
+    printf("           Supports .NET Framework.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1555,6 +1629,7 @@ void help() {
     printf("  copy                    Copy Single or Multiple files to an Folder\n");
     printf("  make                    Build and Test a Project with Make\n");
     printf("  gradle                  Build and Test an Java Project with Gradle\n");
+    printf("  dotnet                  Supports .NET Framework\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -1734,6 +1809,8 @@ int main() {
         make();
             } else if (strcmp(command, "gradle") == 0) {
         generateGradleScript();
+            } else if (strcmp(command, "dotnet") == 0) {
+        create_dotnet_project();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
