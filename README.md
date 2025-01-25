@@ -151,7 +151,8 @@ To get started with Txtmax, follow these steps:
 1. **Install:** Install it by running:
 ```bash
 git clone https://github.com/Calestial2/Txtmax 
-cd Txtmax 
+cd Txtmax
+cd src
 gcc txtmax.c -o txtmax
 ./txtmax
 ```
@@ -160,6 +161,7 @@ gcc txtmax.c -o txtmax
 ```bash
 git clone https://github.com/Calestial2/Txtmax
 cd Txtmax
+cd src
 make
 make clean
 ./txtmax
