@@ -2,7 +2,7 @@
           
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square&logo=github) ![Version](https://img.shields.io/badge/version-1.20.10-blue?style=flat-square) ![License](https://img.shields.io/badge/license-GPL%20v3-blue?style=flat-square) ![Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen?style=flat-square)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square&logo=github) ![Version](https://img.shields.io/badge/version-1.20.11-blue?style=flat-square) ![License](https://img.shields.io/badge/license-GPL%20v3-blue?style=flat-square) ![Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen?style=flat-square)
 
 ## Text Management And Extended Editor (known as Txtmax)
 
@@ -33,6 +33,7 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **Build and Test a Project with make**
 - **Build and Test a Java Project with Gradle**
 - **Automation**
+- **Support for .NET Framework**
 - **Robust Error Handling:** Better error handling.
 - **Robust Git Integration:** Supports Git branch, version, commit, and version tracking.
 
@@ -60,6 +61,7 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **advance**: type an file name with it's extension, it will show it's content and allows to jump into an specific line in it and Search and Replace
 - **debug**: Get Debug And Warns for C Files, first will ask for debugging code or running code, if choose debugging code it will ask for project name and then filename including it's extension and then you can see debug, of choose warning it will ask for project name and then filename including it's extension and then it will run it
 - **latex**: Edit Latex Files
+- **dotnet**: Supports .NET Framework, it's first will ask for choosing an .NET Components (Currently Supprots .NET Sdk and ASP.NET) and then will ask for an Filename including it's extension and then it will ask for contents and then exit with :wq and then it will run the code, for using nuget you can use packages command (must install .net already)
 - **tarball**: Convert your files to Tarball 
 - **terminal**: A Built-in Terminal to type commands directly on the editor 
 - **exit:** Exit the Txtmax editor.
