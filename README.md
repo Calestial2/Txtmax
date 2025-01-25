@@ -297,6 +297,7 @@ Supports:
 ## Txtmax Source Code Files
 
 **src/txtmax.c**: the source code of Txtmax 
+
 **Makefile**: Makefile to Automate Process
 
 When we Release an Update we keep updating it until another version 
