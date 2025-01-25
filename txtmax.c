@@ -519,7 +519,7 @@ void quick_run() {
     fclose(file);
 
     // Prompt for compiler/interpreter
-    printf("Enter the compiler or interpreter (gcc, clang, python, node, nasm, tcl, bash): ");
+    printf("Enter the compiler or interpreter (gcc, g++, clang, python, node, nasm, tcl, bash): ");
     fgets(compiler, sizeof(compiler), stdin);
     compiler[strcspn(compiler, "\n")] = 0; // Remove trailing newline
 
@@ -535,6 +535,13 @@ void quick_run() {
             snprintf(command, sizeof(command), "%s %s -o output && ./output", compiler, filename);
         } else {
             printf("Error: %s is only compatible with C files.\n", compiler);
+            return;
+        }
+    } else if (strcmp(compiler, "g++") == 0) {
+        if (strcmp(ext, ".cpp") == 0 || strcmp(ext, ".cxx") == 0 || strcmp(ext, ".cc") == 0) {
+            snprintf(command, sizeof(command), "g++ %s -o output && ./output", filename);
+        } else {
+            printf("Error: g++ is only compatible with C++ files (.cpp, .cxx, .cc).\n");
             return;
         }
     } else if (strcmp(compiler, "python") == 0) {
@@ -577,7 +584,7 @@ void quick_run() {
         return;
     }
 
-    // Execute the commandgfg
+    // Execute the command
     printf("Running command: %s\n", command);
     if (system(command) != 0) {
         printf("Error: Failed to execute the command.\n");
