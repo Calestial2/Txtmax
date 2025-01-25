@@ -28,6 +28,8 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **Convert Files to Tarball**
 - **Package and Dependencies Management**
 - **Build and Test a Project with make**
+- **Build and Test a Java Project with Gradle**
+- **Automation**
 - **Robust Error Handling:** Better error handling.
 - **Robust Git Integration:** Supports Git branch, version, commit, and version tracking.
 
@@ -48,17 +50,24 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **info <filename>:** Get detailed information about the file (name, extension, creation time, modification time, version control such as commit message, branch, version).
 - **examples:** Show examples of "Hello, World!" programs in C, Python, Java, JavaScript, C++, Rust, Ruby, Elixir, Kotlin, TypeScript, Dart, Objective-C, Go, etc.
 - **sql:** Show example queries for SQL databases such as SQL, PostgreSQL, NoSQL (MongoDB).
-- **run:** Run your code quickly without exiting Txtmax with compilers and interpreters such as GCC, Clang, Python, Lua, Ruby, nasm, tcl, Node. First, it will ask for the file name and extension, then the compiler name, and it will run it.
+- **run:** Run your code quickly without exiting Txtmax with compilers and interpreters such as GCC, Clang, g++, Python, Lua, Ruby, nasm, tcl, Node. First, it will ask for the file name and extension, then the compiler name, and it will run it.
 - **packages:** Install Packages. First, it will ask which package manager to choose (pip or npm or gem or go or yarn or composer or cargo or nuget or apt), then type the package name, and it will install it. (Must have Python and Node.js and the others installed installed already)
 - **api**: Test Restful APIs Data Directly in the Editor, First will ask for putting url and it will fetch data via curl
 - **axios**: Another Command allows to Fetch Restful APIs Data From their Url, First it will ask for filename and then allows to write codes and quit with :wq and it will run it
 - **advance**: type an file name with it's extension, it will show it's content and allows to jump into an specific line in it and Search and Replace
 - **debug**: Get Debug And Warns for C Files, first will ask for debugging code or running code, if choose debugging code it will ask for project name and then filename including it's extension and then you can see debug, of choose warning it will ask for project name and then filename including it's extension and then it will run it
 - **latex**: Edit Latex Files
-- **make**: Build and Test a project with make, first will ask for project name and filename including it's extension and Txtmax will generate an code and run it
 - **tarball**: Convert your files to Tarball 
 - **terminal**: A Built-in Terminal to type commands directly on the editor 
 - **exit:** Exit the Txtmax editor.
+
+## Automation
+
+We Introduced an Automation Feature to Automate Your Task 
+
+**Commands**:
+- **make**: Build and Test a project with make, first will ask for project name and filename including it's extension and Txtmax will generate an code and run it
+- **gradle**: Build and test a Java Project with Gradle, First will ask for necessary inputs and then will generate an code based on inputs and run it
 
 ## AI
 
