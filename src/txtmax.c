@@ -24,6 +24,8 @@
 #define MAX_PATH 1024   
 #define MAX_FILE_NAME 255 
 #define MAX_LEN 100
+#define RECYCLE_BIN "recycle_bin"
+#define MAX_FILENAME_LEN 256
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -1400,6 +1402,79 @@ void make() {
     }
 }
 
+// Function to list all deleted files (in the recycle bin)
+void list_deleted_files() {
+    DIR *dir = opendir(RECYCLE_BIN);
+    if (dir == NULL) {
+        perror("Error opening recycle bin");
+        return;
+    }
+
+    struct dirent *entry;
+    printf("Deleted files in the Recycle Bin:\n");
+    while ((entry = readdir(dir)) != NULL) {
+        if (entry->d_name[0] != '.') {  // Ignore "." and ".."
+            printf("- %s\n", entry->d_name);
+        }
+    }
+    closedir(dir);
+}
+
+// Function to recover a file from the recycle bin
+void recover_file(const char *filename) {
+    char old_path[MAX_FILENAME_LEN], new_path[MAX_FILENAME_LEN];
+    struct stat st;
+
+    // Construct the full path of the file in the recycle bin
+    snprintf(old_path, sizeof(old_path), "%s/%s", RECYCLE_BIN, filename);
+
+    // Check if the file exists in the recycle bin
+    if (stat(old_path, &st) != 0) {
+        perror("File not found in recycle bin");
+        return;
+    }
+
+    // Ask the user for the destination path to recover to
+    printf("Enter the destination path to recover '%s': ", filename);
+    char dest_path[MAX_FILENAME_LEN];
+    fgets(dest_path, sizeof(dest_path), stdin);
+    dest_path[strcspn(dest_path, "\n")] = '\0';  // Remove newline character
+
+    // Construct the destination path
+    snprintf(new_path, sizeof(new_path), "%s/%s", dest_path, filename);
+
+    // Recover the file by renaming (moving) it
+    if (rename(old_path, new_path) == 0) {
+        printf("File '%s' successfully recovered to '%s'.\n", filename, new_path);
+    } else {
+        perror("Error recovering the file");
+    }
+}
+
+// Main function for handling the recycle bin logic
+void recycle_bin() {
+    char command[512];
+    while (1) {
+        // Show deleted files
+        list_deleted_files();
+
+        printf("\nEnter a command (e.g., 'recover <filename>') or 'exit' to quit: ");
+        fgets(command, sizeof(command), stdin);
+        command[strcspn(command, "\n")] = '\0';  // Remove newline character
+
+        if (strncmp(command, "recover ", 8) == 0) {
+            // Extract the filename from the command
+            char filename[MAX_FILENAME_LEN];
+            sscanf(command + 8, "%s", filename);
+
+            // Recover the file
+            recover_file(filename);
+        } else {
+            printf("Invalid command. Try 'recover <filename>' or 'exit'.\n");
+        }
+    }
+}
+
 void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -1497,6 +1572,9 @@ void man_txtmax() {
 
     printf("       dotnet\n");
     printf("           Supports .NET Framework.\n\n");
+
+    printf("       recycle\n");
+    printf("           Recover your Deleted files.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1630,6 +1708,7 @@ void help() {
     printf("  make                    Build and Test a Project with Make\n");
     printf("  gradle                  Build and Test an Java Project with Gradle\n");
     printf("  dotnet                  Supports .NET Framework\n");
+    printf("  recycle                 Recover your all Deleted files\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -1811,6 +1890,8 @@ int main() {
         generateGradleScript();
             } else if (strcmp(command, "dotnet") == 0) {
         create_dotnet_project();
+            } else if (strcmp(command, "recycle") == 0) {
+        recycle_bin();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
