@@ -314,7 +314,7 @@ We Recommend You use Latest Version always
 - **Comprehensive File Management:** Txtmax offers comprehensive file management, including creating, listing, viewing, searching files, deleting, and editing files and jumping to specific lines and Search And Replace.
 - **Version Control and Git Integration:** Supports robust Git integration and robust error handling for every command.
 - **Open Source and Free:** Fully open source and completely free (no hidden costs) under the GNU General Public License.
-- **Syntax Highlighting and Multi-Language Support:** Supports 70 languages with extensive syntax highlighting.
+- **Syntax Highlighting and Multi-Language Support:** Supports over 80 languages with extensive syntax highlighting.
 - **Compiling and Running Code:** Compile and run C, Python, JavaScript codes with compilers and interpreters such as GCC, Clang, Python, Node, Nasm, Tcl, Bash. without leaving Txtmax.
 - **Package and Dependency Management:** Install packages directly from the editor easily.
 - **Rich Documentation:** Detailed help and comprehensive manual for beginners and Had Examples of Hello world for various languages to get started 
