@@ -34,6 +34,7 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **Build and Test a Java Project with Gradle**
 - **Automation**
 - **Support for .NET Framework**
+- **Run Flask and Python App on Web Server**
 - **Robust Error Handling:** Better error handling.
 - **Robust Git Integration:** Supports Git branch, version, commit, and version tracking.
 
@@ -306,6 +307,8 @@ Supports:
 **src/txtmax.c**: the source code of Txtmax 
 
 **Makefile**: Makefile to Automate Process
+
+**CHANGELOG.md**: File about what's changed 
 
 When we Release an Update we keep updating it until another version 
 
