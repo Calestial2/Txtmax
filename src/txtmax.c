@@ -1475,6 +1475,34 @@ void recycle_bin() {
     }
 }
 
+void localhost() {
+    char framework[20];
+    char filename[100];
+    
+    printf("Choose framework (flask/pythonhttp): ");
+    scanf("%19s", framework);
+
+    if (strcmp(framework, "flask") == 0) {
+        printf("Enter the filename (including extension, e.g., app.py): ");
+        scanf("%99s", filename);
+
+        // Construct command
+        char command[150];
+        snprintf(command, sizeof(command), "python %s", filename);
+
+        // Execute command
+        printf("Running: %s\n", command);
+        system(command);
+    } 
+    else if (strcmp(framework, "pythonhttp") == 0) {
+        printf("Starting Python HTTP server on port 8080...\n");
+        system("python -m http.server 8080");
+    } 
+    else {
+        printf("Invalid framework selection!\n");
+    }
+}
+
 void man_txtmax() {
    printf("                     Txtmax Manual                      \n\n");
     printf("NAME\n");
@@ -1575,6 +1603,9 @@ void man_txtmax() {
 
     printf("       recycle\n");
     printf("           Recover your Deleted files.\n\n");
+
+    printf("       localhost\n");
+    printf("           Start your Flask and Python App on Localhost.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1709,6 +1740,7 @@ void help() {
     printf("  gradle                  Build and Test an Java Project with Gradle\n");
     printf("  dotnet                  Supports .NET Framework\n");
     printf("  recycle                 Recover your all Deleted files\n");
+    printf("  localhost               Start your Flask and Python App on localhost\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -1892,6 +1924,8 @@ int main() {
         create_dotnet_project();
             } else if (strcmp(command, "recycle") == 0) {
         recycle_bin();
+            } else if (strcmp(command, "localhost") == 0) {
+        localhost();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
