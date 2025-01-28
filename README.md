@@ -6,7 +6,7 @@
 
 ## Text Management And Extended Editor (known as Txtmax)
 
-Txtmax is a powerful, lightweight, fast, completely free, open-source advanced text editor designed for Linux. It features syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files and more from the command line with ease.
+Txtmax is a modern, powerful, lightweight, fast, completely free, open-source advanced text editor designed for Linux. It features syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files and more from the command line with ease.
 
 ## Features
 
@@ -199,6 +199,8 @@ Contributions are welcome! Here's how you can help:
 - Submit pull requests with clear descriptions of changes.
 - Ensure your code follows the style and design of the project.
 
+For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Supported Languages
 
 Supports Many Popular Programming Language (Low Level and High Level of such many categories) and many Functional Languages and Many Old Languages that are still used today and Game Engine Language and Educational Languages and Many Rare Less common language 
@@ -304,11 +306,12 @@ Supports:
 
 ## Txtmax Source Code Files
 
-**src/txtmax.c**: the source code of Txtmax 
-
-**Makefile**: Makefile to Automate Process
-
-**CHANGELOG.md**: File about what's changed 
+- **README.md**: the README File
+- **LICENSE.md**: The License File (GNU General Public License)
+- **src/txtmax.c**: the source code of Txtmax
+- **Makefile**: Makefile to Automate Process
+- **CHANGELOG.md**: File about what's changed
+- **CONTRIBUTING.md**: Detailed Guidelines to Contribute to Txtmax 
 
 When we Release an Update we keep updating it until another version 
 
@@ -324,5 +327,5 @@ We Recommend You use Latest Version always
 - **Package and Dependency Management:** Install packages directly from the editor easily.
 - **Rich Documentation:** Detailed help and comprehensive manual for beginners and Had Examples of Hello world for various languages to get started 
 - **Extremely Fast and Easy to Use:** Faster than GNU Nano and Vim, and very easy to use with commands that are easy to understand and use, offering a lower learning curve.
-- **Terminal Integration**: Supports typing Terminal Supports Directly in the Editor
+- **Terminal Integration**: Supports typing Terminal Commands in the Editor
 - **Frequent Major Updates:** Frequent new major updates
