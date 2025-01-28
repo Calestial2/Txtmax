@@ -2,7 +2,7 @@
           
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square&logo=github) ![Version](https://img.shields.io/badge/version-1.20.12-blue?style=flat-square) ![License](https://img.shields.io/badge/license-GPL%20v3-blue?style=flat-square) ![Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen?style=flat-square)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square&logo=github) ![Version](https://img.shields.io/badge/version-12.1.1-blue?style=flat-square) ![License](https://img.shields.io/badge/license-GPL%20v3-blue?style=flat-square) ![Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen?style=flat-square)
 
 ## Text Management And Extended Editor (known as Txtmax)
 
