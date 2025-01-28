@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.20.10] - 2025-01-25
+## [12.1.1] - 2025-01-28
 
 ### Added
 - LaTeX file editing and PDF export functionality.
@@ -15,4 +15,6 @@ All notable changes to this project will be documented in this file.
 - Build and test project with make
 - Build and test java project with Gradle
 - Copying Files
+- Added Recycle
+- Added localhost to start python and flask app on web seever
 - Tarball command for converting files into `.tar.gz` format.
