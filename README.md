@@ -64,6 +64,7 @@ Txtmax is a powerful, lightweight, fast, completely free, open-source advanced t
 - **dotnet**: Supports .NET Framework, it's first will ask for choosing an .NET Components (Currently Supprots .NET Sdk and ASP.NET) and then will ask for an Filename including it's extension and then it will ask for contents and then exit with :wq and then it will run the code, for using nuget you can use packages command (must install .net already)
 - **tarball**: Convert your files to Tarball 
 - **terminal**: A Built-in Terminal to type commands directly on the editor
+- **localhost**: Start your Python and Flask App on web server, It will prompt for choosing flask or pythonhttp and then it will prompt for filename including it's extension and it will run it on localhost:8080 
 - **recycle**: Recover your all deleted files, It will show list of all deleted files and you can type "recover <filename>.<extension> to recover it
 - **exit:** Exit the Txtmax editor.
 
