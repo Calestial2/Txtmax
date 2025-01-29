@@ -1956,7 +1956,7 @@ int main() {
         recycle_bin();
             } else if (strcmp(command, "localhost") == 0) {
         localhost();
-            } else if (strcmp(command, "info") == 0) {
+            } else if (strcmp(command, "infof") == 0) {
         info();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
