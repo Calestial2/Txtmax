@@ -306,12 +306,14 @@ Supports:
 
 ## Txtmax Source Code Files
 
-- **README.md**: the README File
-- **LICENSE.md**: The License File (GNU General Public License)
-- **src/txtmax.c**: the source code of Txtmax
-- **Makefile**: Makefile to Automate Process
-- **CHANGELOG.md**: File about what's changed
-- **CONTRIBUTING.md**: Detailed Guidelines to Contribute to Txtmax 
+- **README.md**: The README file
+- **LICENSE.md**: The License file (GNU General Public License)
+- **src/txtmax.c**: The source code of Txtmax
+- **Makefile**: Makefile to automate the process
+- **CHANGELOG.md**: Document detailing changes
+- **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
+
+I hope this meets your expectations! If you need any further refinements, feel free to let me know.
 
 When we Release an Update we keep updating it until another version 
 
