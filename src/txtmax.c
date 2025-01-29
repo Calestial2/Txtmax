@@ -1475,32 +1475,19 @@ void recycle_bin() {
     }
 }
 
-void info() {
-    // Open or create the file version.txtmax
+void versionf() {
     FILE *file = fopen("version.txtmax", "w");
+    
     if (file == NULL) {
-        perror("Error opening file");
+        printf("Error creating file!\n");
         return;
     }
 
-    // Get system information (OS name)
-    struct utsname system_info;
-    if (uname(&system_info) != 0) {
-        perror("Error getting system information");
-        fclose(file);
-        return;
-    }
-
-    // Write the content to version.txtmax
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 75 KB\n");
-    fprintf(file, "Version: 12.1.1\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
-   
-    // Close the file
-    fclose(file);
 
-    printf("version.txtmax file created successfully.\n");
+    fclose(file);
 }
 
 void localhost() {
@@ -1954,8 +1941,8 @@ int main() {
         recycle_bin();
             } else if (strcmp(command, "localhost") == 0) {
         localhost();
-            } else if (strcmp(command, "infof") == 0) {
-        info();
+            } else if (strcmp(command, "version") == 0) {
+        versionf();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
