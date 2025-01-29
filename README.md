@@ -85,6 +85,8 @@ We have introduced an automation feature to simplify your tasks.
 
 ## AI
 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F74D4D&background=AFFF0000&width=435&lines=Txtmax+AI;Increasing+your+productivity+)](https://git.io/typing-svg)
+
 We Introduced an Pattern-Matching AI to help users use Txtmax Better it's had many Predefined Questions 
 
 Conversations:
@@ -308,7 +310,6 @@ Supports:
 #include <regex.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <sys/utsname.h>
 ```
 
 ## Txtmax Source Code Files
