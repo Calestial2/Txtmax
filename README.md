@@ -42,7 +42,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 
 - **help:** List all available commands.
 - **man txtmax:** Comprehensive manual.
-- **create <filename>:** Create a new file and type code in 70 languages, save and quit with :wq, type a commit message, branch, and version, and save it locally.
+- **create <filename>:** Create a new file and type code in 80 languages, save and quit with :wq, type a commit message, branch, and version, and save it locally.
 - **man txtmax**: comprehensive manual
 - **rename**: Rename an file
 - **movef**: Move Multiple Files to an Folder
