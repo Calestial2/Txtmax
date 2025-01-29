@@ -10,6 +10,8 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 
 ## Features
 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F73096&background=AFFF0000&width=435&lines=Txtmax+offers+set+of+features)](https://git.io/typing-svg)
+
 - **Create Files:** Create new text files and save them locally.
 - **View Files:** View the contents of text files with syntax highlighting for keywords, strings, and comments.
 - **Edit Files:** Edit specific lines in existing text files.
@@ -17,65 +19,66 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Delete Files:** Delete specified text files.
 - **Search Files:** Search for files by name.
 - **Get File Info:** Retrieve detailed information about a file, including its name, extension, creation time, modification time, and version control.
-- **Line Numbering and Jumping to Specific line**
-- **Search and Replace**
-- **Compiling and Running Code**
-- **Move Multiple Files to a Folder**
-- **Copy Multiple Files to an Folder**
-- **Pattern-Matching AI for Helping Users use Txtmax**
-- **Rename an File**
-- **Test and Fetch Data's of Restful APIs**
-- **Debug and Warn C Files**
-- **Built-in Terminal**
-- **Edit Latex Files**
-- **Convert Files to Tarball**
-- **Package and Dependencies Management**
-- **Build and Test a Project with make**
-- **Build and Test a Java Project with Gradle**
-- **Automation**
-- **Support for .NET Framework**
-- **Run Flask and Python App on Web Server**
-- **Robust Error Handling:** Better error handling.
-- **Robust Git Integration:** Supports Git branch, version, commit, and version tracking.
+- **Line Numbering and Jumping to Specific Lines:** Navigate quickly through code with line numbers and jump to specific lines.
+- **Search and Replace:** Find and replace text within files.
+- **Compiling and Running Code:** Compile and execute code seamlessly.
+- **Move Multiple Files to a Folder:** Organize files by moving them to specified folders.
+- **Copy Multiple Files to a Folder:** Duplicate files and copy them to designated folders.
+- **Pattern-Matching AI for Helping Users Use Txtmax:** Utilize AI to assist with pattern matching.
+- **Rename a File:** Change the name of files easily.
+- **Test and Fetch Data from RESTful APIs:** Interact with APIs to test and retrieve data.
+- **Debug and Warn C Files:** Identify and resolve issues in C files.
+- **Built-in Terminal:** Access a terminal directly within the editor.
+- **Edit LaTeX Files:** Work with LaTeX documents.
+- **Convert Files to Tarball:** Archive files into tarball format.
+- **Package and Dependencies Management:** Handle packages and dependencies efficiently.
+- **Build and Test a Project with Make:** Automate the build and test process for projects using Make.
+- **Build and Test a Java Project with Gradle:** Manage Java projects with Gradle.
+- **Automation:** Automate repetitive tasks.
+- **Support for .NET Framework:** Develop and run .NET applications.
+- **Run Flask and Python App on Web Server:** Deploy Flask and Python applications on a web server.
+- **Robust Error Handling:** Improve error handling mechanisms.
+- **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
 ## Commands
 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=AFFF0000&width=435&lines=Txtmax+offers+set+of+commands;Below+is+a+detailed+overview+of+all;Commands)](https://git.io/typing-svg)
+
 - **help:** List all available commands.
-- **man txtmax:** Comprehensive manual.
-- **create <filename>:** Create a new file and type code in 80 languages, save and quit with :wq, type a commit message, branch, and version, and save it locally.
-- **man txtmax**: comprehensive manual
-- **rename**: Rename an file
-- **movef**: Move Multiple Files to an Folder
-- **copy**: Copy Multiple Files to an Folder
+- **man txtmax:** Access the comprehensive manual for Txtmax.
+- **create <filename>:** Create a new file, write code in 80 languages, save and quit with :wq, type a commit message, branch, and version, and save it locally.
+- **rename:** Rename a file.
+- **movef:** Move multiple files to a folder.
+- **copy:** Copy multiple files to a folder.
 - **files:** List all files in the current directory.
 - **view <filename>:** View the contents of a file with syntax highlighting.
 - **edit <filename> <line>:** Edit a specific line in the file.
 - **delete <filename>:** Delete a specified file.
-- **search <filename>:** Search for files with the specified name.
-- **info <filename>:** Get detailed information about the file (name, extension, creation time, modification time, version control such as commit message, branch, version).
-- **examples:** Show examples of "Hello, World!" programs in C, Python, Java, JavaScript, C++, Rust, Ruby, Elixir, Kotlin, TypeScript, Dart, Objective-C, Go, etc.
-- **sql:** Show example queries for SQL databases such as SQL, PostgreSQL, NoSQL (MongoDB).
-- **run:** Run your code quickly without exiting Txtmax with compilers and interpreters such as GCC, Clang, g++, Python, Lua, Ruby, nasm, tcl, Node. First, it will ask for the file name and extension, then the compiler name, and it will run it.
-- **packages:** Install Packages. First, it will ask which package manager to choose (pip or npm or gem or go or yarn or composer or cargo or nuget or apt), then type the package name, and it will install it. (Must have Python and Node.js and the others installed installed already)
-- **api**: Test Restful APIs Data Directly in the Editor, First will ask for putting url and it will fetch data via curl
-- **axios**: Another Command allows to Fetch Restful APIs Data From their Url, First it will ask for filename and then allows to write codes and quit with :wq and it will run it
-- **advance**: type an file name with it's extension, it will show it's content and allows to jump into an specific line in it and Search and Replace
-- **debug**: Get Debug And Warns for C Files, first will ask for debugging code or running code, if choose debugging code it will ask for project name and then filename including it's extension and then you can see debug, of choose warning it will ask for project name and then filename including it's extension and then it will run it
-- **latex**: Edit Latex Files
-- **dotnet**: Supports .NET Framework, it's first will ask for choosing an .NET Components (Currently Supprots .NET Sdk and ASP.NET) and then will ask for an Filename including it's extension and then it will ask for contents and then exit with :wq and then it will run the code, for using nuget you can use packages command (must install .net already)
-- **tarball**: Convert your files to Tarball 
-- **terminal**: A Built-in Terminal to type commands directly on the editor
-- **localhost**: Start your Python and Flask App on web server, It will prompt for choosing flask or pythonhttp and then it will prompt for filename including it's extension and it will run it on localhost:8080 
-- **recycle**: Recover your all deleted files, It will show list of all deleted files and you can type "recover <filename>.<extension> to recover it
+- **search <filename>:** Search for files by name.
+- **info <filename>:** Get detailed information about the file (name, extension, creation time, modification time, and version control such as commit message, branch, and version).
+- **examples:** Show examples of "Hello, World!" programs in various languages including C, Python, Java, JavaScript, C++, Rust, Ruby, Elixir, Kotlin, TypeScript, Dart, Objective-C, and Go.
+- **sql:** Display example queries for SQL databases, including SQL, PostgreSQL, and NoSQL (MongoDB).
+- **run:** Run your code quickly without exiting Txtmax using compilers and interpreters such as GCC, Clang, g++, Python, Lua, Ruby, nasm, tcl, and Node.js. It will prompt for the file name and extension, followed by the compiler name, and then execute the code.
+- **packages:** Install packages by choosing a package manager (pip, npm, gem, go, yarn, composer, cargo, nuget, or apt), entering the package name, and installing it. (Requires prior installation of Python, Node.js, and other dependencies)
+- **api:** Test RESTful APIs directly in the editor by entering a URL to fetch data via curl.
+- **axios:** Fetch RESTful API data from a URL by entering a filename, writing code, quitting with :wq, and running it.
+- **advance:** Enter a file name with its extension to view its content, jump to specific lines, and perform search and replace operations.
+- **debug:** Debug and warn C files. Choose between debugging code or running code, then provide the project name and filename including its extension to see debug or warning messages.
+- **latex:** Edit LaTeX files.
+- **dotnet:** Support for .NET Framework. Choose a .NET component (currently supports .NET SDK and ASP.NET), enter a filename including its extension, write content, quit with :wq, and run the code. Use the packages command for nuget (requires prior installation of .NET).
+- **tarball:** Convert files to tarball format.
+- **terminal:** Access a built-in terminal to type commands directly in the editor.
+- **localhost:** Start a Python or Flask app on a web server. Choose between Flask or PythonHTTP, enter a filename including its extension, and run it on localhost:8080.
+- **recycle:** Recover deleted files by listing all deleted files and typing "recover <filename>.<extension>" to restore them.
 - **exit:** Exit the Txtmax editor.
 
 ## Automation
 
-We Introduced an Automation Feature to Automate Your Task 
+We have introduced an automation feature to simplify your tasks.
 
-**Commands**:
-- **make**: Build and Test a project with make, first will ask for project name and filename including it's extension and Txtmax will generate an code and run it
-- **gradle**: Build and test a Java Project with Gradle, First will ask for necessary inputs and then will generate an code based on inputs and run it
+**Commands:**
+- **make:** Build and test a project with Make. Enter the project name and filename including its extension, and Txtmax will generate and run the code.
+- **gradle:** Build and test a Java project with Gradle. Provide the necessary inputs, and Txtmax will generate and run the code based on the inputs.
 
 ## AI
 
