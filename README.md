@@ -70,10 +70,12 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **terminal:** Access a built-in terminal to type commands directly in the editor.
 - **localhost:** Start a Python or Flask app on a web server. Choose between Flask or PythonHTTP, enter a filename including its extension, and run it on localhost:8080.
 - **recycle:** Recover deleted files by listing all deleted files and typing "recover <filename>.<extension>" to restore them.
-- **infof:** Although not included in manual and help, it creates version.txtmax to see details like Name, Size, Maintainer, OS
+- **version:** Although not included in manual and help, it creates a version.txtmax to see details like Name, Size, Maintainer
 - **exit:** Exit the Txtmax editor.
 
 ## Automation
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70101&background=FF0F0F00&width=435&lines=Txtmax+Automation+)](https://git.io/typing-svg)
 
 We have introduced an automation feature to simplify your tasks.
 
