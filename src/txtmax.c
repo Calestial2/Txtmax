@@ -9,7 +9,6 @@
 #include <regex.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <sys/utsname.h>
 
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
@@ -1497,8 +1496,7 @@ void info() {
     fprintf(file, "Size: 75 KB\n");
     fprintf(file, "Version: 12.1.1\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
-    fprintf(file, "OS: %s\n", system_info.sysname); // Get the OS name
-
+   
     // Close the file
     fclose(file);
 
