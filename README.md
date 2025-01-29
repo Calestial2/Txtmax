@@ -77,7 +77,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 We have introduced an automation feature to simplify your tasks.
 
 **Commands:**
-- **make:** Build and test a project with Make. Enter the project name and filename including its extension, and Txtmax will generate and run the code.
+- **make:** Build and test a project with Make. Enter the project name and filename including its extension, and Txtmax will generate an Makefile based on inputs and run the code.
 - **gradle:** Build and test a Java project with Gradle. Provide the necessary inputs, and Txtmax will generate and run the code based on the inputs.
 
 ## AI
