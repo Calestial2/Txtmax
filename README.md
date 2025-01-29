@@ -2,7 +2,18 @@
           
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square&logo=github) ![Version](https://img.shields.io/badge/version-12.1.1-blue?style=flat-square) ![License](https://img.shields.io/badge/license-GPL%20v3-blue?style=flat-square) ![Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen?style=flat-square)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![License](https://img.shields.io/badge/license-GPL%20v3-blue)
+![Version](https://img.shields.io/badge/version-12.1.1-blue)
+![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
+![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
+![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
+![Last Commit](https://img.shields.io/github/last-commit/Calestial2/Txtmax)
+![GitHub Stars](https://img.shields.io/github/stars/Calestial2/Txtmax?style=social)
+![Forks](https://img.shields.io/github/forks/Calestial2/Txtmax?style=social)
+![Contributors](https://img.shields.io/github/contributors/Calestial2/Txtmax)
+![Release](https://img.shields.io/github/v/release/Calestial2/Txtmax)
+![Downloads](https://img.shields.io/github/downloads/Calestial2/Txtmax/total)
 
 ## Text Management And Extended Editor (known as Txtmax)
 
