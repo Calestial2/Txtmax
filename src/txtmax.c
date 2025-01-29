@@ -1524,22 +1524,31 @@ void localhost() {
 void get_password(char *password, size_t size) {
     struct termios oldt, newt;
     int i = 0;
-    char ch;
+    int ch; // Fix: Use int instead of char to handle EOF correctly
 
     // Turn off terminal echoing
-    tcgetattr(STDIN_FILENO, &oldt);
+    if (tcgetattr(STDIN_FILENO, &oldt) != 0) {
+        perror("Error getting terminal attributes");
+        exit(EXIT_FAILURE);
+    }
     newt = oldt;
     newt.c_lflag &= ~(ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    if (tcsetattr(STDIN_FILENO, TCSANOW, &newt) != 0) {
+        perror("Error setting terminal attributes");
+        exit(EXIT_FAILURE);
+    }
 
     // Read password input
     while (i < size - 1 && (ch = getchar()) != '\n' && ch != EOF) {
-        password[i++] = ch;
+        password[i++] = (char)ch; // Cast to char
     }
     password[i] = '\0';
 
     // Restore terminal settings
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    if (tcsetattr(STDIN_FILENO, TCSANOW, &oldt) != 0) {
+        perror("Error restoring terminal attributes");
+        exit(EXIT_FAILURE);
+    }
     printf("\n");
 }
 
@@ -1551,7 +1560,7 @@ void trim_newline(char *str) {
 // Function to validate if a string is numeric (for port number)
 int is_numeric(const char *str) {
     for (int i = 0; str[i] != '\0'; i++) {
-        if (!isdigit(str[i])) return 0;
+        if (!isdigit((unsigned char)str[i])) return 0;
     }
     return 1;
 }
@@ -1559,7 +1568,7 @@ int is_numeric(const char *str) {
 // Function to create the .env file
 void create_env_file() {
     char db_name[100], db_user[100], db_host[100], api_key[100], api_secret[100];
-    char db_password[100], debug_mode[4], port[10];
+    char db_password[100], debug_mode[2], port[10]; // Fix: debug_mode should be [2] to hold '1' or '0' + '\0'
 
     // Collect database credentials
     printf("Enter Database Name: ");
@@ -1589,14 +1598,15 @@ void create_env_file() {
     printf("Is debug mode on? (y/n): ");
     fgets(debug_mode, sizeof(debug_mode), stdin);
     trim_newline(debug_mode);
-    debug_mode[0] = (tolower(debug_mode[0]) == 'y') ? '1' : '0';
+    debug_mode[0] = (tolower((unsigned char)debug_mode[0]) == 'y') ? '1' : '0';
+    debug_mode[1] = '\0'; // Ensure null termination
 
     // Collect port number and validate
     while (1) {
         printf("Enter Port Number: ");
         fgets(port, sizeof(port), stdin);
         trim_newline(port);
-        
+
         if (is_numeric(port)) break;
         printf("Invalid port! Please enter a numeric value.\n");
     }
