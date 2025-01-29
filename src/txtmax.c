@@ -9,6 +9,7 @@
 #include <regex.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <termios.h>
 
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
@@ -1484,7 +1485,8 @@ void versionf() {
     }
 
     fprintf(file, "Name: txtmax\n");
-    fprintf(file, "Size: 75 KB\n");
+    fprintf(file, "Size: 80-90 KB\n");
+    fprintf(file, "Version: 12.2.1\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -1516,6 +1518,107 @@ void localhost() {
     else {
         printf("Invalid framework selection!\n");
     }
+}
+
+// Function to securely read a password
+void get_password(char *password, size_t size) {
+    struct termios oldt, newt;
+    int i = 0;
+    char ch;
+
+    // Turn off terminal echoing
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+
+    // Read password input
+    while (i < size - 1 && (ch = getchar()) != '\n' && ch != EOF) {
+        password[i++] = ch;
+    }
+    password[i] = '\0';
+
+    // Restore terminal settings
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    printf("\n");
+}
+
+// Function to trim newline characters
+void trim_newline(char *str) {
+    str[strcspn(str, "\n")] = '\0';
+}
+
+// Function to validate if a string is numeric (for port number)
+int is_numeric(const char *str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (!isdigit(str[i])) return 0;
+    }
+    return 1;
+}
+
+// Function to create the .env file
+void create_env_file() {
+    char db_name[100], db_user[100], db_host[100], api_key[100], api_secret[100];
+    char db_password[100], debug_mode[4], port[10];
+
+    // Collect database credentials
+    printf("Enter Database Name: ");
+    fgets(db_name, sizeof(db_name), stdin);
+    trim_newline(db_name);
+
+    printf("Enter Database User: ");
+    fgets(db_user, sizeof(db_user), stdin);
+    trim_newline(db_user);
+
+    printf("Enter Database Host: ");
+    fgets(db_host, sizeof(db_host), stdin);
+    trim_newline(db_host);
+
+    printf("Enter Database Password: ");
+    get_password(db_password, sizeof(db_password));
+
+    // Collect API details
+    printf("Enter API Key Name: ");
+    fgets(api_key, sizeof(api_key), stdin);
+    trim_newline(api_key);
+
+    printf("Enter API Secret Key: ");
+    get_password(api_secret, sizeof(api_secret));
+
+    // Ask if debug mode is enabled
+    printf("Is debug mode on? (y/n): ");
+    fgets(debug_mode, sizeof(debug_mode), stdin);
+    trim_newline(debug_mode);
+    debug_mode[0] = (tolower(debug_mode[0]) == 'y') ? '1' : '0';
+
+    // Collect port number and validate
+    while (1) {
+        printf("Enter Port Number: ");
+        fgets(port, sizeof(port), stdin);
+        trim_newline(port);
+        
+        if (is_numeric(port)) break;
+        printf("Invalid port! Please enter a numeric value.\n");
+    }
+
+    // Create and write to .env file
+    FILE *env_file = fopen(".env", "w");
+    if (!env_file) {
+        perror("Error creating .env file");
+        exit(EXIT_FAILURE);
+    }
+
+    fprintf(env_file, "DB_NAME=%s\n", db_name);
+    fprintf(env_file, "DB_USER=%s\n", db_user);
+    fprintf(env_file, "DB_HOST=%s\n", db_host);
+    fprintf(env_file, "DB_PASSWORD=%s\n", db_password);
+    fprintf(env_file, "API_KEY=%s\n", api_key);
+    fprintf(env_file, "API_SECRET=%s\n", api_secret);
+    fprintf(env_file, "DEBUG_MODE=%c\n", debug_mode[0]);
+    fprintf(env_file, "PORT=%s\n", port);
+
+    fclose(env_file);
+    printf(".env file created successfully!\n");
 }
 
 void man_txtmax() {
@@ -1621,6 +1724,9 @@ void man_txtmax() {
 
     printf("       localhost\n");
     printf("           Start your Flask and Python App on Localhost.\n\n");
+
+    printf("       environment\n");
+    printf("           Store your API Secrets.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1756,6 +1862,7 @@ void help() {
     printf("  dotnet                  Supports .NET Framework\n");
     printf("  recycle                 Recover your all Deleted files\n");
     printf("  localhost               Start your Flask and Python App on localhost\n");
+    printf("  environment             Store your API Secrets\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -1943,6 +2050,8 @@ int main() {
         localhost();
             } else if (strcmp(command, "version") == 0) {
         versionf();
+            } else if (strcmp(command, "environment") == 0) {
+        create_env_file();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
