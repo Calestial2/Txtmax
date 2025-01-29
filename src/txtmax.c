@@ -9,6 +9,7 @@
 #include <regex.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/utsname.h>
 
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
@@ -1475,6 +1476,35 @@ void recycle_bin() {
     }
 }
 
+void info() {
+    // Open or create the file version.txtmax
+    FILE *file = fopen("version.txtmax", "w");
+    if (file == NULL) {
+        perror("Error opening file");
+        return;
+    }
+
+    // Get system information (OS name)
+    struct utsname system_info;
+    if (uname(&system_info) != 0) {
+        perror("Error getting system information");
+        fclose(file);
+        return;
+    }
+
+    // Write the content to version.txtmax
+    fprintf(file, "Name: txtmax\n");
+    fprintf(file, "Size: 75 KB\n");
+    fprintf(file, "Version: 12.1.1\n");
+    fprintf(file, "Maintainer: Calestial Ashley\n");
+    fprintf(file, "OS: %s\n", system_info.sysname); // Get the OS name
+
+    // Close the file
+    fclose(file);
+
+    printf("version.txtmax file created successfully.\n");
+}
+
 void localhost() {
     char framework[20];
     char filename[100];
@@ -1926,6 +1956,8 @@ int main() {
         recycle_bin();
             } else if (strcmp(command, "localhost") == 0) {
         localhost();
+            } else if (strcmp(command, "info") == 0) {
+        info();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
