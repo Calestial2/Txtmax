@@ -70,6 +70,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **terminal:** Access a built-in terminal to type commands directly in the editor.
 - **localhost:** Start a Python or Flask app on a web server. Choose between Flask or PythonHTTP, enter a filename including its extension, and run it on localhost:8080.
 - **recycle:** Recover deleted files by listing all deleted files and typing "recover <filename>.<extension>" to restore them.
+- **info:** Although not included in manual and help, it creates version.txtmax to see details like Name, Size, Maintainer, OS
 - **exit:** Exit the Txtmax editor.
 
 ## Automation
@@ -305,6 +306,7 @@ Supports:
 #include <regex.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/utsname.h>
 ```
 
 ## Txtmax Source Code Files
