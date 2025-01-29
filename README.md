@@ -313,8 +313,6 @@ Supports:
 - **CHANGELOG.md**: Document detailing changes
 - **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
 
-I hope this meets your expectations! If you need any further refinements, feel free to let me know.
-
 When we Release an Update we keep updating it until another version 
 
 We Recommend You use Latest Version always
