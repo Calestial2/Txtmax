@@ -312,7 +312,7 @@ Supports:
 - **README.md**: The README file
 - **LICENSE.md**: The License file (GNU General Public License)
 - **src/txtmax.c**: The source code of Txtmax
-- **Makefile**: Makefile to automate the process
+- **src/Makefile**: Makefile to automate the process
 - **CHANGELOG.md**: Document detailing changes
 - **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
 
