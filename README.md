@@ -4,7 +4,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-blue)
-![Version](https://img.shields.io/badge/version-12.2.3-blue)
+![Version](https://img.shields.io/badge/version-12.3.3-blue)
 ![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 ![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
@@ -49,7 +49,8 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Support for .NET Framework:** Develop and run .NET applications.
 - **Run Flask and Python App on Web Server:** Deploy Flask and Python applications on a web server.
 - **Robust Error Handling:** Improve error handling mechanisms.
-- **Store your API Keys:** Store your API Secrets 
+- **Store your API Keys:** Store your API Secrets
+- **Make an ignore file:** Make an .gitignore file
 - **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
 ## Commands
@@ -83,6 +84,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **localhost:** Start a Python or Flask app on a web server. Choose between Flask or PythonHTTP, enter a filename including its extension, and run it on localhost:8080.
 - **recycle:** Recover deleted files by listing all deleted files and typing "recover <filename>.<extension>" to restore them.
 - **environment:** Store your API key secrets securely. You will be prompted to provide database credentials, the API name, and its secrets. You can type 'y' or 'n' for "Debug Mode," and then you will be asked for the server port. Based on your inputs, a `.env` file will be generated.
+- **ignore:** Create a `.gitignore` file. You will be prompted to choose from options such as "nodejs," "env," or "log." Based on your selection, a `.gitignore` file will be generated.
 - **version:** Although not included in manual and help, it creates a version.txtmax to see details like Name, Size, Maintainer
 - **exit:** Exit the Txtmax editor.
 
