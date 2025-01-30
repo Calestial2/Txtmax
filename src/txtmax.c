@@ -8,8 +8,7 @@
 #include <errno.h>
 #include <regex.h>
 #include <unistd.h>
-#include <fcntl.h>
-#include <termios.h>
+#include <fcntl.h
 
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
@@ -1486,7 +1485,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 12.2.1\n");
+    fprintf(file, "Version: 12.2.2\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -1520,114 +1519,63 @@ void localhost() {
     }
 }
 
-// Function to securely read a password
-void get_password(char *password, size_t size) {
-    struct termios oldt, newt;
-    int i = 0;
-    int ch; // Fix: Use int instead of char to handle EOF correctly
+void createEnvFile() {
+    char db_name[100], db_user[100], db_password[100], db_host[100];
+    char api_name[100], api_secret[100], debug_choice;
+    int db_port, app_port;
 
-    // Turn off terminal echoing
-    if (tcgetattr(STDIN_FILENO, &oldt) != 0) {
-        perror("Error getting terminal attributes");
-        exit(EXIT_FAILURE);
-    }
-    newt = oldt;
-    newt.c_lflag &= ~(ECHO);
-    if (tcsetattr(STDIN_FILENO, TCSANOW, &newt) != 0) {
-        perror("Error setting terminal attributes");
-        exit(EXIT_FAILURE);
-    }
-
-    // Read password input
-    while (i < size - 1 && (ch = getchar()) != '\n' && ch != EOF) {
-        password[i++] = (char)ch; // Cast to char
-    }
-    password[i] = '\0';
-
-    // Restore terminal settings
-    if (tcsetattr(STDIN_FILENO, TCSANOW, &oldt) != 0) {
-        perror("Error restoring terminal attributes");
-        exit(EXIT_FAILURE);
-    }
-    printf("\n");
-}
-
-// Function to trim newline characters
-void trim_newline(char *str) {
-    str[strcspn(str, "\n")] = '\0';
-}
-
-// Function to validate if a string is numeric (for port number)
-int is_numeric(const char *str) {
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (!isdigit((unsigned char)str[i])) return 0;
-    }
-    return 1;
-}
-
-// Function to create the .env file
-void create_env_file() {
-    char db_name[100], db_user[100], db_host[100], api_key[100], api_secret[100];
-    char db_password[100], debug_mode[2], port[10]; // Fix: debug_mode should be [2] to hold '1' or '0' + '\0'
-
-    // Collect database credentials
+    // Prompt for Database Details
     printf("Enter Database Name: ");
-    fgets(db_name, sizeof(db_name), stdin);
-    trim_newline(db_name);
+    scanf("%99s", db_name);
 
     printf("Enter Database User: ");
-    fgets(db_user, sizeof(db_user), stdin);
-    trim_newline(db_user);
-
-    printf("Enter Database Host: ");
-    fgets(db_host, sizeof(db_host), stdin);
-    trim_newline(db_host);
+    scanf("%99s", db_user);
 
     printf("Enter Database Password: ");
-    get_password(db_password, sizeof(db_password));
+    scanf("%99s", db_password);
 
-    // Collect API details
-    printf("Enter API Key Name: ");
-    fgets(api_key, sizeof(api_key), stdin);
-    trim_newline(api_key);
+    printf("Enter Database Host: ");
+    scanf("%99s", db_host);
 
-    printf("Enter API Secret Key: ");
-    get_password(api_secret, sizeof(api_secret));
+    printf("Enter Database Port: ");
+    scanf("%d", &db_port);
 
-    // Ask if debug mode is enabled
-    printf("Is debug mode on? (y/n): ");
-    fgets(debug_mode, sizeof(debug_mode), stdin);
-    trim_newline(debug_mode);
-    debug_mode[0] = (tolower((unsigned char)debug_mode[0]) == 'y') ? '1' : '0';
-    debug_mode[1] = '\0'; // Ensure null termination
+    // Prompt for API Details
+    printf("Enter API Name: ");
+    scanf("%99s", api_name);
 
-    // Collect port number and validate
-    while (1) {
-        printf("Enter Port Number: ");
-        fgets(port, sizeof(port), stdin);
-        trim_newline(port);
+    printf("Enter API Secret: ");
+    scanf("%99s", api_secret);
 
-        if (is_numeric(port)) break;
-        printf("Invalid port! Please enter a numeric value.\n");
+    // Prompt for Debug Mode
+    printf("Is Debug Mode? (y/n): ");
+    scanf(" %c", &debug_choice);
+
+    // Prompt for Application Port
+    printf("Enter Application Port: ");
+    scanf("%d", &app_port);
+
+    // Open .env file for writing
+    FILE *envFile = fopen(".env", "w");
+    if (envFile == NULL) {
+        perror("Error opening file");
+        return;
     }
 
-    // Create and write to .env file
-    FILE *env_file = fopen(".env", "w");
-    if (!env_file) {
-        perror("Error creating .env file");
-        exit(EXIT_FAILURE);
-    }
+    // Write environment variables to file
+    fprintf(envFile, "DB_NAME=%s\n", db_name);
+    fprintf(envFile, "DB_USER=%s\n", db_user);
+    fprintf(envFile, "DB_PASSWORD=%s\n", db_password);
+    fprintf(envFile, "DB_HOST=%s\n", db_host);
+    fprintf(envFile, "DB_PORT=%d\n", db_port);
+    fprintf(envFile, "API_NAME=%s\n", api_name);
+    fprintf(envFile, "API_SECRET=%s\n", api_secret);
+    fprintf(envFile, "DEBUG_MODE=%s\n", (debug_choice == 'y' || debug_choice == 'Y') ? "true" : "false");
+    fprintf(envFile, "APP_PORT=%d\n", app_port);
 
-    fprintf(env_file, "DB_NAME=%s\n", db_name);
-    fprintf(env_file, "DB_USER=%s\n", db_user);
-    fprintf(env_file, "DB_HOST=%s\n", db_host);
-    fprintf(env_file, "DB_PASSWORD=%s\n", db_password);
-    fprintf(env_file, "API_KEY=%s\n", api_key);
-    fprintf(env_file, "API_SECRET=%s\n", api_secret);
-    fprintf(env_file, "DEBUG_MODE=%c\n", debug_mode[0]);
-    fprintf(env_file, "PORT=%s\n", port);
+    // Close the file
+    fclose(envFile);
 
-    fclose(env_file);
     printf(".env file created successfully!\n");
 }
 
@@ -2061,7 +2009,7 @@ int main() {
             } else if (strcmp(command, "version") == 0) {
         versionf();
             } else if (strcmp(command, "environment") == 0) {
-        create_env_file();
+        createEnvFile();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
