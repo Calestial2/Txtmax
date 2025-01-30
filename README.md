@@ -49,7 +49,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Support for .NET Framework:** Develop and run .NET applications.
 - **Run Flask and Python App on Web Server:** Deploy Flask and Python applications on a web server.
 - **Robust Error Handling:** Improve error handling mechanisms.
-- **Stote your API Keys:** Store your API Secrets 
+- **Store your API Keys:** Store your API Secrets 
 - **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
 ## Commands
