@@ -1342,6 +1342,41 @@ void create_dotnet_project() {
     printf("Process completed.\n");
 }
 
+void ignore() {
+    char choice[10];
+    
+    // Prompt the user for input
+    printf("What secret you want to store (nodejs/env/log): ");
+    scanf("%s", choice);
+    
+    // Open the .gitignore file for writing
+    FILE *gitignore = fopen(".gitignore", "w");
+    if (gitignore == NULL) {
+        printf("Error creating .gitignore file.\n");
+        return;
+    }
+    
+    // Process user choice and generate the corresponding .gitignore content
+    if (strcmp(choice, "nodejs") == 0) {
+        fprintf(gitignore, "node_modules/\n*.log\nnpm-debug.log\n.yarn-debug.log\n.yarn-error.log\n");
+    } 
+    else if (strcmp(choice, "env") == 0) {
+        fprintf(gitignore, ".env\n.env.local\n.env.*\n");
+    } 
+    else if (strcmp(choice, "log") == 0) {
+        fprintf(gitignore, "*.log\n*.out\n*.err\n");
+    } 
+    else {
+        printf("Invalid choice. Please type 'nodejs', 'env', or 'log'.\n");
+        fclose(gitignore);
+        return;
+    }
+    
+    // Close the file after writing
+    fclose(gitignore);
+    printf(".gitignore file has been created.\n");
+}
+
 void make() {
     char projectName[MAX_LEN];
     char fileName[MAX_LEN];
@@ -1485,7 +1520,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 12.2.3\n");
+    fprintf(file, "Version: 12.3.3\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -1685,6 +1720,9 @@ void man_txtmax() {
 
     printf("       environment\n");
     printf("           Store your API Secrets.\n\n");
+
+    printf("       ignore");
+    printf("           Create an .gitignore file.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1821,6 +1859,7 @@ void help() {
     printf("  recycle                 Recover your all Deleted files\n");
     printf("  localhost               Start your Flask and Python App on localhost\n");
     printf("  environment             Store your API Secrets\n");
+    printf("  ignore                  Create a .gitignore file\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2010,6 +2049,8 @@ int main() {
         versionf();
             } else if (strcmp(command, "environment") == 0) {
         createEnvFile();
+            } else if (strcmp(command, "ignore") == 0) {
+        ignore();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
