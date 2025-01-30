@@ -8,7 +8,7 @@
 #include <errno.h>
 #include <regex.h>
 #include <unistd.h>
-#include <fcntl.h
+#include <fcntl.h>
 
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
@@ -1485,7 +1485,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 12.2.2\n");
+    fprintf(file, "Version: 12.2.3\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
