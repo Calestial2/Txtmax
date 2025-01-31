@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [12.1.1] - 2025-01-28
+## [12.4.3] - 2025-01-31
 
 ### Added
 - LaTeX file editing and PDF export functionality.
@@ -18,3 +18,4 @@ All notable changes to this project will be documented in this file.
 - Added Recycle
 - Added localhost to start python and flask app on web seever
 - Tarball command for converting files into `.tar.gz` format.
+- work with sql database 
