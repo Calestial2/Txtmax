@@ -227,11 +227,13 @@ Contributions are welcome! Here's how you can help:
 
 For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+Here’s an improved version for you:
+
 ## Supported Languages
 
-Supports Many Popular Programming Language (Low Level and High Level of such many categories) and many Functional Languages and Many Old Languages that are still used today and Game Engine Language and Educational Languages and Many Rare Less common language 
+Our platform supports a vast array of popular programming languages, encompassing both low-level and high-level categories. This includes functional languages, legacy languages still in use today, game engine languages, educational languages, and many rare or less common languages.
 
-Supports:
+**Supported Languages:**
 
 1. C
 2. Python
