@@ -688,6 +688,51 @@ void api() {
     }
 }
 
+void sqlite() {
+    char filename[256];
+    char command[1024];
+    FILE *file;
+    
+    // Ask for the filename
+    printf("Enter SQLite filename (including extension): ");
+    scanf("%255s", filename);
+    
+    // Open the file for writing
+    file = fopen(filename, "w");
+    if (file == NULL) {
+        perror("Error opening file");
+        return;
+    }
+
+    printf("Enter SQLite command (use ':wq' to save and exit):\n");
+    
+    // Read a single command from user
+    if (fgets(command, sizeof(command), stdin) == NULL) {
+        fclose(file);
+        return;  // Exit if no command is provided
+    }
+
+    // Check for exit command ':wq'
+    if (strncmp(command, ":wq", 3) == 0) {
+        fclose(file);
+        printf("Exiting without saving.\n");
+        return;  // Exit if user enters ':wq'
+    }
+
+    // Write the command to the file
+    fputs(command, file);
+
+    // Close the file after writing
+    fclose(file);
+
+    // Run the SQLite command with the provided file
+    char system_command[128];
+    snprintf(system_command, sizeof(system_command), "sqlite3 %s < %s", filename, filename);
+    system(system_command);
+
+    printf("SQLite command saved and executed.\n");
+}
+
 // Function prototypes
 void jumpToLine(FILE *file, int lineNumber);
 void searchInFile(FILE *file, const char *searchPattern);
@@ -1520,7 +1565,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 12.3.3\n");
+    fprintf(file, "Version: 12.4.3\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -1723,6 +1768,9 @@ void man_txtmax() {
 
     printf("       ignore");
     printf("           Create an .gitignore file.\n\n");
+
+    printf("       sqlite\n");
+    printf("           Work with SQLite Database.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1860,6 +1908,7 @@ void help() {
     printf("  localhost               Start your Flask and Python App on localhost\n");
     printf("  environment             Store your API Secrets\n");
     printf("  ignore                  Create a .gitignore file\n");
+    printf("  sqlite                  Work with SQLite Database\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2051,6 +2100,8 @@ int main() {
         createEnvFile();
             } else if (strcmp(command, "ignore") == 0) {
         ignore();
+            } else if (strcmp(command, "sqlite") == 0) {
+        sqlite();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
