@@ -167,6 +167,9 @@ Conversations:
 
 Terminal-based, very feature-rich, user-friendly, and lightweight. It will show "~/txtmax" as a prompt and allows writing commands.
 
+## Logo
+![Logo](https://raw.githubusercontent.com/Calestial2/Txtmax/6f3c942933728a3d59dc08909fd6020c36c32fd8/images/IMG_20250131_131256.jpg)
+
 ## Syntax Highlighting
 
 Txtmax uses ANSI colors for syntax highlighting to enhance readability. The following colors are used:
