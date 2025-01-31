@@ -4,7 +4,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-blue)
-![Version](https://img.shields.io/badge/version-12.3.3-blue)
+![Version](https://img.shields.io/badge/version-12.4.3-blue)
 ![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 ![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
@@ -86,6 +86,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **environment:** Store your API key secrets securely. You will be prompted to provide database credentials, the API name, and its secrets. You can type 'y' or 'n' for "Debug Mode," and then you will be asked for the server port. Based on your inputs, a `.env` file will be generated.
 - **ignore:** Create a `.gitignore` file. You will be prompted to choose from options such as "nodejs," "env," or "log." Based on your selection, a `.gitignore` file will be generated.
 - **version:** Although not included in manual and help, it creates a version.txtmax to see details like Name, Size, Maintainer
+- **sqlite:** Work with an SQLite database. You will be prompted to provide a filename, including its extension. Then, enter your SQLite code, and it will be saved locally and it will run it
 - **exit:** Exit the Txtmax editor.
 
 ## Automation
