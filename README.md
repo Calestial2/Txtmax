@@ -50,6 +50,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Robust Error Handling:** Improve error handling mechanisms.
 - **Store your API Keys:** Store your API Secrets
 - **Make an ignore file:** Make an .gitignore file
+- **SQLite Integration:** Supports SQLite Database 
 - **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
 ## Commands
@@ -102,7 +103,7 @@ We have introduced an automation feature to simplify your tasks.
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F74D4D&background=AFFF0000&width=435&lines=Txtmax+AI;Increasing+your+productivity+)](https://git.io/typing-svg)
 
-We Introduced an Pattern-Matching AI to help users use Txtmax Better it's had many Predefined Questions 
+We Introduced an Pattern-Matching AI to help users use Txtmax Better it's had many Predefined Questions and increase your productivity.
 
 Conversations:
 1. **Running Code**
@@ -165,7 +166,7 @@ Conversations:
 
 ## UI
 
-Terminal-based, very feature-rich, user-friendly, and lightweight. It will show "~/txtmax" as a prompt and allows writing commands.
+Terminal-based, feature-rich, user-friendly, and lightweight, it presents '~/txtmax' as the command prompt, enabling users to enter commands. Upon launching, it greets with: 'Welcome to txtmax! Type 'help' for a list of available commands.
 
 ## Logo
 ![Logo](https://raw.githubusercontent.com/Calestial2/Txtmax/6f3c942933728a3d59dc08909fd6020c36c32fd8/images/IMG_20250131_131256.jpg)
@@ -203,7 +204,7 @@ make clean
 
 ## OS Compatibility 
 
-Available on Linux and Unix-like systems (macOS and BSD) 🐧🐧🐧. For Other OS use Emulators like WSL 
+Available on Linux and Unix-like systems (macOS and BSD). For Other OS use Emulators like WSL and Cwgwin or MinGW
 
 ## Performance 
 
@@ -328,8 +329,8 @@ Our platform supports a vast array of popular programming languages, encompassin
 #include <time.h>
 #include <errno.h>
 #include <regex.h>
-#include <fcntl.h>
 #include <unistd.h>
+#include <fcntl.h>
 ```
 
 ## Txtmax Source Code Files
