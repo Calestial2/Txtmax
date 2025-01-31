@@ -12,7 +12,6 @@
 ![GitHub Stars](https://img.shields.io/github/stars/Calestial2/Txtmax?style=social)
 ![Forks](https://img.shields.io/github/forks/Calestial2/Txtmax?style=social)
 ![Contributors](https://img.shields.io/github/contributors/Calestial2/Txtmax)
-![Release](https://img.shields.io/github/v/release/Calestial2/Txtmax)
 ![Downloads](https://img.shields.io/github/downloads/Calestial2/Txtmax/total)
 
 ## Text Management And Extended Editor (known as Txtmax)
