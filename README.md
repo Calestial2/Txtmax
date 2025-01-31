@@ -342,10 +342,6 @@ Our platform supports a vast array of popular programming languages, encompassin
 - **CHANGELOG.md**: Document detailing changes
 - **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
 
-When we Release an Update we keep updating it until another version 
-
-We Recommend You use Latest Version always
-
 ## Why Choose Txtmax?
 
 - **Comprehensive File Management:** Txtmax offers comprehensive file management, including creating, listing, viewing, searching files, deleting, and editing files and jumping to specific lines and Search And Replace.
