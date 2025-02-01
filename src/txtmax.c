@@ -872,6 +872,62 @@ void tarball() {
     }
 }
 
+void openai() {
+    char filename[256], apiKey[256], modelName[256];
+    FILE *file;
+
+    // Prompt for filename
+    printf("Enter the filename (including extension): ");
+    scanf("%255s", filename);
+
+    // Prompt for API key
+    printf("Enter your API Key Secret: ");
+    scanf("%255s", apiKey);
+
+    // Prompt for model name
+    printf("Enter Model Name: ");
+    scanf("%255s", modelName);
+
+    // Create the file
+    file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("Error creating file!\n");
+        return;
+    }
+
+    // Write content to the file
+    fprintf(file, 
+        "import openai\n"
+        "import os\n"
+        "from time import sleep\n"
+        "import sys\n\n"
+        "# Check if any command line arguments are provided\n"
+        "if len(sys.argv) < 2:\n"
+        "    print(\"Usage: ask < Question >\")\n"
+        "    sys.exit(1)\n\n"
+        "# Combine all command line arguments (excluding the script name) into a single string\n"
+        "askx = ' '.join(sys.argv[1:])\n\n"
+        "API = \"%s\"\n\n"
+        "try:\n"
+        "    openai.api_key = (API)\n\n"
+        "    response = openai.Completion.create(\n"
+        "                            model='%s',\n"
+        "                            prompt=askx,\n"
+        "                            max_tokens=3048,\n"
+        "                            top_p=1.0,\n"
+        "    presence_penalty=0.0)\n\n"
+        "    print( response.choices[0].text + \"\\n\") # type:ignore\n"
+        "except Exception as e:\n"
+        "    print(e)\n", apiKey, modelName);
+
+    fclose(file);
+
+    // Run the Python file using system()
+    char command[512];
+    snprintf(command, sizeof(command), "python %s", filename);
+    system(command);
+}
+
 void api_axios() {
     char filename[MAX_FILENAME_LENGTH];
     char content[MAX_CONTENT_LENGTH];
@@ -1771,6 +1827,9 @@ void man_txtmax() {
 
     printf("       sqlite\n");
     printf("           Work with SQLite Database.\n\n");
+
+    printf("       openai\n");
+    printf("           Integration with OpenAI API Key.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1909,6 +1968,7 @@ void help() {
     printf("  environment             Store your API Secrets\n");
     printf("  ignore                  Create a .gitignore file\n");
     printf("  sqlite                  Work with SQLite Database\n");
+    printf("  openai                  Integration with OpenAI API Key\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2102,6 +2162,8 @@ int main() {
         ignore();
             } else if (strcmp(command, "sqlite") == 0) {
         sqlite();
+            } else if (strcmp(command, "openai") == 0) {
+        openai();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
