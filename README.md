@@ -14,7 +14,7 @@
 ![Contributors](https://img.shields.io/github/contributors/Calestial2/Txtmax)
 ![Downloads](https://img.shields.io/github/downloads/Calestial2/Txtmax/total)
 
-## Text Management And Extended Editor (known as Txtmax)
+## Txtmax 
 
 Txtmax is a modern, powerful, lightweight, fast, completely free, open-source advanced text editor designed for Linux. It features syntax highlighting and various file management capabilities. This program allows you to create, view, edit, delete, and get information about text files and more from the command line with ease.
 
@@ -50,7 +50,8 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Robust Error Handling:** Improve error handling mechanisms.
 - **Store your API Keys:** Store your API Secrets
 - **Make an ignore file:** Make an .gitignore file
-- **SQLite Integration:** Supports SQLite Database 
+- **SQLite Integration:** Supports SQLite Database
+- **OpenAI Integration:** Integrates with OpenAI API Key
 - **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
 ## Commands
@@ -87,6 +88,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **ignore:** Create a `.gitignore` file. You will be prompted to choose from options such as "nodejs," "env," or "log." Based on your selection, a `.gitignore` file will be generated.
 - **version:** Although not included in manual and help, it creates a version.txtmax to see details like Name, Size, Maintainer
 - **sqlite:** Work with an SQLite database. You will be prompted to provide a filename, including its extension. Then, enter your SQLite code, and it will be saved locally and it will run it
+- **openai:** Integration with OpenAI API Key, This C program generates and executes a Python script that interacts with the OpenAI API. It prompts the user for a filename, API key, and model name, then generates a Python script based in these inputs. The Python script processes command-line arguments, sends a request to the OpenAI API, and prints the response. Finally, The Python program will be excuted
 - **exit:** Exit the Txtmax editor.
 
 ## Automation
