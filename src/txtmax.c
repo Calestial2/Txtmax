@@ -1019,7 +1019,7 @@ void notebook() {
 
         cell_num++;
     }
-} war
+
 void api_axios() {
     char filename[MAX_FILENAME_LENGTH];
     char content[MAX_CONTENT_LENGTH];
@@ -1713,7 +1713,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 12.6.3\n");
+    fprintf(file, "Version: 12.6.4\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
