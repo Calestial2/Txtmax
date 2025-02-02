@@ -26,6 +26,8 @@
 #define MAX_LEN 100
 #define RECYCLE_BIN "recycle_bin"
 #define MAX_FILENAME_LEN 256
+#define MAX_INPUT_LENGTH 1024
+#define MAX_CELLS 100
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -34,6 +36,14 @@
 #define COLOR_COMMENT "\033[1;33m"
 #define COLOR_NUMBER "\033[1;31m"
 #define COLOR_FUNCTION "\033[1;36m"
+
+// Define color codes for syntax highlighting in notebook 
+#define GREEN   "\x1b[32m"
+#define BLUE    "\x1b[34m"
+#define PINK    "\x1b[35m"
+#define WHITE   "\x1b[37m"
+#define RESET   "\x1b[0m"
+#define BLACK   "\x1b[30m"
 
 const char *keywords_c[] = {"int", "return", "if", "else", "while", "for", "void", "char", "include", "define", NULL};
 const char *keywords_python[] = {"def", "return", "if", "else", "while", "for", "import", "in", "from", "print", "class", NULL};
@@ -928,6 +938,88 @@ void openai() {
     system(command);
 }
 
+// Function to handle syntax highlighting
+void highlight_code(char* line) {
+    char* token = strtok(line, " ");
+    while (token != NULL) {
+        // Check for keywords and highlight
+        if (strcmp(token, "int") == 0) {
+            printf(GREEN "%s" RESET " ", token);
+        } else if (strcmp(token, "if") == 0 || strcmp(token, "else") == 0) {
+            printf(BLUE "%s" RESET " ", token);
+        } else if (strcmp(token, "for") == 0 || strcmp(token, "while") == 0) {
+            printf(PINK "%s" RESET " ", token);
+        } else if (token[0] == '#') {
+            printf(BLACK "%s" RESET " ", token); // Comment in Python
+        } else {
+            printf(WHITE "%s" RESET " ", token);
+        }
+        token = strtok(NULL, " ");
+    }
+    printf("\n");
+}
+
+// Function to save all cells to a .txtmaxnb file
+void save_cells(char cells[][MAX_INPUT_LENGTH], int cell_count) {
+    FILE *file = fopen(".txtmaxnb", "w");
+    if (file == NULL) {
+        printf("Error opening file for saving!\n");
+        return;
+    }
+
+    for (int i = 0; i < cell_count; i++) {
+        fprintf(file, "Cell %d:\n", i + 1);
+        fprintf(file, "%s\n", cells[i]);
+    }
+    fclose(file);
+    printf("Cells saved to .txtmaxnb\n");
+}
+
+void notebook() {
+    char filename[MAX_INPUT_LENGTH];
+    char cells[MAX_CELLS][MAX_INPUT_LENGTH];
+    int cell_count = 0;
+    char input[MAX_INPUT_LENGTH];
+    int cell_num = 1;
+
+    printf("Enter filename (including extension): ");
+    scanf("%s", filename);
+
+    // Clear newline left by scanf
+    getchar();
+
+    // Loop to interact with the user
+    while (1) {
+        printf("Cell %d:\n", cell_num);
+        printf("> ");
+        fgets(input, MAX_INPUT_LENGTH, stdin);
+
+        // Remove trailing newline if present
+        input[strcspn(input, "\n")] = 0;
+
+        // Check if user wants to exit or save
+        if (strcmp(input, "exit") == 0) {
+            break;
+        } else if (strcmp(input, "save") == 0) {
+            save_cells(cells, cell_count);
+            continue;
+        }
+
+        // Add cell code to cells array
+        strcpy(cells[cell_count], input);
+        cell_count++;
+
+        // Highlight the code syntax
+        highlight_code(input);
+
+        // Execute the Python code
+        char command[MAX_INPUT_LENGTH + 10];
+        snprintf(command, sizeof(command), "python3 %s %s", filename, input);
+        system(command);
+
+        cell_num++;
+    }
+} war
 void api_axios() {
     char filename[MAX_FILENAME_LENGTH];
     char content[MAX_CONTENT_LENGTH];
@@ -1621,7 +1713,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 12.5.3\n");
+    fprintf(file, "Version: 12.6.3\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -1713,6 +1805,25 @@ void createEnvFile() {
     fclose(envFile);
 
     printf(".env file created successfully!\n");
+}
+
+void mannote() {
+    printf("Txtmax Notebook - User Guide:\n");
+    printf("This program allows you to enter Python code in a notebook format, execute it, and save it to a file.\n\n");
+
+    printf("Commands:\n");
+    printf("1. Enter Python code in the cell prompt and press Enter. The code will be displayed with syntax highlighting.\n");
+    printf("2. Type 'exit' to quit the notebook.\n");
+    printf("3. Type 'save' to save all entered code cells to a file named '.txtmaxnb'.\n\n");
+
+    printf("How to use Txtmax Notebook:\n");
+    printf("1. When you run the program, you will be prompted to enter a filename (including extension) for Python code execution.\n");
+    printf("2. After entering the filename, you can begin typing Python code into the cells.\n");
+    printf("3. After you type the code, press Enter to see it highlighted and executed.\n");
+    printf("4. To save all entered code, type 'save' and it will be stored in the '.txtmaxnb' file.\n");
+    printf("5. To exit the notebook, simply type 'exit'.\n");
+
+    printf("\nEnjoy coding with Txtmax Notebook!\n");
 }
 
 void man_txtmax() {
@@ -2164,6 +2275,10 @@ int main() {
         sqlite();
             } else if (strcmp(command, "openai") == 0) {
         openai();
+            } else if (strcmp(command, "man notebook") == 0) {
+        mannote();
+            } else if (strcmp(command, "notebook") == 0) {
+        notebook();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
