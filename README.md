@@ -191,6 +191,23 @@ Conversations:
 
 In Txtmax, type the command `notebook`. It will go to `system()`, compile `notebook.c`, and run `notebook.c`, allowing you to use Txtmax Notebook.
 
+## Txtmax Auto Completion 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&width=435&lines=Txtmax+Auto+Completion+;Increasing+your+productivity+)](https://git.io/typing-svg)
+
+We introduced Txtmax Auto Completion to streamline the process of writing code, specifically C code. It's built from scratch to enhance your coding efficiency.
+
+In Txtmax, you can use the command `auto_completion` to activate Txtmax Auto Completion. 
+
+Upon activation, it will prompt you for the filename, including its extension. You can then write the file's contents and exit with `:wq`.
+
+Additionally, Txtmax offers syntax highlighting:
+- Keywords such as `int`, `float`, `if`, and `return` are highlighted in green.
+- Loops are highlighted in magenta.
+- Built-in functions (e.g., `printf`) are highlighted in red.
+- Comments are highlighted in blue.
+
+As you type code, Txtmax will suggest relevant keywords to assist you.
+
 ## UI
 
 Terminal-based, feature-rich, user-friendly, and lightweight, it presents '~/txtmax' as the command prompt, enabling users to enter commands. Upon launching, it greets with: 'Welcome to txtmax! Type 'help' for a list of available commands.
@@ -363,7 +380,8 @@ Our platform supports a vast array of popular programming languages, encompassin
 - **README.md**: The README file
 - **LICENSE.md**: The License file (GNU General Public License)
 - **src/txtmax.c**: The source code of Txtmax
-- **src/notebook.c**: The Source code of Txtmax Notebook 
+- **src/notebook.c**: The Source code of Txtmax Notebook
+- **src/auto_completion**: The source code of Txtmax Auto Completion 
 - **src/Makefile**: Makefile to automate the process
 - **CHANGELOG.md**: Document detailing changes
 - **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
