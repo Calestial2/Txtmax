@@ -932,6 +932,10 @@ void txtmaxnote() {
     system("gcc notebook.c -o notebook && ./notebook");
 }
 
+void auto_completion() {
+    system("gcc -o auto_completion auto_completion.c -lncurses && ./auto_completion");
+}
+
 void api_axios() {
     char filename[MAX_FILENAME_LENGTH];
     char content[MAX_CONTENT_LENGTH];
@@ -1625,7 +1629,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 12.7.5\n");
+    fprintf(file, "Version: 12.8.5\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -2168,6 +2172,8 @@ int main() {
         sqlite();
             } else if (strcmp(command, "openai") == 0) {
         openai();
+            } else if (strcmp(command, "auto_completion") == 0) {
+        auto_completion();
             } else if (strcmp(command, "notebook") == 0) {
         txtmaxnote();
             } else if (strcmp(command, "tarball") == 0) {
