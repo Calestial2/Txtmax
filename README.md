@@ -166,6 +166,31 @@ Conversations:
 14. **Unrecognized Queries**
     - Response: If the query is not understood, it will respond with "I'm sorry, I don't understand your query. Try asking something related to Txtmax commands!".
 
+## Txtmax Notebook 
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F71212&width=435&lines=Txtmax+Notebook+)](https://git.io/typing-svg)
+**Txtmax Notebook** is an interactive notebook for Python developers written in C. 
+
+**Features:**
+
+- **File Handling:** You'll be prompted to enter a filename, including its extension.
+- **Text-Based Cells:** Write your Python code in text-based cells with syntax highlighting.
+    - `If-else` statements are highlighted in green.
+    - `Int` types are highlighted in blue.
+    - Comments are highlighted in black.
+    - Variables are highlighted in light blue.
+    - Loops are highlighted in pink.
+    - `Print` and `input` functions are highlighted in orange.
+- **Automatic Execution:** When you write your Python code, it will automatically execute.
+- **Package Management:** You can also install packages using pip.
+
+**Commands:**
+
+- `save`: Creates a `.txtmaxnb` file, storing cells and their outputs.
+- `exit`: Exits the Txtmax Notebook.
+
+In Txtmax, type the command `notebook`. It will go to `system()`, compile `notebook.c`, and run `notebook.c`, allowing you to use Txtmax Notebook.
+
 ## UI
 
 Terminal-based, feature-rich, user-friendly, and lightweight, it presents '~/txtmax' as the command prompt, enabling users to enter commands. Upon launching, it greets with: 'Welcome to txtmax! Type 'help' for a list of available commands.
@@ -338,6 +363,7 @@ Our platform supports a vast array of popular programming languages, encompassin
 - **README.md**: The README file
 - **LICENSE.md**: The License file (GNU General Public License)
 - **src/txtmax.c**: The source code of Txtmax
+- **src/notebook.c**: The Source code of Txtmax Notebook 
 - **src/Makefile**: Makefile to automate the process
 - **CHANGELOG.md**: Document detailing changes
 - **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
