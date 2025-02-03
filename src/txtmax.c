@@ -1625,7 +1625,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 12.5.3\n");
+    fprintf(file, "Version: 12.7.5\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
