@@ -49,6 +49,8 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Run Flask and Python App on Web Server:** Deploy Flask and Python applications on a web server.
 - **Robust Error Handling:** Improve error handling mechanisms.
 - **Store your API Keys:** Store your API Secrets
+- **Notebook:** An Interactive Notebook for Python 
+- **Auto Completion:** An Auto Completion
 - **Make an ignore file:** Make an .gitignore file
 - **SQLite Integration:** Supports SQLite Database
 - **OpenAI Integration:** Integrates with OpenAI API Key
