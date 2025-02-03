@@ -928,6 +928,10 @@ void openai() {
     system(command);
 }
 
+void txtmaxnote() {
+    system("gcc notebook.c -o notebook && ./notebook");
+}
+
 void api_axios() {
     char filename[MAX_FILENAME_LENGTH];
     char content[MAX_CONTENT_LENGTH];
@@ -2164,6 +2168,8 @@ int main() {
         sqlite();
             } else if (strcmp(command, "openai") == 0) {
         openai();
+            } else if (strcmp(command, "notebook") == 0) {
+        txtmaxnote();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
