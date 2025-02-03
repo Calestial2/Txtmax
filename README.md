@@ -383,7 +383,7 @@ Our platform supports a vast array of popular programming languages, encompassin
 - **LICENSE.md**: The License file (GNU General Public License)
 - **src/txtmax.c**: The source code of Txtmax
 - **src/notebook.c**: The Source code of Txtmax Notebook
-- **src/auto_completion**: The source code of Txtmax Auto Completion 
+- **src/auto_completion.c**: The source code of Txtmax Auto Completion 
 - **src/Makefile**: Makefile to automate the process
 - **CHANGELOG.md**: Document detailing changes
 - **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
