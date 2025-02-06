@@ -502,6 +502,33 @@ void search_files(const char *filename) {
     closedir(dir);
 }
 
+void getFileSize() {
+    char filename[256]; // Buffer for filename
+    FILE *file;
+    long size;
+
+    // Ask for the filename
+    printf("Enter the filename (with extension): ");
+    scanf("%255s", filename);
+
+    // Open the file in read mode
+    file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("Error: Could not open file \"%s\"\n", filename);
+        return;
+    }
+
+    // Seek to end of file to determine size
+    fseek(file, 0, SEEK_END);
+    size = ftell(file);
+    
+    // Close the file
+    fclose(file);
+
+    // Display the size
+    printf("Size of \"%s\": %ld bytes\n", filename, size);
+}
+
 void quick_run() {
     char filename[MAX_INPUT_SIZE];
     char compiler[MAX_INPUT_SIZE];
@@ -1629,7 +1656,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 12.8.5\n");
+    fprintf(file, "Version: 12.9.5\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -1838,6 +1865,9 @@ void man_txtmax() {
 
     printf("       openai\n");
     printf("           Integration with OpenAI API Key.\n\n");
+
+    printf("       size\n");
+    printf("           Retrieve File Size.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -1977,6 +2007,7 @@ void help() {
     printf("  ignore                  Create a .gitignore file\n");
     printf("  sqlite                  Work with SQLite Database\n");
     printf("  openai                  Integration with OpenAI API Key\n");
+    printf("  size                    Retrieval File Size,\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2176,6 +2207,8 @@ int main() {
         auto_completion();
             } else if (strcmp(command, "notebook") == 0) {
         txtmaxnote();
+            } else if (strcmp(command, "size") == 0) {
+        getFileSize();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
