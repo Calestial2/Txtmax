@@ -55,6 +55,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Make an ignore file:** Make an .gitignore file
 - **SQLite Integration:** Supports SQLite Database
 - **OpenAI Integration:** Integrates with OpenAI API Key
+- **Tmux Integration:** Integrates with Tmux
 - **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
 ## Commands
@@ -211,6 +212,47 @@ Additionally, Txtmax offers syntax highlighting:
 - Comments are highlighted in blue.
 
 As you type code, Txtmax will suggest relevant keywords to assist you.
+
+## Txtmax Tmux Intregration 
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Tmux+Intregration+)](https://git.io/typing-svg)
+The Txtmax Tmux Integration enables efficient multi-task management within Txtmax through seamless integration with Tmux.
+
+**Getting Started:**
+To begin using Txtmax Tmux Integration, type "multiplexer" within Txtmax.
+
+**How It Works:**
+1. **Session Initialization:**
+   - Prompts the user for a session name.
+   - Creates a new Tmux session with the specified name.
+   - Enters an interactive loop where the user can input commands to be sent to the Tmux session.
+   - After the user types "exit," they are attached to the session to view the results of the executed commands.
+
+**Key Features:**
+
+1. **Session Management:**
+   - Creates a new detached Tmux session.
+   - Validates successful session creation.
+   - Handles session names cleanly.
+
+2. **Command Execution:**
+   - Provides an interactive command prompt.
+   - Executes commands within the Tmux session.
+   - Supports multi-word commands.
+   - Includes a built-in 'exit' command to terminate input.
+
+3. **Safety Features:**
+   - Sanitizes input to prevent errors.
+   - Performs error checking for system calls.
+   - Prevents buffer overflow.
+
+4. **User Experience:**
+   - Offers clear prompts and status messages.
+   - Ensures a 1-second delay between commands for reliability.
+   - Attaches the final session for direct user interaction.
+
+**Note:** 
+Tmux must be installed on the system. Tested on Linux systems with Tmux version 3.2+.
 
 ## UI
 
