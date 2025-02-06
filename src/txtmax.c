@@ -1926,7 +1926,7 @@ void man_txtmax() {
     printf("       - Syntax Highlighting for Programming Languages\n");
     printf("       - Run Code Quickly with Integrated Compilers and Interpreters\n");
     printf("       - Git Integration for Version Control and Commit Management\n");
-    printf("       - Support for Over 40 Programming Languages\n");
+    printf("       - Support for Over 80 Programming Languages\n");
     printf("       - Installation of Python and Node.js Packages and many more!\n\n");
 
     printf("USAGE\n");
