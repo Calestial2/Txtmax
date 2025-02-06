@@ -4,7 +4,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-blue)
-![Version](https://img.shields.io/badge/version-12.8.5-blue)
+![Version](https://img.shields.io/badge/version-12.9.5-blue)
 ![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 ![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
@@ -51,6 +51,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Store your API Keys:** Store your API Secrets
 - **Notebook:** An Interactive Notebook for Python 
 - **Auto Completion:** An Auto Completion
+- **Retrieve File Size:** Retrieve your file size
 - **Make an ignore file:** Make an .gitignore file
 - **SQLite Integration:** Supports SQLite Database
 - **OpenAI Integration:** Integrates with OpenAI API Key
@@ -91,6 +92,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **version:** Although not included in manual and help, it creates a version.txtmax to see details like Name, Size, Maintainer
 - **sqlite:** Work with an SQLite database. You will be prompted to provide a filename, including its extension. Then, enter your SQLite code, and it will be saved locally and it will run it
 - **openai:** **Integration with OpenAI** prompts for a filename, including its extension. It then prompts for Pasting OpenAI API key, it prompts for the OpenAI model name. Based on the provided inputs, it generates an python code of using OpenAI API Key and executes that Python code.
+- **size:** Retrieve File Size, This prompts the user for a filename, including its extension, and then displays the file size.
 - **exit:** Exit the Txtmax editor.
 
 ## Automation
