@@ -863,6 +863,52 @@ void countWordOccurrences(FILE *file, const char *word) {
     printf("The word '%s' appears %d times in the file.\n", word, count);
 }
 
+void tmux_integration() {
+    char session_name[256];
+    char command[1024];
+    int result;
+
+    // Get session name from user
+    printf("Enter tmux session name: ");
+    if (!fgets(session_name, sizeof(session_name), stdin)) {
+        perror("Error reading input");
+        return;
+    }
+    session_name[strcspn(session_name, "\n")] = '\0'; // Remove newline
+
+    // Create new detached session
+    snprintf(command, sizeof(command), "tmux new-session -d -s \"%s\"", session_name);
+    if ((result = system(command)) != 0) {
+        fprintf(stderr, "Error creating tmux session (code %d)\n", result);
+        return;
+    }
+
+    // Command input loop
+    printf("Enter commands to execute in the session (type 'exit' to finish):\n");
+    while (1) {
+        printf("tmux> ");
+        if (!fgets(command, sizeof(command), stdin)) break;
+        command[strcspn(command, "\n")] = '\0'; // Remove newline
+
+        if (strcmp(command, "exit") == 0) break;
+
+        // Send command to tmux session
+        snprintf(command, sizeof(command), 
+                "tmux send-keys -t \"%s\" \"%s\" Enter",
+                session_name, command);
+        
+        if ((result = system(command)) != 0) {
+            fprintf(stderr, "Error executing command (code %d)\n", result);
+        }
+        sleep(1); // Allow time for command execution
+    }
+
+    // Attach to session
+    printf("Attaching to session '%s'...\n", session_name);
+    snprintf(command, sizeof(command), "tmux attach -t \"%s\"", session_name);
+    system(command);
+}
+
 void tarball() {
     char project_name[100], filename[100], command[300];
 
@@ -1656,7 +1702,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 12.9.5\n");
+    fprintf(file, "Version: 13.0.0\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -1868,6 +1914,9 @@ void man_txtmax() {
 
     printf("       size\n");
     printf("           Retrieve File Size.\n\n");
+
+    printf("       multiplexer\n");
+    printf("            Integration with Tmux.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -2008,6 +2057,7 @@ void help() {
     printf("  sqlite                  Work with SQLite Database\n");
     printf("  openai                  Integration with OpenAI API Key\n");
     printf("  size                    Retrieval File Size,\n");
+    printf("  multiplexer             Integration with Tmux.\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2209,6 +2259,8 @@ int main() {
         txtmaxnote();
             } else if (strcmp(command, "size") == 0) {
         getFileSize();
+            } else if (strcmp(command, "multiplexer") == 0) {
+        tmux_integration();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
