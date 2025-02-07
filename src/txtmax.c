@@ -1761,7 +1761,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 13.1.0\n");
+    fprintf(file, "Version: 13.1.1\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -1978,7 +1978,7 @@ void man_txtmax() {
     printf("            Integration with Tmux.\n\n");
 
     printf("       benchmark\n");
-    printf("             Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n\n"):
+    printf("             Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -2120,7 +2120,7 @@ void help() {
     printf("  openai                  Integration with OpenAI API Key\n");
     printf("  size                    Retrieval File Size,\n");
     printf("  multiplexer             Integration with Tmux.\n");
-    printf("  benchmark               Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n"):
+    printf("  benchmark               Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n");
     printf("  exit                    Exit txtmax\n");
 }
 
