@@ -9,6 +9,9 @@
 #include <regex.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <math.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 
 #define MAX_INPUT_SIZE 256
 #define MAX_CONTENT 1024
@@ -527,6 +530,62 @@ void getFileSize() {
 
     // Display the size
     printf("Size of \"%s\": %ld bytes\n", filename, size);
+}
+
+void benchmark() {
+    struct timeval start_wall, end_wall;
+    struct rusage start_usage, end_usage;
+    double wall_time, user_time, system_time, cpu_percent;
+    long max_rss;
+
+    // Get starting time and resources
+    gettimeofday(&start_wall, NULL);
+    getrusage(RUSAGE_SELF, &start_usage);
+
+    // Start of benchmarked code
+    // Example computation: calculate sum of square roots
+    volatile double sum = 0; // volatile prevents optimization
+    for (long i = 0; i < 10000000L; i++) {
+        sum += sqrt(i);
+    }
+    // End of benchmarked code
+
+    // Get ending time and resources
+    gettimeofday(&end_wall, NULL);
+    getrusage(RUSAGE_SELF, &end_usage);
+
+    // Calculate wall-clock time
+    wall_time = (end_wall.tv_sec - start_wall.tv_sec) +
+                (end_wall.tv_usec - start_wall.tv_usec) / 1000000.0;
+
+    // Calculate CPU times
+    user_time = (end_usage.ru_utime.tv_sec - start_usage.ru_utime.tv_sec) +
+                (end_usage.ru_utime.tv_usec - start_usage.ru_utime.tv_usec) / 1000000.0;
+
+    system_time = (end_usage.ru_stime.tv_sec - start_usage.ru_stime.tv_sec) +
+                  (end_usage.ru_stime.tv_usec - start_usage.ru_stime.tv_usec) / 1000000.0;
+
+    // Calculate CPU usage percentage
+    cpu_percent = ((user_time + system_time) / wall_time) * 100.0;
+
+    // Get maximum resident set size (memory usage)
+    max_rss = end_usage.ru_maxrss; // In KB on Linux, bytes on BSD
+
+    // Print results
+    printf("Execution Metrics:\n");
+    printf("------------------\n");
+    printf("Wall-clock time:   %.6f seconds\n", wall_time);
+    printf("User CPU time:     %.6f seconds\n", user_time);
+    printf("System CPU time:   %.6f seconds\n", system_time);
+    printf("Total CPU time:    %.6f seconds\n", user_time + system_time);
+    printf("CPU Usage:         %.2f%%\n", cpu_percent);
+    printf("Max memory usage:  %ld KB\n", max_rss);
+    printf("Page faults:       %ld (minor) / %ld (major)\n", 
+           end_usage.ru_minflt - start_usage.ru_minflt,
+           end_usage.ru_majflt - start_usage.ru_majflt);
+    printf("Context switches:  %ld (voluntary) / %ld (involuntary)\n",
+           end_usage.ru_nvcsw - start_usage.ru_nvcsw,
+           end_usage.ru_nivcsw - start_usage.ru_nivcsw);
 }
 
 void quick_run() {
@@ -1702,7 +1761,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 13.0.0\n");
+    fprintf(file, "Version: 13.1.0\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -1917,6 +1976,9 @@ void man_txtmax() {
 
     printf("       multiplexer\n");
     printf("            Integration with Tmux.\n\n");
+
+    printf("       benchmark\n");
+    printf("             Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n\n"):
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -2058,6 +2120,7 @@ void help() {
     printf("  openai                  Integration with OpenAI API Key\n");
     printf("  size                    Retrieval File Size,\n");
     printf("  multiplexer             Integration with Tmux.\n");
+    printf("  benchmark               Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n"):
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2261,6 +2324,8 @@ int main() {
         getFileSize();
             } else if (strcmp(command, "multiplexer") == 0) {
         tmux_integration();
+            } else if (strcmp(command, "benchmark") == 0) {
+        benchmark();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
