@@ -1068,6 +1068,10 @@ void auto_completion() {
     system("gcc -o auto_completion auto_completion.c -lncurses && ./auto_completion");
 }
 
+void security() {
+    system("gcc -o security.c -o security -lssl -lcrypto && ./security");
+}
+
 void api_axios() {
     char filename[MAX_FILENAME_LENGTH];
     char content[MAX_CONTENT_LENGTH];
@@ -1761,7 +1765,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 13.1.1\n");
+    fprintf(file, "Version: 13.2.2\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -2326,6 +2330,8 @@ int main() {
         tmux_integration();
             } else if (strcmp(command, "benchmark") == 0) {
         benchmark();
+            } else if (strcmp(command, "security") == 0) {
+        security();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
@@ -2337,4 +2343,4 @@ int main() {
     }
 
     return 0;
-}
+
