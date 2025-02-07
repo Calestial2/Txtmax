@@ -865,7 +865,7 @@ void sqlite() {
 
 // Function prototypes
 void jumpToLine(FILE *file, int lineNumber);
-void searchInFile(FILE *file, const char *searchPattern);
+void searchInFile(FILE *file, const char *fileName, const char *searchPattern); // Pass fileName
 void countWordOccurrences(FILE *file, const char *word);
 
 void advance() {
@@ -904,7 +904,7 @@ void advance() {
         fclose(file);
         return;
     }
-    searchInFile(file, searchPattern);
+    searchInFile(file, fileName, searchPattern); // Pass fileName to searchInFile
 
     // Word count
     printf("Word Count: Enter the word to count occurrences: ");
@@ -934,7 +934,7 @@ void jumpToLine(FILE *file, int lineNumber) {
     printf("Line %d not found.\n", lineNumber);
 }
 
-void searchInFile(FILE *file, const char *searchPattern) {
+void searchInFile(FILE *file, const char *fileName, const char *searchPattern) {  // Receive fileName
     char buffer[MAX_LINE_LENGTH];
     char tempFileName[] = "temp.txt";
     FILE *tempFile = fopen(tempFileName, "w+"); // Temporary file for writing
@@ -977,7 +977,7 @@ void searchInFile(FILE *file, const char *searchPattern) {
 
     if (found) {
         // Replace original file with the temporary file
-        if (freopen(fileName, "w+", file) == NULL) {
+        if (freopen(fileName, "w+", file) == NULL) { // Use fileName
             perror("Error reopening original file for writing");
             return;
         }
@@ -1861,7 +1861,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 13.4.4\n");
+    fprintf(file, "Version: 13.4.6\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
