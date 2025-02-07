@@ -832,10 +832,13 @@ void advance() {
 
     // Prompt for file name
     printf("Enter the file name (with extension): ");
-    scanf("%255s", fileName);
+    if (scanf("%255s", fileName) != 1) {
+        fprintf(stderr, "Error reading file name.\n");
+        return;
+    }
 
     // Open the file
-    FILE *file = fopen(fileName, "r");
+    FILE *file = fopen(fileName, "r+"); // Open in read/write mode
     if (file == NULL) {
         perror("Error opening file");
         return;
@@ -843,17 +846,29 @@ void advance() {
 
     // Jump to a specific line
     printf("Jumping: Enter the line number to jump to: ");
-    scanf("%d", &lineNumber);
+    if (scanf("%d", &lineNumber) != 1) {
+        fprintf(stderr, "Error reading line number.\n");
+        fclose(file);
+        return;
+    }
     jumpToLine(file, lineNumber);
 
-    // Search using regex
+    // Search using regex and edit
     printf("Regex Search: Enter the pattern to search for: ");
-    scanf(" %[^\n]s", searchPattern); // Read pattern including spaces
+    if (scanf(" %[^\n]s", searchPattern) != 1) { // Read pattern including spaces
+        fprintf(stderr, "Error reading search pattern.\n");
+        fclose(file);
+        return;
+    }
     searchInFile(file, searchPattern);
 
     // Word count
     printf("Word Count: Enter the word to count occurrences: ");
-    scanf(" %[^\n]s", wordToCount);
+    if (scanf(" %[^\n]s", wordToCount) != 1) {
+        fprintf(stderr, "Error reading word to count.\n");
+        fclose(file);
+        return;
+    }
     countWordOccurrences(file, wordToCount);
 
     // Close the file
@@ -877,12 +892,20 @@ void jumpToLine(FILE *file, int lineNumber) {
 
 void searchInFile(FILE *file, const char *searchPattern) {
     char buffer[MAX_LINE_LENGTH];
+    char tempFileName[] = "temp.txt";
+    FILE *tempFile = fopen(tempFileName, "w+"); // Temporary file for writing
+    if (tempFile == NULL) {
+        perror("Error opening temporary file");
+        return;
+    }
+
     int lineNumber = 0;
     int found = 0;
 
     regex_t regex;
-    if (regcomp(&regex, searchPattern, REG_EXTENDED | REG_NOSUB) != 0) {
+    if (regcomp(&regex, searchPattern, REG_EXTENDED) != 0) {
         printf("Invalid regex pattern.\n");
+        fclose(tempFile);
         return;
     }
 
@@ -892,13 +915,42 @@ void searchInFile(FILE *file, const char *searchPattern) {
         if (regexec(&regex, buffer, 0, NULL, 0) == 0) {
             printf("Found match at line %d: %s", lineNumber, buffer);
             found = 1;
+            char replacement[MAX_LINE_LENGTH];
+            printf("Enter the replacement text: ");
+            if (scanf(" %[^\n]s", replacement) != 1) { // Read replacement text including spaces
+                fprintf(stderr, "Error reading replacement text.\n");
+                break;
+            }
+            fprintf(tempFile, "%s\n", replacement); // Write replacement to temp file
+        } else {
+            fprintf(tempFile, "%s", buffer); // Write original line to temp file
         }
     }
 
     regfree(&regex); // Free regex memory
 
-    if (!found) {
+    fclose(tempFile);
+
+    if (found) {
+        // Replace original file with the temporary file
+        if (freopen(fileName, "w+", file) == NULL) {
+            perror("Error reopening original file for writing");
+            return;
+        }
+        tempFile = fopen(tempFileName, "r");
+        if (tempFile == NULL) {
+            perror("Error reopening temporary file for reading");
+            return;
+        }
+        while (fgets(buffer, sizeof(buffer), tempFile) != NULL) {
+            fputs(buffer, file);
+        }
+        fclose(tempFile);
+        remove(tempFileName); // Remove temporary file
+        printf("File has been updated with the replacements.\n");
+    } else {
         printf("No matches found for pattern '%s'.\n", searchPattern);
+        remove(tempFileName); // Remove temporary file
     }
 }
 
@@ -1765,7 +1817,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 13.2.4\n");
+    fprintf(file, "Version: 13.4.4\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
