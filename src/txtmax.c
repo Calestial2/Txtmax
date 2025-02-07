@@ -591,11 +591,16 @@ void benchmark() {
 void quick_run() {
     char filename[MAX_INPUT_SIZE];
     char compiler[MAX_INPUT_SIZE];
+    char libraries[MAX_INPUT_SIZE];
     char command[MAX_INPUT_SIZE];
+    char temp[MAX_INPUT_SIZE];
 
     // Prompt for filename
     printf("Enter the file name with extension (e.g., program.c, script.py): ");
-    fgets(filename, sizeof(filename), stdin);
+    if (fgets(filename, sizeof(filename), stdin) == NULL) {
+        fprintf(stderr, "Error reading file name.\n");
+        return;
+    }
     filename[strcspn(filename, "\n")] = 0; // Remove trailing newline
 
     // Check if the file exists
@@ -607,9 +612,20 @@ void quick_run() {
     fclose(file);
 
     // Prompt for compiler/interpreter
-    printf("Enter the compiler or interpreter (gcc, g++, clang, python, node, nasm, tcl, bash): ");
-    fgets(compiler, sizeof(compiler), stdin);
+    printf("Enter the compiler or interpreter (gcc, g++, clang, python, node, nasm, tcl, bash, ruby, perl, rustc, go): ");
+    if (fgets(compiler, sizeof(compiler), stdin) == NULL) {
+        fprintf(stderr, "Error reading compiler or interpreter.\n");
+        return;
+    }
     compiler[strcspn(compiler, "\n")] = 0; // Remove trailing newline
+
+    // Prompt for external libraries
+    printf("Enter the external libraries (or 'n' if none): ");
+    if (fgets(libraries, sizeof(libraries), stdin) == NULL) {
+        fprintf(stderr, "Error reading libraries.\n");
+        return;
+    }
+    libraries[strcspn(libraries, "\n")] = 0; // Remove trailing newline
 
     // Match compiler/interpreter and build the command
     const char *ext = strrchr(filename, '.'); // Get file extension
@@ -620,14 +636,14 @@ void quick_run() {
 
     if (strcmp(compiler, "gcc") == 0 || strcmp(compiler, "clang") == 0) {
         if (strcmp(ext, ".c") == 0) {
-            snprintf(command, sizeof(command), "%s %s -o output && ./output", compiler, filename);
+            snprintf(command, sizeof(command), "%s %s %s -o output && ./output", compiler, filename, strcmp(libraries, "n") == 0 ? "" : libraries);
         } else {
             printf("Error: %s is only compatible with C files.\n", compiler);
             return;
         }
     } else if (strcmp(compiler, "g++") == 0) {
         if (strcmp(ext, ".cpp") == 0 || strcmp(ext, ".cxx") == 0 || strcmp(ext, ".cc") == 0) {
-            snprintf(command, sizeof(command), "g++ %s -o output && ./output", filename);
+            snprintf(command, sizeof(command), "g++ %s %s -o output && ./output", filename, strcmp(libraries, "n") == 0 ? "" : libraries);
         } else {
             printf("Error: g++ is only compatible with C++ files (.cpp, .cxx, .cc).\n");
             return;
@@ -648,7 +664,7 @@ void quick_run() {
         }
     } else if (strcmp(compiler, "nasm") == 0) {
         if (strcmp(ext, ".asm") == 0) {
-            snprintf(command, sizeof(command), "nasm -f elf64 %s -o output.o && gcc output.o -o output && ./output", filename);
+            snprintf(command, sizeof(command), "nasm -f elf64 %s -o output.o && gcc %s output.o -o output && ./output", filename, strcmp(libraries, "n") == 0 ? "" : libraries);
         } else {
             printf("Error: NASM is only compatible with .asm files.\n");
             return;
@@ -665,6 +681,34 @@ void quick_run() {
             snprintf(command, sizeof(command), "bash %s", filename);
         } else {
             printf("Error: Bash is only compatible with .sh files.\n");
+            return;
+        }
+    } else if (strcmp(compiler, "ruby") == 0) {
+        if (strcmp(ext, ".rb") == 0) {
+            snprintf(command, sizeof(command), "ruby %s", filename);
+        } else {
+            printf("Error: Ruby is only compatible with .rb files.\n");
+            return;
+        }
+    } else if (strcmp(compiler, "perl") == 0) {
+        if (strcmp(ext, ".pl") == 0) {
+            snprintf(command, sizeof(command), "perl %s", filename);
+        } else {
+            printf("Error: Perl is only compatible with .pl files.\n");
+            return;
+        }
+    } else if (strcmp(compiler, "rustc") == 0) {
+        if (strcmp(ext, ".rs") == 0) {
+            snprintf(command, sizeof(command), "rustc %s %s -o output && ./output", filename, strcmp(libraries, "n") == 0 ? "" : libraries);
+        } else {
+            printf("Error: rustc is only compatible with .rs files.\n");
+            return;
+        }
+    } else if (strcmp(compiler, "go") == 0) {
+        if (strcmp(ext, ".go") == 0) {
+            snprintf(command, sizeof(command), "go run %s", filename);
+        } else {
+            printf("Error: Go is only compatible with .go files.\n");
             return;
         }
     } else {
