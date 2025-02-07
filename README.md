@@ -4,7 +4,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-blue)
-![Version](https://img.shields.io/badge/version-13.1.1-blue)
+![Version](https://img.shields.io/badge/version-13.2.4-blue)
 ![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 ![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
@@ -57,6 +57,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **OpenAI Integration:** Integrates with OpenAI API Key
 - **Tmux Integration:** Integrates with Tmux
 - **Benchmark:** An Benchmark shows Execution Time CPU Usage and more
+- **Security Features:** Integration with AES and GPG
 - **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
 ## Commands
@@ -255,6 +256,53 @@ To begin using Txtmax Tmux Integration, type "multiplexer" within Txtmax.
 
 **Note:** 
 Tmux must be installed on the system. Tested on Linux systems with Tmux version 3.2+.
+
+## Txtmax Security 
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Tmux+Intregration+)](https://git.io/typing-svg)
+**Txtmax Security is a feature integrated with Txtmax. It integrates AES via OpenSSL and GPG.**
+
+To start using Txtmax Security, type "security" in Txtmax.
+
+You will see:
+```
+Welcome to Txtmax's Security with AES and GPG Integration.
+
+Enter command (type 'help' for options):
+```
+
+**Commands:**
+- `aes-encrypt`: Encrypts a file using AES-256-CBC. You will be prompted for the input file name and the encrypted output file name.
+- `aes-decrypt`: Decrypts an AES-encrypted file. You will be prompted for the encrypted file name, the decrypted output file name, and the decryption password.
+- `gpg-export-key`: Exports a GPG secret key. You will be asked for an email address and the private key filename.
+- `gpg-delete-key`: Deletes a GPG key. You will be asked for an email address.
+- `gpg-import-key`: Imports a GPG public key. You will be asked for the private key.
+- `help`: Displays this help message.
+- `exit`: Exits the program.
+
+**Features:**
+
+1. **Security Enhancements:**
+   - Password input hiding during entry.
+   - Uses PBKDF2 for key derivation (modern security practice).
+   - Suppresses error messages for OpenSSL commands.
+
+2. **Robust Input Handling:**
+   - Proper input sanitization.
+   - Filename quoting to handle spaces in paths.
+   - Buffer overflow prevention.
+
+3. **Advanced GPG Operations:**
+   - Complete key deletion (both secret and public).
+   - Armored key export.
+   - Batch mode operations for non-interactive execution.
+
+4. **User Experience:**
+   - Clear command prompts.
+   - Helpful command list.
+   - Error handling for failed operations.
+
+**Note:** This code requires OpenSSL and GPG to be installed on the system. The functionality has been tested on Linux systems and may require adjustments for other platforms.
 
 ## UI
 
