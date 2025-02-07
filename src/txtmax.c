@@ -1069,7 +1069,7 @@ void auto_completion() {
 }
 
 void security() {
-    system("gcc -o security.c -o security -lssl -lcrypto && ./security");
+    system("gcc security.c -o security -lssl -lcrypto && ./security");
 }
 
 void api_axios() {
@@ -1765,7 +1765,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 13.2.2\n");
+    fprintf(file, "Version: 13.2.4\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
