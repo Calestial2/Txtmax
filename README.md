@@ -177,6 +177,7 @@ Conversations:
 ## Txtmax Notebook 
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F71212&width=435&lines=Txtmax+Notebook+)](https://git.io/typing-svg)
+
 **Txtmax Notebook** is an interactive notebook for Python developers written in C. 
 
 **Features:**
@@ -200,6 +201,7 @@ Conversations:
 In Txtmax, type the command `notebook`. It will go to `system()`, compile `notebook.c`, and run `notebook.c`, allowing you to use Txtmax Notebook.
 
 ## Txtmax Auto Completion 
+
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&width=435&lines=Txtmax+Auto+Completion+;Increasing+your+productivity+)](https://git.io/typing-svg)
 
 We introduced Txtmax Auto Completion to streamline the process of writing code, specifically C code. It's built from scratch to enhance your coding efficiency.
@@ -219,6 +221,7 @@ As you type code, Txtmax will suggest relevant keywords to assist you.
 ## Txtmax Tmux Intregration 
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Tmux+Intregration+)](https://git.io/typing-svg)
+
 The Txtmax Tmux Integration enables efficient multi-task management within Txtmax through seamless integration with Tmux.
 
 **Getting Started:**
@@ -259,7 +262,8 @@ Tmux must be installed on the system. Tested on Linux systems with Tmux version 
 
 ## Txtmax Security 
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Tmux+Intregration+)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Security+)](https://git.io/typing-svg)
+
 **Txtmax Security is a feature integrated with Txtmax. It integrates AES via OpenSSL and GPG.**
 
 To start using Txtmax Security, type "security" in Txtmax.
