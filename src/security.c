@@ -4,7 +4,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-#define MAX_INPUT 1024
+#define INPUT_SIZE 1024
 #define BUFFER_SIZE 4096
 
 void set_echo(int enable) {
@@ -32,45 +32,51 @@ void execute_command(const char *cmd) {
     }
 }
 
+void print_help() {
+    printf("\nAvailable commands:\n"
+           "  aes-encrypt    - Encrypt file with AES-256-CBC\n"
+           "  aes-decrypt    - Decrypt AES-encrypted file\n"
+           "  gpg-export-key - Export GPG secret key\n"
+           "  gpg-delete-key - Delete GPG key\n"
+           "  gpg-import-key - Import GPG public key\n"
+           "  help           - Show this help message\n"
+           "  exit           - Exit program\n");
+}
+
 void aes_gpg() {
     printf("Welcome to Txtmax's Security with AES, GPG Integration\n");
-    
-    char command[MAX_INPUT];
-    char input_file[MAX_INPUT];
-    char output_file[MAX_INPUT];
-    char password[MAX_INPUT];
-    char email[MAX_INPUT];
-    char key_file[MAX_INPUT];
+
+    char command[INPUT_SIZE];
+    char input_file[INPUT_SIZE];
+    char output_file[INPUT_SIZE];
+    char password[INPUT_SIZE];
+    char email[INPUT_SIZE];
+    char key_file[INPUT_SIZE];
     char cmd[BUFFER_SIZE];
 
     while (1) {
-        printf("\nAvailable commands:\n"
-               "aes-encrypt    - Encrypt file with AES-256-CBC\n"
-               "aes-decrypt    - Decrypt AES-encrypted file\n"
-               "gpg-export-key - Export GPG secret key\n"
-               "gpg-delete-key - Delete GPG key\n"
-               "gpg-import-key - Import GPG public key\n"
-               "exit           - Exit program\n"
-               "Enter command: ");
-
-        fgets(command, MAX_INPUT, stdin);
+        printf("\nEnter command (type 'help' for options): ");
+        fgets(command, INPUT_SIZE, stdin);
         command[strcspn(command, "\n")] = '\0';
 
         if (strcmp(command, "exit") == 0) {
             printf("Exiting...\n");
             break;
         }
+        else if (strcmp(command, "help") == 0) {
+            print_help();
+        }
         else if (strcmp(command, "aes-encrypt") == 0) {
             printf("Enter input filename: ");
-            fgets(input_file, MAX_INPUT, stdin);
+            fgets(input_file, INPUT_SIZE, stdin);
             input_file[strcspn(input_file, "\n")] = '\0';
 
             printf("Enter encrypted output filename: ");
-            fgets(output_file, MAX_INPUT, stdin);
+            fgets(output_file, INPUT_SIZE, stdin);
             output_file[strcspn(output_file, "\n")] = '\0';
 
             printf("Enter encryption password: ");
-            get_password(password, MAX_INPUT);
+            get_password(password, INPUT_SIZE);
 
             snprintf(cmd, BUFFER_SIZE,
                      "openssl enc -aes-256-cbc -salt -pbkdf2 -in \"%s\" -out \"%s\" -pass pass:\"%s\" 2>/dev/null",
@@ -79,15 +85,15 @@ void aes_gpg() {
         }
         else if (strcmp(command, "aes-decrypt") == 0) {
             printf("Enter encrypted filename: ");
-            fgets(input_file, MAX_INPUT, stdin);
+            fgets(input_file, INPUT_SIZE, stdin);
             input_file[strcspn(input_file, "\n")] = '\0';
 
             printf("Enter decrypted output filename: ");
-            fgets(output_file, MAX_INPUT, stdin);
+            fgets(output_file, INPUT_SIZE, stdin);
             output_file[strcspn(output_file, "\n")] = '\0';
 
             printf("Enter decryption password: ");
-            get_password(password, MAX_INPUT);
+            get_password(password, INPUT_SIZE);
 
             snprintf(cmd, BUFFER_SIZE,
                      "openssl enc -aes-256-cbc -d -pbkdf2 -in \"%s\" -out \"%s\" -pass pass:\"%s\" 2>/dev/null",
@@ -96,11 +102,11 @@ void aes_gpg() {
         }
         else if (strcmp(command, "gpg-export-key") == 0) {
             printf("Enter email address: ");
-            fgets(email, MAX_INPUT, stdin);
+            fgets(email, INPUT_SIZE, stdin);
             email[strcspn(email, "\n")] = '\0';
 
             printf("Enter private key filename: ");
-            fgets(key_file, MAX_INPUT, stdin);
+            fgets(key_file, INPUT_SIZE, stdin);
             key_file[strcspn(key_file, "\n")] = '\0';
 
             snprintf(cmd, BUFFER_SIZE,
@@ -110,7 +116,7 @@ void aes_gpg() {
         }
         else if (strcmp(command, "gpg-delete-key") == 0) {
             printf("Enter email address to delete: ");
-            fgets(email, MAX_INPUT, stdin);
+            fgets(email, INPUT_SIZE, stdin);
             email[strcspn(email, "\n")] = '\0';
 
             snprintf(cmd, BUFFER_SIZE,
@@ -120,14 +126,14 @@ void aes_gpg() {
         }
         else if (strcmp(command, "gpg-import-key") == 0) {
             printf("Enter public key filename: ");
-            fgets(key_file, MAX_INPUT, stdin);
+            fgets(key_file, INPUT_SIZE, stdin);
             key_file[strcspn(key_file, "\n")] = '\0';
 
             snprintf(cmd, BUFFER_SIZE, "gpg --import \"%s\"", key_file);
-            execute_command(cmd);
+            execute_command(cmd)
         }
         else {
-            printf("Invalid command. Please try again.\n");
+            printf("Invalid command. Type 'help' for a list of commands.\n");
         }
     }
 }
