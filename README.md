@@ -4,7 +4,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-blue)
-![Version](https://img.shields.io/badge/version-13.2.4-blue)
+![Version](https://img.shields.io/badge/version-13.4.6-blue)
 ![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 ![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
@@ -78,7 +78,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **info <filename>:** Get detailed information about the file (name, extension, creation time, modification time, and version control such as commit message, branch, and version).
 - **examples:** Show examples of "Hello, World!" programs in various languages including C, Python, Java, JavaScript, C++, Rust, Ruby, Elixir, Kotlin, TypeScript, Dart, Objective-C, and Go.
 - **sql:** Display example queries for SQL databases, including SQL, PostgreSQL, and NoSQL (MongoDB).
-- **run:** Run your code quickly without exiting Txtmax using compilers and interpreters such as GCC, Clang, g++, Python, Lua, Ruby, nasm, tcl, and Node.js. It will prompt for the file name and extension, followed by the compiler name, and then execute the code.
+- **run:** Run your code quickly without exiting Txtmax using compilers and interpreters such as GCC, Clang, g++, Python, Lua, Ruby, nasm, tcl, and rustc, perl, go, Node.js. It will prompt for the file name and extension, followed by the compiler name, and then execute the code.
 - **packages:** Install packages by choosing a package manager (pip, npm, gem, go, yarn, composer, cargo, nuget, or apt), entering the package name, and installing it. (Requires prior installation of Python, Node.js, and other dependencies)
 - **api:** Test RESTful APIs directly in the editor by entering a URL to fetch data via curl.
 - **axios:** Fetch RESTful API data from a URL by entering a filename, writing code, quitting with :wq, and running it.
