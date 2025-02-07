@@ -4,7 +4,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-blue)
-![Version](https://img.shields.io/badge/version-13.0.0/-blue)
+![Version](https://img.shields.io/badge/version-13.1.1-blue)
 ![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 ![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
@@ -56,6 +56,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **SQLite Integration:** Supports SQLite Database
 - **OpenAI Integration:** Integrates with OpenAI API Key
 - **Tmux Integration:** Integrates with Tmux
+- **Benchmark:** An Benchmark shows Execution Time CPU Usage and more
 - **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
 ## Commands
@@ -94,6 +95,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **sqlite:** Work with an SQLite database. You will be prompted to provide a filename, including its extension. Then, enter your SQLite code, and it will be saved locally and it will run it
 - **openai:** **Integration with OpenAI** prompts for a filename, including its extension. It then prompts for Pasting OpenAI API key, it prompts for the OpenAI model name. Based on the provided inputs, it generates an python code of using OpenAI API Key and executes that Python code.
 - **size:** Retrieve File Size, This prompts the user for a filename, including its extension, and then displays the file size.
+- **benchmark:** Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches
 - **exit:** Exit the Txtmax editor.
 
 ## Automation
@@ -419,6 +421,9 @@ Our platform supports a vast array of popular programming languages, encompassin
 #include <regex.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <math.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 ```
 
 ## Txtmax Source Code Files
