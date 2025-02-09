@@ -4,7 +4,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-blue)
-![Version](https://img.shields.io/badge/version-13.4.6-blue)
+![Version](https://img.shields.io/badge/version-13.5.7-blue)
 ![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 ![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
@@ -58,6 +58,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Tmux Integration:** Integrates with Tmux
 - **Benchmark:** An Benchmark shows Execution Time CPU Usage and more
 - **Security Features:** Integration with AES and GPG
+- **Markdown:** Supports Markdown Files 
 - **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
 ## Commands
@@ -97,6 +98,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **openai:** **Integration with OpenAI** prompts for a filename, including its extension. It then prompts for Pasting OpenAI API key, it prompts for the OpenAI model name. Based on the provided inputs, it generates an python code of using OpenAI API Key and executes that Python code.
 - **size:** Retrieve File Size, This prompts the user for a filename, including its extension, and then displays the file size.
 - **benchmark:** Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches
+- **markdown:** Create Markdown files that prompt for a filename. You can write Markdown codes as easily as writing plain text. Additionally, you can use text formatting with simple commands. For example, typing `:bold hello` will highlight the text in bold, typing `:italic hello` will highlight the text in italics, and typing `:bold + italic hello` will highlight the text in bold italics. Furthermore, typing `:underlined hello` will underline the text, and typing `:strike through hello` will strike through the text. To save the file locally, use the `:wq` command to exit and save 
 - **exit:** Exit the Txtmax editor.
 
 ## Automation
