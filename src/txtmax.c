@@ -20,6 +20,7 @@
 #define MAX_FILENAME_LENGTH 256
 #define MAX_CONTENT_LENGTH 1024
 #define MAX_INPUT_SIZE 256
+#define MAX_INPUT 1024
 #define MAX_FILENAME 256
 #define MAX_LINE 1024
 #define MAX_FILES 100
@@ -1259,6 +1260,73 @@ void dewarn() {
     }
 }
 
+typedef struct {
+    const char *command;
+    const char *ansi_code;
+} FormatCommand;
+
+const FormatCommand commands[] = {
+    {"bold + italic", "\033[1;3m"},
+    {"strike through", "\033[9m"},
+    {"underlined", "\033[4m"},
+    {"inverse", "\033[7m"},
+    {"bold", "\033[1m"},
+    {"italic", "\033[3m"},
+};
+
+const int num_commands = sizeof(commands) / sizeof(commands[0]);
+
+void process_line(const char *line, FILE *file) {
+    if (strncmp(line, ":wq", 3) == 0) {
+        exit(0);
+    }
+
+    if (line[0] == ':') {
+        const char *cmd_start = line + 1;
+        while (*cmd_start && isspace(*cmd_start)) cmd_start++;
+
+        for (int i = 0; i < num_commands; i++) {
+            size_t cmd_len = strlen(commands[i].command);
+            if (strncmp(cmd_start, commands[i].command, cmd_len) == 0) {
+                const char *text = cmd_start + cmd_len;
+                while (*text && isspace(*text)) text++;
+
+                if (*text) {
+                    fprintf(file, "%s%s\033[0m\n", commands[i].ansi_code, text);
+                }
+                return;
+            }
+        }
+    }
+    fprintf(file, "%s\n", line);
+}
+
+void markdown() {
+    char filename[MAX_INPUT];
+    printf("Enter filename: ");
+    fgets(filename, MAX_INPUT, stdin);
+    filename[strcspn(filename, "\n")] = '\0';
+
+    FILE *file = fopen(filename, "w");
+    if (!file) {
+        perror("Error opening file");
+        return;
+    }
+
+    printf("Enter text (type :wq to save and exit):\n");
+    
+    while (1) {
+        char line[MAX_INPUT];
+        if (!fgets(line, MAX_INPUT, stdin)) break;
+
+        line[strcspn(line, "\n")] = '\0';
+        process_line(line, file);
+    }
+
+    fclose(file);
+    printf("File saved successfully.\n");
+}
+
 void terminal() {
     char command[256];  // Buffer to hold the command input
 
@@ -1861,7 +1929,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 13.4.6\n");
+    fprintf(file, "Version: 13.5.7\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -2082,6 +2150,9 @@ void man_txtmax() {
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
+    
+    printf("       markdown\n");
+    printf("           Create Markdown Files.\n\n");
   
     printf("                      FEATURES\n");
     printf("       - File Creation, Viewing, Editing, Deletion, and Management\n");
@@ -2221,6 +2292,7 @@ void help() {
     printf("  size                    Retrieval File Size,\n");
     printf("  multiplexer             Integration with Tmux.\n");
     printf("  benchmark               Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n");
+    printf("  markdown                Create Markdown Files\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2428,6 +2500,8 @@ int main() {
         benchmark();
             } else if (strcmp(command, "security") == 0) {
         security();
+            } else if (strcmp(command, "markdown") == 0) {
+        markdown();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
