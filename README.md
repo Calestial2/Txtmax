@@ -312,7 +312,12 @@ Enter command (type 'help' for options):
 
 ## UI
 
-Terminal-based, feature-rich, user-friendly, and lightweight, it presents '~/txtmax' as the command prompt, enabling users to enter commands. Upon launching, it greets with: 'Welcome to txtmax! Type 'help' for a list of available commands.
+Terminal-based, feature-rich, user-friendly, and lightweight, it presents '~/txtmax' as the command prompt, enabling users to enter commands. Upon launching, it greets with: 
+'Welcome to Txtmax, a Powerful Text Editor and IDE for Linux and Unix-like Systems
+
+* Documentation: https://github.com/Calestial2/Txtmax/blob/main/README.md
+* Access Manual: `man txtmax`
+* Code: https://github.com/Calestial2/Txtmax/tree/main/src'
 
 ## Logo
 ![Logo](https://raw.githubusercontent.com/Calestial2/Txtmax/6f3c942933728a3d59dc08909fd6020c36c32fd8/images/IMG_20250131_131256.jpg)
