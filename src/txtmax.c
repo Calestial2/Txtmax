@@ -2400,7 +2400,10 @@ void sql_examples() {
 
 int main() {
     char command[MAX_INPUT_SIZE];
-    printf("Welcome to txtmax! Type 'help' for a list of commands.\n");
+       printf("Welcome to Txtmax, a Powerful Text Editor and IDE for Linux and Unix-like Systems\n\n");
+    printf("* Documentation: https://github.com/Calestial2/Txtmax/blob/main/README.md\n");
+    printf("* Access Manual: `man txtmax`\n");
+    printf("* Code: https://github.com/Calestial2/Txtmax/tree/main/src\n");
 
     while (1) {
         printf("\n~/txtmax ");
