@@ -513,7 +513,8 @@ Our platform supports a vast array of popular programming languages, encompassin
 - **src/notebook.c**: The Source code of Txtmax Notebook
 - **src/auto_completion.c**: The source code of Txtmax Auto Completion 
 - **src/Makefile**: Makefile to automate the process
-- **src/security.c**: Code of Txtmax Security 
+- **src/security.c**: Code of Txtmax Security
+- **src/deploy.c**: Code for Txtmax Deploy 
 - **CHANGELOG.md**: Document detailing changes
 - **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
 
