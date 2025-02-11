@@ -4,7 +4,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-blue)
-![Version](https://img.shields.io/badge/version-13.5.7-blue)
+![Version](https://img.shields.io/badge/version-13.6.9-blue)
 ![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 ![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
@@ -58,7 +58,8 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Tmux Integration:** Integrates with Tmux
 - **Benchmark:** An Benchmark shows Execution Time CPU Usage and more
 - **Security Features:** Integration with AES and GPG
-- **Markdown:** Supports Markdown Files 
+- **Markdown:** Supports Markdown Files
+- **Deploy:** Deploy your code to Heroku CLI 
 - **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
 ## Commands
@@ -309,6 +310,25 @@ Enter command (type 'help' for options):
    - Error handling for failed operations.
 
 **Note:** This code requires OpenSSL and GPG to be installed on the system. The functionality has been tested on Linux systems and may require adjustments for other platforms.
+
+## Txtmax Deploy 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Deploy+)](https://git.io/typing-svg)
+
+Txtmax Deploy is an integrated feature within Txtmax designed to deploy your code effortlessly to Heroku CLI.
+
+**Usage:**
+To utilize Txtmax Deploy, simply type the command `deploy` within Txtmax.
+
+**Features:**
+- Upon activation, you will be prompted to enter the Heroku app name.
+- The system will then check for the existence of `package.json`. If it does not exist, It will initialize one
+- You will be asked to provide the main filename, including its extension, allowing you to write code and save it locally using the command `:wq`.
+- The feature will automatically create a `Procfile` and a `.gitignore` file, including node modules and environment variables.
+- Following this, a Git repository will be initialized, and you will be prompted to enter a commit message.
+- Finally, the application will be pushed and deployed to Heroku CLI, and it will open in your browser.
+
+**Note:**
+Ensure that Heroku CLI is installed on your Linux system.
 
 ## UI
 
