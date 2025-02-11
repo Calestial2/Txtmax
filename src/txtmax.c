@@ -507,7 +507,7 @@ void search_files(const char *filename) {
 }
 
 void deploy() {
-    system("gcc deploy.c -o deploy");
+    system("gcc deploy.c -o deploy && ./deploy");
 }
 
 void getFileSize() {
