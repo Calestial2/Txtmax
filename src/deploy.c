@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-#define MAX_INPUT 256
+#define MAX_APP_INPUT 256  // Renamed the macro to avoid conflict
 #define MAX_LINE 1024
 
 // Function to execute shell commands
@@ -88,11 +88,11 @@ int package_json_exists() {
 
 // Function to install dependencies (either manually or from package.json)
 void install_dependencies() {
-    char dependencies[MAX_INPUT];
+    char dependencies[MAX_APP_INPUT];  // Renamed variable to match the new macro name
     get_input("Enter npm dependencies (or leave blank to use package.json): ", dependencies, sizeof(dependencies));
 
     if (strlen(dependencies) > 0) {
-        char npm_install_cmd[MAX_INPUT + 20];
+        char npm_install_cmd[MAX_APP_INPUT + 20];  // Updated with new macro
         snprintf(npm_install_cmd, sizeof(npm_install_cmd), "npm install %s", dependencies);
         char *npm_install[] = {"/bin/sh", "-c", npm_install_cmd, NULL};
         run_command(npm_install);
@@ -105,7 +105,7 @@ void install_dependencies() {
 }
 
 int main() {
-    char app_name[MAX_INPUT], filename[MAX_INPUT], commit_msg[MAX_INPUT], branch[MAX_INPUT];
+    char app_name[MAX_APP_INPUT], filename[MAX_APP_INPUT], commit_msg[MAX_APP_INPUT], branch[MAX_APP_INPUT];
 
     // Get app name
     get_input("Heroku App Name: ", app_name, sizeof(app_name));
@@ -128,7 +128,7 @@ int main() {
     create_code_file(filename);
 
     // Create Procfile
-    char procfile_content[MAX_INPUT];
+    char procfile_content[MAX_APP_INPUT];
     snprintf(procfile_content, sizeof(procfile_content), "web: node %s\n", filename);
     write_to_file("Procfile", procfile_content);
 
@@ -159,7 +159,7 @@ int main() {
     install_dependencies();
 
     // Push to Heroku
-    char git_push_cmd[MAX_INPUT + 20];
+    char git_push_cmd[MAX_APP_INPUT + 20];
     snprintf(git_push_cmd, sizeof(git_push_cmd), "git push heroku %s", branch);
     char *git_push[] = {"/bin/sh", "-c", git_push_cmd, NULL};
     run_command(git_push);
