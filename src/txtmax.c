@@ -506,6 +506,10 @@ void search_files(const char *filename) {
     closedir(dir);
 }
 
+void deploy() {
+    system("gcc deploy.c -o deploy");
+}
+
 void getFileSize() {
     char filename[256]; // Buffer for filename
     FILE *file;
@@ -1928,8 +1932,8 @@ void versionf() {
     }
 
     fprintf(file, "Name: txtmax\n");
-    fprintf(file, "Size: 80-90 KB\n");
-    fprintf(file, "Version: 13.5.7\n");
+    fprintf(file, "Size: 100-190 KB\n");
+    fprintf(file, "Version: 13.6.9\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -2147,12 +2151,15 @@ void man_txtmax() {
 
     printf("       benchmark\n");
     printf("             Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n\n");
-    
-    printf("       exit\n");
-    printf("           Exit the Txtmax editor.\n\n");
+
+    printf("       deploy\n");
+    printf("           Deploy your code to Heroku CLI.\n\n");
     
     printf("       markdown\n");
     printf("           Create Markdown Files.\n\n");
+    
+    printf("       exit\n");
+    printf("           Exit the Txtmax editor.\n\n");
   
     printf("                      FEATURES\n");
     printf("       - File Creation, Viewing, Editing, Deletion, and Management\n");
@@ -2293,6 +2300,7 @@ void help() {
     printf("  multiplexer             Integration with Tmux.\n");
     printf("  benchmark               Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n");
     printf("  markdown                Create Markdown Files\n");
+    printf("  deploy                  Deploy your code to Heroku CLI\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2505,6 +2513,8 @@ int main() {
         security();
             } else if (strcmp(command, "markdown") == 0) {
         markdown();
+            } else if (strcmp(command, "deploy") == 0) {
+        deploy();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
