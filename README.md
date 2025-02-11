@@ -352,25 +352,12 @@ Txtmax uses ANSI colors for syntax highlighting to enhance readability. The foll
 
 ## Installation and Usage
 
-To get started with Txtmax, follow these steps:
+Txtmax is available on Linux, macOS, and other Unix-like systems. For Windows users, it is recommended to use WSL (Windows Subsystem for Linux) or Cygwin.
 
-1. **Install:** Install it by running:
-```bash
-git clone https://github.com/Calestial2/Txtmax 
-cd Txtmax
-cd src
-gcc txtmax.c -o txtmax
-./txtmax
-```
+To install Txtmax, run the following command:
 
-2. **Makefile**: You can use Makefile:
 ```bash
-git clone https://github.com/Calestial2/Txtmax
-cd Txtmax
-cd src
-make
-make clean
-./txtmax
+curl -O https://github.com/Calestial2/Txtmax/raw/main/install.sh
 ```
 
 ## OS Compatibility 
