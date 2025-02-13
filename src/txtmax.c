@@ -30,6 +30,8 @@
 #define MAX_LEN 100
 #define RECYCLE_BIN "recycle_bin"
 #define MAX_FILENAME_LEN 256
+#define MAX_COMMAND_LENGTH 256
+#define MAX_FILENAME_LENGTH 200
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -507,8 +509,11 @@ void search_files(const char *filename) {
 }
 
 void deploy() {
-    system("gcc deploy.c -o deploy");
+    system("gcc deploy.c -o deploy && ,/deploy");
 }
+
+void themes() {
+    system("gcc themes.c -o themes && ./themes");
 
 void getFileSize() {
     char filename[256]; // Buffer for filename
@@ -591,6 +596,47 @@ void benchmark() {
     printf("Context switches:  %ld (voluntary) / %ld (involuntary)\n",
            end_usage.ru_nvcsw - start_usage.ru_nvcsw,
            end_usage.ru_nivcsw - start_usage.ru_nivcsw);
+}
+
+void format_code() {
+    char formatter[MAX_COMMAND_LENGTH];
+    char filename[MAX_FILENAME_LENGTH];
+    char command[MAX_COMMAND_LENGTH];
+
+    // Prompt for formatter
+    printf("Choose formatter (clang-format/black): ");
+    if (scanf("%255s", formatter) != 1) {
+        fprintf(stderr, "Error reading input.\n");
+        return;
+    }
+
+    // Validate choice
+    if (strcmp(formatter, "clang-format") != 0 && strcmp(formatter, "black") != 0) {
+        fprintf(stderr, "Invalid choice. Please enter 'clang-format' or 'black'.\n");
+        return;
+    }
+
+    // Prompt for filename
+    printf("Enter filename (including extension): ");
+    if (scanf("%199s", filename) != 1) {
+        fprintf(stderr, "Error reading filename.\n");
+        return;
+    }
+
+    // Construct command
+    if (strcmp(formatter, "clang-format") == 0) {
+        snprintf(command, sizeof(command), "clang-format -i %s", filename);
+    } else {
+        snprintf(command, sizeof(command), "black %s", filename);
+    }
+
+    // Execute command
+    int status = system(command);
+    if (status == -1) {
+        perror("system() failed");
+    } else {
+        printf("Formatting completed successfully.\n");
+    }
 }
 
 void quick_run() {
@@ -1932,8 +1978,8 @@ void versionf() {
     }
 
     fprintf(file, "Name: txtmax\n");
-    fprintf(file, "Size: 100-190 KB\n");
-    fprintf(file, "Version: 13.6.9\n");
+    fprintf(file, "Size: around 200 KB\n");
+    fprintf(file, "Version: 13.8.15\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -2157,12 +2203,17 @@ void man_txtmax() {
     
     printf("       markdown\n");
     printf("           Create Markdown Files.\n\n");
+
+    printf("       format\n");
+    printf("           Format your code wity clang-format and black.\n\n");
+
+    printf("       themes\n");
+    printf("           Express yourself with Themes.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
   
     printf("                      FEATURES\n");
-    printf("       - File Creation, Viewing, Editing, Deletion, and Management\n");
     printf("       - Syntax Highlighting for Programming Languages\n");
     printf("       - Run Code Quickly with Integrated Compilers and Interpreters\n");
     printf("       - Git Integration for Version Control and Commit Management\n");
@@ -2301,6 +2352,8 @@ void help() {
     printf("  benchmark               Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n");
     printf("  markdown                Create Markdown Files\n");
     printf("  deploy                  Deploy your code to Heroku CLI\n");
+    printf("  format                  Format your code with clang-format and Black\n");
+    printf("  themes                  Express yourself with Themes.\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2515,6 +2568,10 @@ int main() {
         markdown();
             } else if (strcmp(command, "deploy") == 0) {
         deploy();
+            } else if (strcmp(command, "themes") == 0) {
+        themes();
+            } else if (strcmp(command, "format") == 0) {
+        format_code();
             } else if (strcmp(command, "tarball") == 0) {
         tarball();
            } else if (strcmp(command, "exit") == 0) {
