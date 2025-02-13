@@ -2461,7 +2461,8 @@ void sql_examples() {
 
 int main() {
     char command[MAX_INPUT_SIZE];
-       printf("Welcome to Txtmax, a Powerful Text Editor and IDE for Linux and Unix-like Systems\n\n");
+
+    printf("Welcome to Txtmax, a Powerful Text Editor and IDE for Linux and Unix-like Systems\n\n");
     printf("* Documentation: https://github.com/Calestial2/Txtmax/blob/main/README.md\n");
     printf("* Access Manual: `man txtmax`\n");
     printf("* Code: https://github.com/Calestial2/Txtmax/tree/main/src\n");
@@ -2469,7 +2470,7 @@ int main() {
     while (1) {
         printf("\n~/txtmax ");
         fgets(command, MAX_INPUT_SIZE, stdin);
-        command[strcspn(command, "\n")] = 0;  // Remove the newline at the end of input
+        command[strcspn(command, "\n")] = 0;  // Remove the newline character from input
 
         if (strcmp(command, "help") == 0) {
             help();
@@ -2505,76 +2506,76 @@ int main() {
         } else if (strcmp(command, "sql") == 0) {
             sql_examples();
         } else if (strcmp(command, "run") == 0) {
-        quick_run();
-            } else if (strcmp(command, "packages") == 0) {
-        packages();
-            } else if (strcmp(command, "man txtmax") == 0) {
-        man_txtmax();
-            } else if (strcmp(command, "api") == 0) {
-        api();
-            } else if (strcmp(command, "advance") == 0) {
-        advance();
-            } else if (strcmp(command, "axios") == 0) {
-        api_axios();
-           } else if (strcmp(command, "debug") == 0) {
-        dewarn();
-            } else if (strcmp(command, "terminal") == 0) {
-        terminal();
-            } else if (strcmp(command, "latex") == 0) {
-        latex();
-            } else if (strcmp(command, "ai") == 0) {
-        ai();
-            } else if (strcmp(command, "manai") == 0) {
-        manualAI();
-            } else if (strcmp(command, "rename") == 0) {
-        renameFile();
-            } else if (strcmp(command, "movef") == 0) {
-        movef();
-            } else if (strcmp(command, "copy") == 0) {
-        copy_files_to_folder();
-            } else if (strcmp(command, "make") == 0) {
-        make();
-            } else if (strcmp(command, "gradle") == 0) {
-        generateGradleScript();
-            } else if (strcmp(command, "dotnet") == 0) {
-        create_dotnet_project();
-            } else if (strcmp(command, "recycle") == 0) {
-        recycle_bin();
-            } else if (strcmp(command, "localhost") == 0) {
-        localhost();
-            } else if (strcmp(command, "version") == 0) {
-        versionf();
-            } else if (strcmp(command, "environment") == 0) {
-        createEnvFile();
-            } else if (strcmp(command, "ignore") == 0) {
-        ignore();
-            } else if (strcmp(command, "sqlite") == 0) {
-        sqlite();
-            } else if (strcmp(command, "openai") == 0) {
-        openai();
-            } else if (strcmp(command, "auto_completion") == 0) {
-        auto_completion();
-            } else if (strcmp(command, "notebook") == 0) {
-        txtmaxnote();
-            } else if (strcmp(command, "size") == 0) {
-        getFileSize();
-            } else if (strcmp(command, "multiplexer") == 0) {
-        tmux_integration();
-            } else if (strcmp(command, "benchmark") == 0) {
-        benchmark();
-            } else if (strcmp(command, "security") == 0) {
-        security();
-            } else if (strcmp(command, "markdown") == 0) {
-        markdown();
-            } else if (strcmp(command, "deploy") == 0) {
-        deploy();
-            } else if (strcmp(command, "themes") == 0) {
-        themes();
-            } else if (strcmp(command, "format") == 0) {
-        format_code();
-            } else if (strcmp(command, "tarball") == 0) {
-        tarball();
-           } else if (strcmp(command, "exit") == 0) {
+            quick_run();
+        } else if (strcmp(command, "packages") == 0) {
+            packages();
+        } else if (strcmp(command, "man txtmax") == 0) {
+            man_txtmax();
+        } else if (strcmp(command, "api") == 0) {
+            api();
+        } else if (strcmp(command, "advance") == 0) {
+            advance();
+        } else if (strcmp(command, "axios") == 0) {
+            api_axios();
+        } else if (strcmp(command, "debug") == 0) {
+            dewarn();
+        } else if (strcmp(command, "terminal") == 0) {
+            terminal();
+        } else if (strcmp(command, "latex") == 0) {
+            latex();
+        } else if (strcmp(command, "ai") == 0) {
+            ai();
+        } else if (strcmp(command, "manai") == 0) {
+            manualAI();
+        } else if (strcmp(command, "rename") == 0) {
+            renameFile();
+        } else if (strcmp(command, "movef") == 0) {
+            movef();
+        } else if (strcmp(command, "copy") == 0) {
+            copy_files_to_folder();
+        } else if (strcmp(command, "make") == 0) {
+            make();
+        } else if (strcmp(command, "gradle") == 0) {
+            generateGradleScript();
+        } else if (strcmp(command, "dotnet") == 0) {
+            create_dotnet_project();
+        } else if (strcmp(command, "recycle") == 0) {
+            recycle_bin();
+        } else if (strcmp(command, "localhost") == 0) {
+            localhost();
+        } else if (strcmp(command, "version") == 0) {
+            versionf();
+        } else if (strcmp(command, "environment") == 0) {
+            createEnvFile();
+        } else if (strcmp(command, "ignore") == 0) {
+            ignore();
+        } else if (strcmp(command, "sqlite") == 0) {
+            sqlite();
+        } else if (strcmp(command, "openai") == 0) {
+            openai();
+        } else if (strcmp(command, "auto_completion") == 0) {
+            auto_completion();
+        } else if (strcmp(command, "notebook") == 0) {
+            txtmaxnote();
+        } else if (strcmp(command, "size") == 0) {
+            getFileSize();
+        } else if (strcmp(command, "multiplexer") == 0) {
+            tmux_integration();
+        } else if (strcmp(command, "benchmark") == 0) {
+            benchmark();
+        } else if (strcmp(command, "security") == 0) {
+            security();
+        } else if (strcmp(command, "markdown") == 0) {
+            markdown();
+        } else if (strcmp(command, "deploy") == 0) {
+            deploy();
+        } else if (strcmp(command, "themes") == 0) {
+            themes();
+        } else if (strcmp(command, "format") == 0) {
+            format_code();
+        } else if (strcmp(command, "tarball") == 0) {
+            tarball();
+        } else if (strcmp(command, "exit") == 0) {
             printf("Exiting txtmax...\n");
             break;
         } else {
