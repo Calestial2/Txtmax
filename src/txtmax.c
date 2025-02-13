@@ -512,9 +512,6 @@ void deploy() {
     system("gcc deploy.c -o deploy && ,/deploy");
 }
 
-void themes() {
-    system("gcc themes.c -o themes && ./themes");
-
 void getFileSize() {
     char filename[256]; // Buffer for filename
     FILE *file;
@@ -2203,12 +2200,6 @@ void man_txtmax() {
     
     printf("       markdown\n");
     printf("           Create Markdown Files.\n\n");
-
-    printf("       format\n");
-    printf("           Format your code wity clang-format and black.\n\n");
-
-    printf("       themes\n");
-    printf("           Express yourself with Themes.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -2352,8 +2343,6 @@ void help() {
     printf("  benchmark               Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n");
     printf("  markdown                Create Markdown Files\n");
     printf("  deploy                  Deploy your code to Heroku CLI\n");
-    printf("  format                  Format your code with clang-format and Black\n");
-    printf("  themes                  Express yourself with Themes.\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2569,10 +2558,6 @@ int main() {
             markdown();
         } else if (strcmp(command, "deploy") == 0) {
             deploy();
-        } else if (strcmp(command, "themes") == 0) {
-            themes();
-        } else if (strcmp(command, "format") == 0) {
-            format_code();
         } else if (strcmp(command, "tarball") == 0) {
             tarball();
         } else if (strcmp(command, "exit") == 0) {
