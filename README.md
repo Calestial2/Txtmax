@@ -330,6 +330,23 @@ To utilize Txtmax Deploy, simply type the command `deploy` within Txtmax.
 **Note:**
 Ensure that Heroku CLI is installed on your Linux system.
 
+## Txtmax Themes
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Themes+)](https://git.io/typing-svg)
+
+Txtmax Themes is a feature in Txtmax for installing a variety of themes.
+
+**Commands:**
+- `list`: List all available themes.
+- `install [theme-name]`: Install the specified theme.
+- `exit`: Exit the theme installation process.
+
+**Txtmax Themes:**
+Express yourself with Txtmax's themes! There are a variety of themes to choose from:
+
+1. **Ubuntu-like Theme**: A polished, Ubuntu-like theme with deep purple and lighter text. Requires TrueColor (24-bit format) and RGB. Install using: `install-deep-purple`
+2. **Deep Dark Theme**: A deep black theme. Install using: `install-black-theme`
+3. **Greyish Theme**: A gray theme. Install using: `install-gray-theme`
+
 ## UI
 
 Terminal-based, feature-rich, user-friendly, and lightweight, it presents '~/txtmax' as the command prompt, enabling users to enter commands. Upon launching, it greets with: 
