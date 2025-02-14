@@ -524,6 +524,7 @@ Our platform supports a vast array of popular programming languages, encompassin
 - **src/Makefile**: Makefile to automate the process
 - **src/security.c**: Code of Txtmax Security
 - **src/deploy.c**: Code for Txtmax Deploy
+- **src/themes.c**: Code for Txtmax Themes 
 - **install.sh**: Installer Script that automates installing Txtmax 
 - **CHANGELOG.md**: Document detailing changes
 - **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
