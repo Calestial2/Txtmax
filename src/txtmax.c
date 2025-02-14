@@ -2564,6 +2564,10 @@ int main() {
             markdown();
         } else if (strcmp(command, "deploy") == 0) {
             deploy();
+        } else if (strcmp(command, "format") == 0) {
+            format_code();
+        } else if (strcmp(command, "themes") == 0) {
+            themes();
         } else if (strcmp(command, "tarball") == 0) {
             tarball();
         } else if (strcmp(command, "exit") == 0) {
