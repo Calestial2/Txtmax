@@ -333,6 +333,8 @@ Ensure that Heroku CLI is installed on your Linux system.
 ## Txtmax Themes
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Themes+)](https://git.io/typing-svg)
 
+**Txtmax Themes:**
+
 Txtmax Themes is a feature in Txtmax for installing a variety of themes.
 
 **Commands:**
