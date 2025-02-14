@@ -596,43 +596,42 @@ void benchmark() {
 }
 
 void format_code() {
-    char formatter[MAX_COMMAND_LENGTH];
-    char filename[MAX_FILENAME_LENGTH];
-    char command[MAX_COMMAND_LENGTH];
+    char choice[20];
+    char filename[256];
 
-    // Prompt for formatter
-    printf("Choose formatter (clang-format/black): ");
-    if (scanf("%255s", formatter) != 1) {
+    // Prompt user to choose formatter
+    printf("Choose a formatter (clang-format or black): ");
+    if (scanf("%19s", choice) != 1) {
         fprintf(stderr, "Error reading input.\n");
         return;
     }
 
-    // Validate choice
-    if (strcmp(formatter, "clang-format") != 0 && strcmp(formatter, "black") != 0) {
-        fprintf(stderr, "Invalid choice. Please enter 'clang-format' or 'black'.\n");
+    // Validate input
+    if (strcmp(choice, "clang-format") != 0 && strcmp(choice, "black") != 0) {
+        fprintf(stderr, "Invalid choice. Please choose either 'clang-format' or 'black'.\n");
         return;
     }
 
-    // Prompt for filename
-    printf("Enter filename (including extension): ");
-    if (scanf("%199s", filename) != 1) {
+    // Prompt user for filename
+    printf("Enter the filename with extension: ");
+    if (scanf("%255s", filename) != 1) {
         fprintf(stderr, "Error reading filename.\n");
         return;
     }
 
-    // Construct command
-    if (strcmp(formatter, "clang-format") == 0) {
-        snprintf(command, sizeof(command), "clang-format -i %s", filename);
+    // Construct and execute the system command
+    char command[300];
+    if (strcmp(choice, "clang-format") == 0) {
+        snprintf(command, sizeof(command), "clang-format -i \"%s\"", filename);
     } else {
-        snprintf(command, sizeof(command), "black %s", filename);
+        snprintf(command, sizeof(command), "black \"%s\"", filename);
     }
 
-    // Execute command
-    int status = system(command);
-    if (status == -1) {
-        perror("system() failed");
+    int result = system(command);
+    if (result == -1) {
+        fprintf(stderr, "Failed to execute command.\n");
     } else {
-        printf("Formatting completed successfully.\n");
+        printf("Formatting complete for %s using %s.\n", filename, choice);
     }
 }
 
@@ -828,6 +827,10 @@ void packages() {
     } else {
         printf("Package '%s' installed successfully using %s.\n", package_name, package_manager);
     }
+}
+
+void themes() {
+     system("gcc txtmax.c -o txtmax");
 }
 
 void api() {
@@ -1976,7 +1979,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: around 200 KB\n");
-    fprintf(file, "Version: 13.8.15\n");
+    fprintf(file, "Version: 14.0.0\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -2200,6 +2203,12 @@ void man_txtmax() {
     
     printf("       markdown\n");
     printf("           Create Markdown Files.\n\n");
+
+    printf("       themes\n");
+    printf("           Express yourself with Themes.\n\n");
+
+    printf("       format\n");
+    printf("           Format code with clang-format ans black.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
