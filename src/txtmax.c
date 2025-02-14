@@ -17,21 +17,18 @@
 #define MAX_CONTENT 1024
 #define MAX_URL_LENGTH 2048
 #define MAX_LINE_LENGTH 1024
-#define MAX_FILENAME_LENGTH 256
+#define MAX_FILENAME_LENGTH 268  
 #define MAX_CONTENT_LENGTH 1024
-#define MAX_INPUT_SIZE 256
 #define MY_MAX_INPUT 1024
 #define MAX_FILENAME 256
 #define MAX_LINE 1024
 #define MAX_FILES 100
-#define MAX_FILENAME 256
-#define MAX_PATH 1024   
-#define MAX_FILE_NAME 255 
+#define MAX_PATH 1024
+#define MAX_FILE_NAME 255
 #define MAX_LEN 100
 #define RECYCLE_BIN "recycle_bin"
 #define MAX_FILENAME_LEN 256
 #define MAX_COMMAND_LENGTH 256
-#define MAX_FILENAME_LENGTH 200
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
