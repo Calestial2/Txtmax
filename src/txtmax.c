@@ -2349,6 +2349,8 @@ void help() {
     printf("  benchmark               Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches.\n");
     printf("  markdown                Create Markdown Files\n");
     printf("  deploy                  Deploy your code to Heroku CLI\n");
+    printf("  format                  Format your code with clang-format and black\n");
+    printf("  themes                  Express yourself with Themes\n");
     printf("  exit                    Exit txtmax\n");
 }
 
