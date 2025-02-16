@@ -29,6 +29,7 @@
 #define RECYCLE_BIN "recycle_bin"
 #define MAX_FILENAME_LEN 256
 #define MAX_COMMAND_LENGTH 256
+#define BUFFER_SIZE 4096
 
 // ANSI Colors for Syntax Highlighting
 #define COLOR_RESET "\033[0m"
@@ -633,46 +634,48 @@ void format_code() {
 }
 
 void quick_run() {
-    char filename[MAX_INPUT_SIZE];
-    char compiler[MAX_INPUT_SIZE];
-    char libraries[MAX_INPUT_SIZE];
-    char command[MAX_INPUT_SIZE];
-    char temp[MAX_INPUT_SIZE];
+    char filename[MAX_INPUT_SIZE], compiler[MAX_INPUT_SIZE], libraries[MAX_INPUT_SIZE], args[MAX_INPUT_SIZE], command[MAX_INPUT_SIZE];
 
-    // Prompt for filename
     printf("Enter the file name with extension (e.g., program.c, script.py): ");
     if (fgets(filename, sizeof(filename), stdin) == NULL) {
         fprintf(stderr, "Error reading file name.\n");
         return;
     }
-    filename[strcspn(filename, "\n")] = 0; // Remove trailing newline
+    filename[strcspn(filename, "\n")] = 0;
 
-    // Check if the file exists
-    FILE *file = fopen(filename, "r");
-    if (!file) {
+    if (access(filename, F_OK) == -1) {
         perror("Error: File does not exist");
         return;
     }
-    fclose(file);
 
-    // Prompt for compiler/interpreter
-    printf("Enter the compiler or interpreter (gcc, g++, clang, python, node, nasm, tcl, bash, ruby, perl, rustc, go): ");
+    printf("Enter the compiler or interpreter: ");
     if (fgets(compiler, sizeof(compiler), stdin) == NULL) {
         fprintf(stderr, "Error reading compiler or interpreter.\n");
         return;
     }
-    compiler[strcspn(compiler, "\n")] = 0; // Remove trailing newline
+    compiler[strcspn(compiler, "\n")] = 0;
 
-    // Prompt for external libraries
+    snprintf(command, sizeof(command), "command -v %s > /dev/null 2>&1", compiler);
+    if (system(command) != 0) {
+        printf("Error: Compiler/interpreter '%s' is not installed.\n", compiler);
+        return;
+    }
+
     printf("Enter the external libraries (or 'n' if none): ");
     if (fgets(libraries, sizeof(libraries), stdin) == NULL) {
         fprintf(stderr, "Error reading libraries.\n");
         return;
     }
-    libraries[strcspn(libraries, "\n")] = 0; // Remove trailing newline
+    libraries[strcspn(libraries, "\n")] = 0;
 
-    // Match compiler/interpreter and build the command
-    const char *ext = strrchr(filename, '.'); // Get file extension
+    printf("Enter additional compilation/execution arguments (or 'n' if none): ");
+    if (fgets(args, sizeof(args), stdin) == NULL) {
+        fprintf(stderr, "Error reading arguments.\n");
+        return;
+    }
+    args[strcspn(args, "\n")] = 0;
+
+    const char *ext = strrchr(filename, '.');
     if (!ext) {
         printf("Error: Unable to detect file extension.\n");
         return;
@@ -680,79 +683,65 @@ void quick_run() {
 
     if (strcmp(compiler, "gcc") == 0 || strcmp(compiler, "clang") == 0) {
         if (strcmp(ext, ".c") == 0) {
-            snprintf(command, sizeof(command), "%s %s %s -o output && ./output", compiler, filename, strcmp(libraries, "n") == 0 ? "" : libraries);
+            snprintf(command, sizeof(command), "%s %s %s %s -o output && ./output", compiler, filename, strcmp(libraries, "n") == 0 ? "" : libraries, strcmp(args, "n") == 0 ? "" : args);
         } else {
             printf("Error: %s is only compatible with C files.\n", compiler);
             return;
         }
     } else if (strcmp(compiler, "g++") == 0) {
         if (strcmp(ext, ".cpp") == 0 || strcmp(ext, ".cxx") == 0 || strcmp(ext, ".cc") == 0) {
-            snprintf(command, sizeof(command), "g++ %s %s -o output && ./output", filename, strcmp(libraries, "n") == 0 ? "" : libraries);
+            snprintf(command, sizeof(command), "g++ %s %s %s -o output && ./output", filename, strcmp(libraries, "n") == 0 ? "" : libraries, strcmp(args, "n") == 0 ? "" : args);
         } else {
-            printf("Error: g++ is only compatible with C++ files (.cpp, .cxx, .cc).\n");
+            printf("Error: g++ is only compatible with C++ files.\n");
             return;
         }
     } else if (strcmp(compiler, "python") == 0) {
         if (strcmp(ext, ".py") == 0) {
-            snprintf(command, sizeof(command), "python %s", filename);
+            snprintf(command, sizeof(command), "python %s %s", filename, strcmp(args, "n") == 0 ? "" : args);
         } else {
             printf("Error: Python is only compatible with .py files.\n");
             return;
         }
-    } else if (strcmp(compiler, "node") == 0) {
-        if (strcmp(ext, ".js") == 0) {
-            snprintf(command, sizeof(command), "node %s", filename);
+    } else if (strcmp(compiler, "java") == 0) {
+        if (strcmp(ext, ".java") == 0) {
+            snprintf(command, sizeof(command), "javac %s && java %s %s", filename, strtok(filename, "."), strcmp(args, "n") == 0 ? "" : args);
         } else {
-            printf("Error: Node.js is only compatible with .js files.\n");
+            printf("Error: Java is only compatible with .java files.\n");
             return;
         }
-    } else if (strcmp(compiler, "nasm") == 0) {
-        if (strcmp(ext, ".asm") == 0) {
-            snprintf(command, sizeof(command), "nasm -f elf64 %s -o output.o && gcc %s output.o -o output && ./output", filename, strcmp(libraries, "n") == 0 ? "" : libraries);
+    } else if (strcmp(compiler, "csharp") == 0 || strcmp(compiler, "csc") == 0) {
+        if (strcmp(ext, ".cs") == 0) {
+            snprintf(command, sizeof(command), "csc %s %s -out:output.exe && mono output.exe", filename, strcmp(args, "n") == 0 ? "" : args);
         } else {
-            printf("Error: NASM is only compatible with .asm files.\n");
+            printf("Error: C# is only compatible with .cs files.\n");
             return;
         }
-    } else if (strcmp(compiler, "tcl") == 0) {
-        if (strcmp(ext, ".tcl") == 0) {
-            snprintf(command, sizeof(command), "tclsh %s", filename);
+    } else if (strcmp(compiler, "swift") == 0) {
+        if (strcmp(ext, ".swift") == 0) {
+            snprintf(command, sizeof(command), "swift %s %s", filename, strcmp(args, "n") == 0 ? "" : args);
         } else {
-            printf("Error: TCL is only compatible with .tcl files.\n");
+            printf("Error: Swift is only compatible with .swift files.\n");
             return;
         }
-    } else if (strcmp(compiler, "bash") == 0) {
-        if (strcmp(ext, ".sh") == 0) {
-            snprintf(command, sizeof(command), "bash %s", filename);
+    } else if (strcmp(compiler, "php") == 0) {
+        if (strcmp(ext, ".php") == 0) {
+            snprintf(command, sizeof(command), "php %s %s", filename, strcmp(args, "n") == 0 ? "" : args);
         } else {
-            printf("Error: Bash is only compatible with .sh files.\n");
+            printf("Error: PHP is only compatible with .php files.\n");
             return;
         }
-    } else if (strcmp(compiler, "ruby") == 0) {
-        if (strcmp(ext, ".rb") == 0) {
-            snprintf(command, sizeof(command), "ruby %s", filename);
+    } else if (strcmp(compiler, "kotlin") == 0) {
+        if (strcmp(ext, ".kt") == 0) {
+            snprintf(command, sizeof(command), "kotlinc %s -include-runtime -d output.jar && java -jar output.jar %s", filename, strcmp(args, "n") == 0 ? "" : args);
         } else {
-            printf("Error: Ruby is only compatible with .rb files.\n");
+            printf("Error: Kotlin is only compatible with .kt files.\n");
             return;
         }
-    } else if (strcmp(compiler, "perl") == 0) {
-        if (strcmp(ext, ".pl") == 0) {
-            snprintf(command, sizeof(command), "perl %s", filename);
+    } else if (strcmp(compiler, "lua") == 0) {
+        if (strcmp(ext, ".lua") == 0) {
+            snprintf(command, sizeof(command), "lua %s %s", filename, strcmp(args, "n") == 0 ? "" : args);
         } else {
-            printf("Error: Perl is only compatible with .pl files.\n");
-            return;
-        }
-    } else if (strcmp(compiler, "rustc") == 0) {
-        if (strcmp(ext, ".rs") == 0) {
-            snprintf(command, sizeof(command), "rustc %s %s -o output && ./output", filename, strcmp(libraries, "n") == 0 ? "" : libraries);
-        } else {
-            printf("Error: rustc is only compatible with .rs files.\n");
-            return;
-        }
-    } else if (strcmp(compiler, "go") == 0) {
-        if (strcmp(ext, ".go") == 0) {
-            snprintf(command, sizeof(command), "go run %s", filename);
-        } else {
-            printf("Error: Go is only compatible with .go files.\n");
+            printf("Error: Lua is only compatible with .lua files.\n");
             return;
         }
     } else {
@@ -760,13 +749,11 @@ void quick_run() {
         return;
     }
 
-    // Execute the command
     printf("Running command: %s\n", command);
     if (system(command) != 0) {
-        printf("Error: Failed to execute the command.\n");
+        printf("Error:Failed to execute the command.\n");
     } else {
-        printf("Execution completed successfully.\n");
-    }
+        printf("Execution completed successfully.\n")
 }
 
 void packages() {
@@ -774,11 +761,10 @@ void packages() {
     char package_name[MAX_INPUT_SIZE];
     char command[MAX_INPUT_SIZE];
 
-    printf("Enter package manager (pip/npm/gem/go/yarn/composer/cargo/nuget/apt): ");
+    printf("Enter package manager: ");
     fgets(package_manager, sizeof(package_manager), stdin);
-    package_manager[strcspn(package_manager, "\n")] = 0; // Remove trailing newline
+    package_manager[strcspn(package_manager, "\n")] = 0;
 
-    // Check for valid package manager
     if (strcmp(package_manager, "pip") != 0 &&
         strcmp(package_manager, "npm") != 0 &&
         strcmp(package_manager, "gem") != 0 &&
@@ -787,16 +773,26 @@ void packages() {
         strcmp(package_manager, "composer") != 0 &&
         strcmp(package_manager, "cargo") != 0 &&
         strcmp(package_manager, "nuget") != 0 &&
-        strcmp(package_manager, "apt") != 0) {
+        strcmp(package_manager, "apt") != 0 &&
+        strcmp(package_manager, "brew") != 0 &&
+        strcmp(package_manager, "pacman") != 0 &&
+        strcmp(package_manager, "dnf") != 0 &&
+        strcmp(package_manager, "zypper") != 0 &&
+        strcmp(package_manager, "snap") != 0 &&
+        strcmp(package_manager, "flatpak") != 0 &&
+        strcmp(package_manager, "choco") != 0 &&
+        strcmp(package_manager, "winget") != 0 &&
+        strcmp(package_manager, "pipx") != 0 &&
+        strcmp(package_manager, "cargo") != 0 &&
+        strcmp(package_manager, "port") != 0) {
         printf("Error: Unsupported package manager '%s'.\n", package_manager);
         return;
     }
 
     printf("Enter package name: ");
     fgets(package_name, sizeof(package_name), stdin);
-    package_name[strcspn(package_name, "\n")] = 0; // Remove trailing newline
+    package_name[strcspn(package_name, "\n")] = 0;
 
-    // Construct the installation command based on the package manager
     if (strcmp(package_manager, "pip") == 0) {
         snprintf(command, sizeof(command), "pip install %s", package_name);
     } else if (strcmp(package_manager, "npm") == 0) {
@@ -815,9 +811,28 @@ void packages() {
         snprintf(command, sizeof(command), "nuget install %s", package_name);
     } else if (strcmp(package_manager, "apt") == 0) {
         snprintf(command, sizeof(command), "sudo apt-get install %s", package_name);
+    } else if (strcmp(package_manager, "brew") == 0) {
+        snprintf(command, sizeof(command), "brew install %s", package_name);
+    } else if (strcmp(package_manager, "pacman") == 0) {
+        snprintf(command, sizeof(command), "sudo pacman -S %s", package_name);
+    } else if (strcmp(package_manager, "dnf") == 0) {
+        snprintf(command, sizeof(command), "sudo dnf install %s", package_name);
+    } else if (strcmp(package_manager, "zypper") == 0) {
+        snprintf(command, sizeof(command), "sudo zypper install %s", package_name);
+    } else if (strcmp(package_manager, "snap") == 0) {
+        snprintf(command, sizeof(command), "sudo snap install %s", package_name);
+    } else if (strcmp(package_manager, "flatpak") == 0) {
+        snprintf(command, sizeof(command), "flatpak install %s", package_name);
+    } else if (strcmp(package_manager, "choco") == 0) {
+        snprintf(command, sizeof(command), "choco install %s", package_name);
+    } else if (strcmp(package_manager, "winget") == 0) {
+        snprintf(command, sizeof(command), "winget install %s", package_name);
+    } else if (strcmp(package_manager, "pipx") == 0) {
+        snprintf(command, sizeof(command), "pipx install %s", package_name);
+    } else if (strcmp(package_manager, "port") == 0) {
+        snprintf(command, sizeof(command), "sudo port install %s", package_name);
     }
 
-    // Execute the installation command
     printf("Running command: %s\n", command);
     if (system(command) != 0) {
         printf("Error: Failed to install the package '%s' using %s.\n", package_name, package_manager);
@@ -911,159 +926,168 @@ void sqlite() {
     printf("SQLite command saved and executed.\n");
 }
 
-// Function prototypes
 void jumpToLine(FILE *file, int lineNumber);
-void searchInFile(FILE *file, const char *fileName, const char *searchPattern); // Pass fileName
+void searchAndReplace(FILE *file, const char *fileName, const char *pattern);
 void countWordOccurrences(FILE *file, const char *word);
+FILE *safeFileOpen(const char *fileName, const char *mode);
 
 void advance() {
-    char fileName[256];
-    char searchPattern[256];
-    char wordToCount[256];
+    char fileName[256], searchPattern[256], wordToCount[256];
     int lineNumber;
 
-    // Prompt for file name
-    printf("Enter the file name (with extension): ");
-    if (scanf("%255s", fileName) != 1) {
-        fprintf(stderr, "Error reading file name.\n");
-        return;
-    }
+    printf("Enter file name: ");
+    if (scanf("%255s", fileName) != 1) return;
 
-    // Open the file
-    FILE *file = fopen(fileName, "r+"); // Open in read/write mode
-    if (file == NULL) {
-        perror("Error opening file");
-        return;
-    }
+    FILE *file = safeFileOpen(fileName, "r+");
+    if (!file) return;
 
-    // Jump to a specific line
-    printf("Jumping: Enter the line number to jump to: ");
+    printf("Enter line number to jump to: ");
     if (scanf("%d", &lineNumber) != 1) {
-        fprintf(stderr, "Error reading line number.\n");
         fclose(file);
         return;
     }
     jumpToLine(file, lineNumber);
 
-    // Search using regex and edit
-    printf("Regex Search: Enter the pattern to search for: ");
-    if (scanf(" %[^\n]s", searchPattern) != 1) { // Read pattern including spaces
-        fprintf(stderr, "Error reading search pattern.\n");
+    printf("Enter regex pattern to search for: ");
+    if (scanf(" %[^\n]s", searchPattern) != 1) {
         fclose(file);
         return;
     }
-    searchInFile(file, fileName, searchPattern); // Pass fileName to searchInFile
+    searchAndReplace(file, fileName, searchPattern);
 
-    // Word count
-    printf("Word Count: Enter the word to count occurrences: ");
+    printf("Enter word to count occurrences: ");
     if (scanf(" %[^\n]s", wordToCount) != 1) {
-        fprintf(stderr, "Error reading word to count.\n");
         fclose(file);
         return;
     }
     countWordOccurrences(file, wordToCount);
 
-    // Close the file
     fclose(file);
 }
 
-void jumpToLine(FILE *file, int lineNumber) {
-    char buffer[MAX_LINE_LENGTH];
-    int currentLine = 1;
+FILE *safeFileOpen(const char *fileName, const char *mode) {
+    struct stat buffer;
+    if (stat(fileName, &buffer) != 0) {
+        fprintf(stderr, "Error: File '%s' does not exist.\n", fileName);
+        return NULL;
+    }
 
-    rewind(file); // Reset file pointer to the beginning
-    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+    FILE *file = fopen(fileName, mode);
+    if (!file) {
+        perror("Error opening file");
+        return NULL;
+    }
+
+    int fd = fileno(file);
+    if (fd == -1 || flock(fd, LOCK_EX) != 0) {
+        perror("Error locking file");
+        fclose(file);
+        return NULL;
+    }
+    return file;
+}
+
+void jumpToLine(FILE *file, int lineNumber) {
+    char *buffer = malloc(BUFFER_SIZE);
+    if (!buffer) {
+        fprintf(stderr, "Memory allocation failed.\n");
+        return;
+    }
+
+    rewind(file);
+    int currentLine = 1;
+    while (fgets(buffer, BUFFER_SIZE, file)) {
         if (currentLine == lineNumber) {
             printf("Line %d: %s", currentLine, buffer);
+            free(buffer);
             return;
         }
         currentLine++;
     }
+
     printf("Line %d not found.\n", lineNumber);
+    free(buffer);
 }
 
-void searchInFile(FILE *file, const char *fileName, const char *searchPattern) {  // Receive fileName
-    char buffer[MAX_LINE_LENGTH];
-    char tempFileName[] = "temp.txt";
-    FILE *tempFile = fopen(tempFileName, "w+"); // Temporary file for writing
-    if (tempFile == NULL) {
-        perror("Error opening temporary file");
+void searchAndReplace(FILE *file, const char *fileName, const char *pattern) {
+    char *buffer = malloc(BUFFER_SIZE);
+    if (!buffer) {
+        fprintf(stderr, "Memory allocation failed.\n");
         return;
     }
 
-    int lineNumber = 0;
-    int found = 0;
+    char tempFileName[] = "tempfile.txt";
+    FILE *tempFile = fopen(tempFileName, "w+");
+    if (!tempFile) {
+        perror("Error creating temp file");
+        free(buffer);
+        return;
+    }
 
     regex_t regex;
-    if (regcomp(&regex, searchPattern, REG_EXTENDED) != 0) {
+    if (regcomp(&regex, pattern, REG_EXTENDED | REG_ICASE) != 0) {
         printf("Invalid regex pattern.\n");
+        free(buffer);
         fclose(tempFile);
         return;
     }
 
-    rewind(file); // Reset file pointer to the beginning
-    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+    rewind(file);
+    int lineNumber = 0, matchFound = 0;
+
+    while (fgets(buffer, BUFFER_SIZE, file)) {
         lineNumber++;
         if (regexec(&regex, buffer, 0, NULL, 0) == 0) {
-            printf("Found match at line %d: %s", lineNumber, buffer);
-            found = 1;
-            char replacement[MAX_LINE_LENGTH];
-            printf("Enter the replacement text: ");
-            if (scanf(" %[^\n]s", replacement) != 1) { // Read replacement text including spaces
-                fprintf(stderr, "Error reading replacement text.\n");
-                break;
-            }
-            fprintf(tempFile, "%s\n", replacement); // Write replacement to temp file
+            printf("Match at line %d: %s", lineNumber, buffer);
+            matchFound = 1;
+
+            char replacement[BUFFER_SIZE];
+            printf("Enter replacement: ");
+            if (scanf(" %[^\n]s", replacement) != 1) break;
+            fprintf(tempFile, "%s\n", replacement);
         } else {
-            fprintf(tempFile, "%s", buffer); // Write original line to temp file
+            fprintf(tempFile, "%s", buffer);
         }
     }
 
-    regfree(&regex); // Free regex memory
-
+    regfree(&regex);
+    free(buffer);
     fclose(tempFile);
 
-    if (found) {
-        // Replace original file with the temporary file
-        if (freopen(fileName, "w+", file) == NULL) { // Use fileName
-            perror("Error reopening original file for writing");
-            return;
+    if (matchFound) {
+        if (rename(tempFileName, fileName) != 0) {
+            perror("Error updating file");
+        } else {
+            printf("File updated successfully.\n");
         }
-        tempFile = fopen(tempFileName, "r");
-        if (tempFile == NULL) {
-            perror("Error reopening temporary file for reading");
-            return;
-        }
-        while (fgets(buffer, sizeof(buffer), tempFile) != NULL) {
-            fputs(buffer, file);
-        }
-        fclose(tempFile);
-        remove(tempFileName); // Remove temporary file
-        printf("File has been updated with the replacements.\n");
     } else {
-        printf("No matches found for pattern '%s'.\n", searchPattern);
-        remove(tempFileName); // Remove temporary file
+        remove(tempFileName);
+        printf("No matches found.\n");
     }
 }
 
 void countWordOccurrences(FILE *file, const char *word) {
-    char buffer[MAX_LINE_LENGTH];
-    int count = 0;
-    int wordLength = strlen(word);
+    char *buffer = malloc(BUFFER_SIZE);
+    if (!buffer) {
+        fprintf(stderr, "Memory allocation failed.\n");
+        return;
+    }
 
-    rewind(file); // Reset file pointer to the beginning
-    while (fgets(buffer, sizeof(buffer), file) != NULL) {
-        char *pos = buffer;
-        while ((pos = strstr(pos, word)) != NULL) {
-            // Ensure it's a standalone word
-            if ((pos == buffer || !isalnum(*(pos - 1))) && !isalnum(*(pos + wordLength))) {
+    int count = 0, wordLen = strlen(word);
+    rewind(file);
+
+    while (fgets(buffer, BUFFER_SIZE, file)) {
+        char *ptr = buffer;
+        while ((ptr = strcasestr(ptr, word))) {
+            if ((ptr == buffer || !isalnum(*(ptr - 1))) && !isalnum(*(ptr + wordLen))) {
                 count++;
             }
-            pos += wordLength; // Move past the found word
+            ptr += wordLen;
         }
     }
 
-    printf("The word '%s' appears %d times in the file.\n", word, count);
+    printf("The word '%s' appears %d times.\n", word, count);
+    free(buffer);
 }
 
 void tmux_integration() {
@@ -1976,7 +2000,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: around 200 KB\n");
-    fprintf(file, "Version: 14.0.0\n");
+    fprintf(file, "Version: 14.4.1\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -2471,7 +2495,7 @@ int main() {
 
         if (strcmp(command, "help") == 0) {
             help();
-        } else if (strncmp(command, "create", 6) == 0) {
+        } else if (strncmp(command, "txtmax", 6) == 0) {
             char filename[MAX_INPUT_SIZE];
             sscanf(command + 7, "%s", filename);
             create_file(filename);
