@@ -537,6 +537,130 @@ void getFileSize() {
     printf("Size of \"%s\": %ld bytes\n", filename, size);
 }
 
+void mongo_shell_loop() {
+    char *input = (char *)malloc(MAX_INPUT_SIZE);
+    if (input == NULL) {
+        perror("Memory allocation failed");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("MongoDB Shell Interface - Type 'exit' to quit\n");
+
+    while (1) {
+        printf("Type Code: ");
+        
+        if (fgets(input, MAX_INPUT_SIZE, stdin) == NULL) {
+            perror("Error reading input");
+            free(input);
+            exit(EXIT_FAILURE);
+        }
+
+        input[strcspn(input, "\n")] = 0;
+
+        if (strcmp(input, "exit") == 0) {
+            break;
+        }
+
+        if (strlen(input) == 0) {
+            fprintf(stderr, "Error: Empty input. Please enter valid MongoDB code.\n");
+            continue;
+        }
+
+        char *mongo_command = (char *)malloc(strlen(input) + 50);
+        if (mongo_command == NULL) {
+            perror("Memory allocation failed");
+            free(input);
+            exit(EXIT_FAILURE);
+        }
+
+        snprintf(mongo_command, strlen(input) + 50, "mongo --eval \"%s\"", input);
+        
+        if (system(mongo_command) == -1) {
+            perror("Error executing MongoDB command");
+        }
+
+        free(mongo_command);
+    }
+
+    free(input);
+    printf("Exiting MongoDB shell interface.\n");
+}
+
+void react() {
+    char appName[256];
+    char fileName[256];
+    char userChoice;
+    char isLastFile;
+
+    printf("Enter the name of your React app (including extension): ");
+    scanf("%s", appName);
+
+    char command[512];
+    snprintf(command, sizeof(command), "npx create-react-app %s", appName);
+    printf("Creating React app...\n");
+    system(command);
+
+    snprintf(command, sizeof(command), "cd %s", appName);
+    system(command);
+
+    while (1) {
+        printf("Do you want to create a file? (Type y for yes and n for no): ");
+        scanf(" %c", &userChoice);
+
+        if (userChoice == 'n') {
+            printf("Exiting file creation...\n");
+            break;
+        }
+
+        if (userChoice == 'y') {
+            printf("Enter the filename (including extension): ");
+            scanf("%s", fileName);
+
+            FILE *file = fopen(fileName, "w");
+            if (file == NULL) {
+                printf("Error creating file %s\n", fileName);
+                continue;
+            }
+
+            printf("File %s created successfully. Enter your React code below (Type ':wq' to save and exit):\n", fileName);
+            char codeLine[1024];
+
+            while (1) {
+                printf(">> ");
+                fgets(codeLine, sizeof(codeLine), stdin);
+
+                if (strncmp(codeLine, ":wq", 3) == 0) {
+                    printf("File saved.\n");
+                    break;
+                }
+
+                fprintf(file, "%s", codeLine);
+            }
+
+            fclose(file);
+
+            while (1) {
+                printf("Is this the last file? (Type y for yes and n for no): ");
+                scanf(" %c", &isLastFile);
+
+                if (isLastFile == 'n') {
+                    break;
+                } else if (isLastFile == 'y') {
+                    printf("Last file saved.\n");
+                    snprintf(command, sizeof(command), "cd %s", appName);
+                    system(command);
+                    system("npm start");
+                    return;
+                } else {
+                    printf("Invalid choice, please type 'y' or 'n'.\n");
+                }
+            }
+        } else {
+            printf("Invalid choice, please type 'y' or 'n'.\n");
+        }
+    }
+}
+
 void benchmark() {
     struct timeval start_wall, end_wall;
     struct rusage start_usage, end_usage;
@@ -2230,6 +2354,12 @@ void man_txtmax() {
 
     printf("       format\n");
     printf("           Format code with clang-format ans black.\n\n");
+
+    printf("       mongodb\n");
+    printf("           Work with MongoDB with Mongo Shell.\n\n");
+
+    printf("       react\n");
+    printf("           Work with React Framework.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -2375,6 +2505,8 @@ void help() {
     printf("  deploy                  Deploy your code to Heroku CLI\n");
     printf("  format                  Format your code with clang-format and black\n");
     printf("  themes                  Express yourself with Themes\n");
+    printf("  mongodb                 Work with MongoDB Database via Mongo Shell\n");
+    printf("  react                   Work with React Framework\n");
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2594,6 +2726,10 @@ int main() {
             format_code();
         } else if (strcmp(command, "themes") == 0) {
             themes();
+        } else if (strcmp(command, "react") == 0) {
+            react();  
+        } else if (strcmp(command, "mongodb") == 0) {
+            mongo_shell_loop();
         } else if (strcmp(command, "tarball") == 0) {
             tarball();
         } else if (strcmp(command, "exit") == 0) {
