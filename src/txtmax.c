@@ -877,7 +877,7 @@ void quick_run() {
     if (system(command) != 0) {
         printf("Error:Failed to execute the command.\n");
     } else {
-        printf("Execution completed successfully.\n")
+        printf("Execution completed successfully.\n");
 }
 
 void packages() {
