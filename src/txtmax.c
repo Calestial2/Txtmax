@@ -2008,7 +2008,7 @@ void versionf() {
 
     fprintf(file, "Name: txtmax\n");
     fprintf(file, "Size: around 200 KB\n");
-    fprintf(file, "Version: 14.4.1\n");
+    fprintf(file, "Version: 14.2.9\n");
     fprintf(file, "Maintainer: Calestial Ashley\n");
 
     fclose(file);
@@ -2117,7 +2117,7 @@ void man_txtmax() {
     printf("       help\n");
     printf("           Display a list of all available commands and their descriptions.\n\n");
 
-    printf("       create <filename>\n");
+    printf("       txtmax <filename>\n");
     printf("           Create a new text file and save it locally. You can write code in over 50 programming\n");
     printf("           languages, with syntax highlighting and support for version control (commit message, branch, version).\n\n");
 
@@ -2238,12 +2238,6 @@ void man_txtmax() {
 
     printf("       format\n");
     printf("           Format code with clang-format ans black.\n\n");
-
-    printf("       mongodb\n");
-    printf("           Work with MongoDB with Mongo Shell.\n\n");
-
-    printf("       react\n");
-    printf("           Work with React Framework.\n\n");
     
     printf("       exit\n");
     printf("           Exit the Txtmax editor.\n\n");
@@ -2350,7 +2344,7 @@ void help() {
     printf("Commands:\n");
     printf("  help                    Show this help message\n");
     printf("  man txtmax              Comprehensive Manual\n");
-    printf("  create <filename>       Create a new file and save locally\n");
+    printf("  txtmax <filename>       Create a new file and save locally\n");
     printf("  rename                  Rename Files\n");
     printf("  movef                   Move Single or Multiple Files to an Folder.\n");
     printf("  files                   List all files in the current directory\n");
@@ -2388,9 +2382,7 @@ void help() {
     printf("  markdown                Create Markdown Files\n");
     printf("  deploy                  Deploy your code to Heroku CLI\n");
     printf("  format                  Format your code with clang-format and black\n");
-    printf("  themes                  Express yourself with Themes\n");
-    printf("  mongodb                 Work with MongoDB Database via Mongo Shell\n");
-    printf("  react                   Work with React Framework\n");
+    printf("  themes                  Express yourself with Themes\n"); u y
     printf("  exit                    Exit txtmax\n");
 }
 
@@ -2610,10 +2602,6 @@ int main() {
             format_code();
         } else if (strcmp(command, "themes") == 0) {
             themes();
-        } else if (strcmp(command, "react") == 0) {
-            react();  
-        } else if (strcmp(command, "mongodb") == 0) {
-            mongo_shell_loop();
         } else if (strcmp(command, "tarball") == 0) {
             tarball();
         } else if (strcmp(command, "exit") == 0) {
