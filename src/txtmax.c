@@ -645,6 +645,14 @@ void view_file(const char *filename) {
   fclose(file);
 }
 
+void mongodb() {
+    system("gcc mongo.c -o mongo && ./mongo");
+}
+
+void react() {
+    system("gcc react.c -o react && ./react");
+}
+
 void edit_file(const char *filename, int line_to_edit) {
   FILE *file = fopen(filename, "r+");
   if (!file) {
@@ -2221,7 +2229,7 @@ void versionf() {
 
   fprintf(file, "Name: txtmax\n");
   fprintf(file, "Size: around 200 KB\n");
-  fprintf(file, "Version: 14.0.0\n");
+  fprintf(file, "Version: 14.4.13\n");
   fprintf(file, "Maintainer: Calestial Ashley\n");
 
   fclose(file);
@@ -2334,9 +2342,9 @@ void man_txtmax() {
   printf("           Display a list of all available commands and their "
          "descriptions.\n\n");
 
-  printf("       create <filename>\n");
+  printf("       txtmax <filename>\n");
   printf("           Create a new text file and save it locally. You can write "
-         "code in over 50 programming\n");
+         "code in over 80 programming\n");
   printf("           languages, with syntax highlighting and support for "
          "version control (commit message, branch, version).\n\n");
 
@@ -2450,6 +2458,12 @@ void man_txtmax() {
   printf("       size\n");
   printf("           Retrieve File Size.\n\n");
 
+  printf("       react\n");
+  printf("           Run React Framework.\n\n");
+  
+  printf("       mongodb\n");
+  printf("           Use MongoDB Database.\n\n");
+ 
   printf("       multiplexer\n");
   printf("            Integration with Tmux.\n\n");
 
@@ -2640,6 +2654,8 @@ void help() {
   printf("  deploy                  Deploy your code to Heroku CLI\n");
   printf("  format                  Format your code with clang-format and "
          "black\n");
+  printf("  react                   Run React Framework\n");
+  printf("  mongodb                 Run MongoDB Database\n");
   printf("  themes                  Express yourself with Themes\n");
   printf("  exit                    Exit txtmax\n");
 }
@@ -2768,7 +2784,7 @@ int main() {
 
     if (strcmp(command, "help") == 0) {
       help();
-    } else if (strncmp(command, "create", 6) == 0) {
+    } else if (strncmp(command, "txtmax", 6) == 0) {
       char filename[MAX_INPUT_SIZE];
       sscanf(command + 7, "%s", filename);
       create_file(filename);
@@ -2866,7 +2882,11 @@ int main() {
     } else if (strcmp(command, "format") == 0) {
       format_code();
     } else if (strcmp(command, "themes") == 0) {
-      themes();
+      themes(); 
+    } else if (strcmp(command, "react") == 0) {
+      react();
+    } else if (strcmp(command, "mongodb") == 0) {
+      mongodb();
     } else if (strcmp(command, "tarball") == 0) {
       tarball();
     } else if (strcmp(command, "exit") == 0) {
