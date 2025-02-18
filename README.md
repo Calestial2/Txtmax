@@ -4,7 +4,7 @@
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-blue)
-![Version](https://img.shields.io/badge/version-14.0.0-blue)
+![Version](https://img.shields.io/badge/version-14.4.13-blue)
 ![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 ![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
@@ -61,6 +61,8 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **Markdown:** Supports Markdown Files
 - **Deploy:** Deploy your code to Heroku CLI
 - **Themes:** Expres yourself with Themes
+- **React Integration:** Integrates React Framework
+- **MongoDB Integration:** Integration with MongoDB Database
 - **Format:** Format your code with clang-format and black 
 - **Robust Git Integration:** Seamlessly integrate with Git for version control.
 
@@ -70,7 +72,7 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 
 - **help:** List all available commands.
 - **man txtmax:** Access the comprehensive manual for Txtmax.
-- **create <filename>:** Create a new file, write code in 80 languages, save and quit with :wq, type a commit message, branch, and version, and save it locally.
+- **txtmax <filename>:** Create a new file, write code in 80 languages, save and quit with :wq, type a commit message, branch, and version, and save it locally.
 - **rename:** Rename a file.
 - **movef:** Move multiple files to a folder.
 - **copy:** Copy multiple files to a folder.
@@ -103,6 +105,8 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 - **benchmark:** Shows Execution time and CPU Usage and Additional things like System CPU Time and Total CPU Time and Max Memory usage and Page Faults and Context Switches
 - **markdown:** Create Markdown files that prompt for a filename. You can write Markdown codes as easily as writing plain text. Additionally, you can use text formatting with simple commands. For example, typing `:bold hello` will highlight the text in bold, typing `:italic hello` will highlight the text in italics, and typing `:bold + italic hello` will highlight the text in bold italics. Furthermore, typing `:underlined hello` will underline the text, and typing `:strike through hello` will strike through the text. To save the file locally, use the `:wq` command to exit and save
 - **format:** Format your code using `clang-format` or `black`. The process will prompt you to choose either "clang-format" or "black." Once you make a selection, for example, "clang-format," it will request the filename, including its extension, and then proceed to format the code.
+- **react:** Run React Directly in Txtmax, it prompts for the app name and then creates a React app using `npx`. Next, it asks whether the user wants to create a file. If the user types 'y', the application will prompt for the filename, including its extension, and allow the user to start typing React code. Typing `:wq` will exit the editor, saving the file locally. Upon exiting, the application will ask if this is the last file and whether the user wants to start the server or continue editing. If the user types 'y', they can continuously create files; if they type 'n', a localhost server will be created
+- **mongodb:** Run MongoDB Commands Directly in Txtmax, it will check if MongoDB is installed, and then you can type MongoDB codes or commands, which will be executed accordingly.
 - **exit:** Exit the Txtmax editor.
 
 ## Automation
@@ -524,6 +528,8 @@ Our platform supports a vast array of popular programming languages, encompassin
 - **src/Makefile**: Makefile to automate the process
 - **src/security.c**: Code of Txtmax Security
 - **src/deploy.c**: Code for Txtmax Deploy
+- **src/react.c**: Code for Txtmax Integration with React
+- **src/mongo.c**: Code for Txtmax Integration with MongoDB 
 - **src/themes.c**: Code for Txtmax Themes 
 - **install.sh**: Installer Script that automates installing Txtmax 
 - **CHANGELOG.md**: Document detailing changes
