@@ -2,9 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [14.0.0] - 2025-02-14
+## [14.4.13] - 2025-02-18
 
 ### Added
-- Format command
-- variety of Themes
-- bugs fixes
+- Few Bug Fixes as always
+- Added React Framework Support
+- Added MongoDB Database Support
+
+### Changed 
+- The create command is renamed to txtmax
