@@ -535,6 +535,9 @@ Our platform supports a vast array of popular programming languages, encompassin
 - **CHANGELOG.md**: Document detailing changes
 - **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
 
+## Official Website 
+The Official Website of Txtmax is at [link](https://calestial2.github.io/txtmax-website/)
+
 ## Why Choose Txtmax?
 
 - **Comprehensive File Management:** Txtmax offers comprehensive file management, including creating, listing, viewing, searching files, deleting, and editing files and jumping to specific lines and Search And Replace.
