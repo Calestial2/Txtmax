@@ -356,6 +356,26 @@ Express yourself with Txtmax's themes! There are a variety of themes to choose f
 2. **Deep Dark Theme**: A deep black theme. Install using: `install-black-theme`
 3. **Greyish Theme**: A gray theme. Install using: `install-gray-theme`
 
+## Txtmax API Tester 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F71212&width=435&lines=Txtmax+API+Tester)](https://git.io/typing-sv
+
+**Txtmax API Tester** is an advanced tool that enables comprehensive API testing. It supports request methods via `curl`, authentication, and scripting. This allows users to test APIs directly within Txtmax, eliminating the need for external tools like Postman. While Txtmax previously had API testing commands such as `api` and `axios`, this new API Tester is significantly more advanced.
+
+To use the Txtmax API Tester, type `testapi` within Txtmax.
+
+**Commands:**
+
+- **list**: Displays all available commands.
+- **test**: Tests your APIs. You can specify a request method name like GET, GET with Headers, DELETE, GET with Query Parameters, GET with JSON via `curl`. For instance, when you type GET, it will prompt you for a URL and then execute the request. The process is similar for other methods.
+- **auth**: Authenticates with API providers such as Google and Twitter. Typing "Google" will prompt you for a link, after which it will execute a `curl` command via `popen()`. The process is the same for Twitter.
+- **script**: Tests APIs using scripting. You can specify a library name, either "axios" for JavaScript or "requests" for Python. It will then prompt you for a filename (including its extension), allow you to write your code, and execute the script automatically after saving and exiting with `:wq`.
+
+**Features:**
+
+- Supports request methods with real `curl` command output.
+- Supports authentication.
+- Supports testing.
+
 ## UI
 
 Terminal-based, feature-rich, user-friendly, and lightweight, it presents '~/txtmax' as the command prompt, enabling users to enter commands. Upon launching, it greets with: 
