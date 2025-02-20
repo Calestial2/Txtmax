@@ -2237,7 +2237,7 @@ void versionf() {
 
   fprintf(file, "Name: txtmax\n");
   fprintf(file, "Size: around 200 KB\n");
-  fprintf(file, "Version: 14.5.13\n");
+  fprintf(file, "Version: 14.5.14\n");
   fprintf(file, "Maintainer: Calestial Ashley\n");
 
   fclose(file);
@@ -2657,7 +2657,7 @@ void help() {
   printf("  sqlite                  Work with SQLite Database\n");
   printf("  openai                  Integration with OpenAI API Key\n");
   printf("  size                    Retrieval File Size,\n");
-  printf("  testapi                 Test your APIs,\n")
+  printf("  testapi                 Test your APIs,\n");
   printf("  multiplexer             Integration with Tmux.\n");
   printf("  benchmark               Shows Execution time and CPU Usage and "
          "Additional things like System CPU Time and Total CPU Time and Max "
