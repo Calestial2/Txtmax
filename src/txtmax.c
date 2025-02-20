@@ -653,6 +653,10 @@ void react() {
     system("gcc react.c -o react && ./react");
 }
 
+void testapi() {
+     system("gcc api-tester.c -o api-tester && ./api-tester");
+}
+
 void edit_file(const char *filename, int line_to_edit) {
   FILE *file = fopen(filename, "r+");
   if (!file) {
@@ -1049,7 +1053,9 @@ void packages() {
   }
 }
 
-void themes() { system("gcc txtmax.c -o txtmax"); }
+void themes() { 
+  system("gcc txtmax.c -o txtmax"); 
+}
 
 void api() {
   char url[MAX_URL_LENGTH];
@@ -1437,7 +1443,9 @@ void openai() {
   system(command);
 }
 
-void txtmaxnote() { system("gcc notebook.c -o notebook && ./notebook"); }
+void txtmaxnote() { 
+  system("gcc notebook.c -o notebook && ./notebook"); 
+}
 
 void auto_completion() {
   system("gcc -o auto_completion auto_completion.c -lncurses && "
@@ -2229,7 +2237,7 @@ void versionf() {
 
   fprintf(file, "Name: txtmax\n");
   fprintf(file, "Size: around 200 KB\n");
-  fprintf(file, "Version: 14.4.13\n");
+  fprintf(file, "Version: 14.5.13\n");
   fprintf(file, "Maintainer: Calestial Ashley\n");
 
   fclose(file);
@@ -2449,6 +2457,9 @@ void man_txtmax() {
   printf("       ignore");
   printf("           Create an .gitignore file.\n\n");
 
+  printf("       testapi");
+  printf("           Test your APIs.\n\n");
+  
   printf("       sqlite\n");
   printf("           Work with SQLite Database.\n\n");
 
@@ -2646,6 +2657,7 @@ void help() {
   printf("  sqlite                  Work with SQLite Database\n");
   printf("  openai                  Integration with OpenAI API Key\n");
   printf("  size                    Retrieval File Size,\n");
+  printf("  testapi                 Test your APIs,\n")
   printf("  multiplexer             Integration with Tmux.\n");
   printf("  benchmark               Shows Execution time and CPU Usage and "
          "Additional things like System CPU Time and Total CPU Time and Max "
@@ -2887,6 +2899,8 @@ int main() {
       react();
     } else if (strcmp(command, "mongodb") == 0) {
       mongodb();
+    } else if (strcmp(command, "testapi") == 0) {
+      testapi();
     } else if (strcmp(command, "tarball") == 0) {
       tarball();
     } else if (strcmp(command, "exit") == 0) {
