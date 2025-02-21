@@ -409,24 +409,6 @@ For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
 #include <sys/resource.h>
 ```
 
-## Txtmax Source Code Files
-
-- **README.md**: The README file
-- **LICENSE.md**: The License file (GNU General Public License)
-- **src/txtmax.c**: The source code of Txtmax
-- **src/notebook.c**: The Source code of Txtmax Notebook
-- **src/auto_completion.c**: The source code of Txtmax Auto Completion 
-- **src/Makefile**: Makefile to automate the process
-- **src/security.c**: Code of Txtmax Security
-- **src/deploy.c**: Code for Txtmax Deploy
-- **src/react.c**: Code for Txtmax Integration with React
-- **src/mongo.c**: Code for Txtmax Integration with MongoDB 
-- **src/themes.c**: Code for Txtmax Themes
-- **language.md**: Detailed list of all supported languages 
-- **install.sh**: Installer Script that automates installing Txtmax 
-- **CHANGELOG.md**: Document detailing changes
-- **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
-
 ## Official Website 
 The Official Website of Txtmax is at [link](https://calestial2.github.io/txtmax-website/)
 
