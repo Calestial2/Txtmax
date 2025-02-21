@@ -315,7 +315,7 @@ Express yourself with Txtmax's themes! There are a variety of themes to choose f
 3. **Greyish Theme**: A gray theme. Install using: `install-gray-theme`
 
 ## Txtmax API Tester 
-![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F71212&width=435&lines=Txtmax+API+Tester)](https://git.io/typing-sv)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+API+Tester)](https://git.io/typing-svg)
 
 **Txtmax API Tester** is an advanced tool that enables comprehensive API testing. It supports request methods via `curl`, authentication, and scripting. This allows users to test APIs directly within Txtmax, eliminating the need for external tools like Postman. While Txtmax previously had API testing commands such as `api` and `axios`, this new API Tester is significantly more advanced.
 
