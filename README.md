@@ -1,8 +1,8 @@
-q[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-blue)
-![Version](https://img.shields.io/badge/version-14.4.13-blue)
+![Version](https://img.shields.io/badge/version-14.5.14-blue)
 ![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 ![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
@@ -20,49 +20,9 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F73096&background=AFFF0000&width=435&lines=Txtmax+offers+set+of+features)](https://git.io/typing-svg)
 
-- **Create Files:** Create new text files and save them locally.
-- **View Files:** View the contents of text files with syntax highlighting for keywords, strings, and comments.
-- **Edit Files:** Edit specific lines in existing text files.
-- **List Files:** List all regular files in the current directory.
-- **Delete Files:** Delete specified text files.
-- **Search Files:** Search for files by name.
-- **Get File Info:** Retrieve detailed information about a file, including its name, extension, creation time, modification time, and version control.
-- **Line Numbering and Jumping to Specific Lines:** Navigate quickly through code with line numbers and jump to specific lines.
-- **Search and Replace:** Find and replace text within files.
-- **Compiling and Running Code:** Compile and execute code seamlessly.
-- **Move Multiple Files to a Folder:** Organize files by moving them to specified folders.
-- **Copy Multiple Files to a Folder:** Duplicate files and copy them to designated folders.
-- **Pattern-Matching AI for Helping Users Use Txtmax:** Utilize AI to assist with pattern matching.
-- **Rename a File:** Change the name of files easily.
-- **Test and Fetch Data from RESTful APIs:** Interact with APIs to test and retrieve data.
-- **Debug and Warn C Files:** Identify and resolve issues in C files.
-- **Built-in Terminal:** Access a terminal directly within the editor.
-- **Edit LaTeX Files:** Work with LaTeX documents.
-- **Convert Files to Tarball:** Archive files into tarball format.
-- **Package and Dependencies Management:** Handle packages and dependencies efficiently.
-- **Build and Test a Project with Make:** Automate the build and test process for projects using Make.
-- **Build and Test a Java Project with Gradle:** Manage Java projects with Gradle.
-- **Automation:** Automate repetitive tasks.
-- **Support for .NET Framework:** Develop and run .NET applications.
-- **Run Flask and Python App on Web Server:** Deploy Flask and Python applications on a web server.
-- **Robust Error Handling:** Improve error handling mechanisms.
-- **Store your API Keys:** Store your API Secrets
-- **Notebook:** An Interactive Notebook for Python 
-- **Auto Completion:** An Auto Completion
-- **Retrieve File Size:** Retrieve your file size
-- **Make an ignore file:** Make an .gitignore file
-- **SQLite Integration:** Supports SQLite Database
-- **OpenAI Integration:** Integrates with OpenAI API Key
-- **Tmux Integration:** Integrates with Tmux
-- **Benchmark:** An Benchmark shows Execution Time CPU Usage and more
-- **Security Features:** Integration with AES and GPG
-- **Markdown:** Supports Markdown Files
-- **Deploy:** Deploy your code to Heroku CLI
-- **Themes:** Expres yourself with Themes
-- **React Integration:** Integrates React Framework
-- **MongoDB Integration:** Integration with MongoDB Database
-- **Format:** Format your code with clang-format and black 
-- **Robust Git Integration:** Seamlessly integrate with Git for version control.
+- **Feature-rich:** Txtmax is very powerful and robust making it ideal for developers wanting an robust text editor
+- **Lightweight and Fast:** Despite being Feature-rich, it is also lightweight with a super small size making it ideal for lower end environments and also had very fast performance
+- **Rich Resources:** There's resources like built-in help command, comprehensive manual, detailed readme and also had an active community with consist new updates
 
 ## Commands
 
@@ -461,7 +421,8 @@ For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
 - **src/deploy.c**: Code for Txtmax Deploy
 - **src/react.c**: Code for Txtmax Integration with React
 - **src/mongo.c**: Code for Txtmax Integration with MongoDB 
-- **src/themes.c**: Code for Txtmax Themes 
+- **src/themes.c**: Code for Txtmax Themes
+- **language.md**: Detailed list of all supported languages 
 - **install.sh**: Installer Script that automates installing Txtmax 
 - **CHANGELOG.md**: Document detailing changes
 - **CONTRIBUTING.md**: Comprehensive guidelines for contributing to Txtmax
