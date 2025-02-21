@@ -88,11 +88,11 @@ make CROSS_COMPILE=x86_64-w64-mingw32-
 
 ### Issue Management
 ```
-| Issue Type       | Label          | Response SLA  |
-|------------------|----------------|---------------|
-| Critical Bug     | P0             | 24 hours      |
-| Feature Request  | enhancement    | 7 days        |
-| Documentation    | docs           | 14 days       |
+| Ranking | Issue Type      | Label      | Response SLA |
+| ------- | --------------- | ---------- | ------------ |
+| 1       | Critical Bug    | P0         | 24 hours     |
+| 2       | Feature Request | enhancement| 7 days       |
+| 3       | Documentation   | docs       | 14 days      |
 ```
 
 ### Code Quality Standards
