@@ -1,130 +1,226 @@
 # Contributing to Txtmax
 
-Thank you for considering contributing to **Txtmax**! We welcome all contributions, whether it’s bug fixes, new features, documentation improvements, or suggestions. Follow this guide to get started.
+Thank you for your interest in contributing to **Txtmax**! This guide will help you effectively contribute to the project whether through code, documentation, testing, or feedback.
 
----
+```toc
+[[toc]]
+```
 
 ## 📜 Code of Conduct
 
-By participating, you agree to follow our **[Code of Conduct](CODE_OF_CONDUCT.md)** to ensure a welcoming and inclusive environment.
+All contributors must adhere to our [Code of Conduct](CODE_OF_CONDUCT.md). Please read it before participating.
 
 ---
 
-## 🛠 How to Contribute
+## 🚀 Quick Start Guide
 
-### 1️⃣ Fork and Clone the Repository
-1. Click the **Fork** button on the [Txtmax GitHub repository](https://github.com/Calestial2/Txtmax).
-2. Clone your fork:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/Txtmax.git
-   cd Txtmax
-
-2️⃣ Set Up the Development Environment
-
-1. Ensure you have GCC and Make installed.
-
-
-2. Compile Txtmax:
+### Prerequisites
+- GCC 12+ or Clang 15+
+- GNU Make 4.3+
+- Bash shell
+- Git 2.30+
 
 ```bash
-cd src
-make
+# Verify installations
+gcc --version
+make --version
+git --version
 ```
 
-3️⃣ Create a Branch
+### Initial Setup
+```bash
+# Fork and clone
+gh repo fork Calestial2/Txtmax --clone
+cd Txtmax
 
-Create a new branch for your feature or bug fix:
+# Build with debug symbols
+make DEBUG=1
 
-git checkout -b feature-or-fix-name
-
-
----
-
-📝 Contribution Types
-
-✅ Reporting Issues
-
-If you find a bug or have a feature request, open an issue here.
-
-Provide clear details, steps to reproduce (if applicable), and expected vs. actual behavior.
-
-
-🏗️ Adding Features or Fixing Bugs
-
-1. Check existing issues or create a new one before working on it.
-
-
-2. Follow the Coding Guidelines.
-
-
-3. Test your changes before committing.
-
-
-
-📖 Improving Documentation
-
-Help improve the README.md, CONTRIBUTING.md, and docs/.
-
-Ensure clarity, consistency, and correct formatting.
-
-
+# Run basic verification
+make test
+```
 
 ---
 
-📌 Coding Guidelines
+## 🛠 Development Workflow
 
-Use C standard libraries (avoid unnecessary dependencies).
+### Branch Strategy
+```mermaid
+gitGraph
+    commit
+    branch feature/awesome-feature
+    checkout feature/awesome-feature
+    commit
+    commit
+    checkout main
+    merge feature/awesome-feature
+```
 
-Maintain clean, readable, and commented code.
+### Code Structure
+```
+Txtmax/
+├── src/            # Core source files
+├── include/        # Header files
+├── tests/          # Unit and integration tests
+├── docs/           # Documentation
+├── samples/        # Example files
+└── Makefile        # Build configuration
+```
 
-Follow the existing code style and structure.
+### Advanced Build Options
+```bash
+# Build with optimizations
+make OPTIMIZE=3
 
-Test all new features before submitting.
+# Generate coverage report
+make coverage
 
+# Create release package
+make dist
 
-
----
-
-🔄 Commit and Push Changes
-
-1. Commit your changes:
-
-git add .
-git commit -m "Add feature: <brief description>"
-
-
-2. Push to your fork:
-
-git push origin feature-or-fix-name
-
-
-
-
----
-
-📩 Submitting a Pull Request
-
-1. Open a Pull Request (PR) from your forked repository to the main branch of Txtmax.
-2. Follow the PR template and describe your changes.
-3. Wait for review and respond to feedback.
-
-
----
-
-🎯 Additional Notes
-
-- Keep your PR small and focused.
-- If adding a new command, update the help command and documentation.
-- Ensure no breaking changes are introduced.
-
-
+# Cross-compile for Windows
+make CROSS_COMPILE=x86_64-w64-mingw32-
+```
 
 ---
 
-❤️ Thank You!
+## 🔧 Contribution Guidelines
 
-We appreciate your contribution! If you have any questions, feel free to ask in issues or discussions.
+### Issue Management
+```
+| Issue Type       | Label          | Response SLA  |
+|------------------|----------------|---------------|
+| Critical Bug     | P0             | 24 hours      |
+| Feature Request  | enhancement    | 7 days        |
+| Documentation    | docs           | 14 days       |
+```
 
-🚀 Happy Coding!
+### Code Quality Standards
+- Follow [C99 standard](https://en.cppreference.com/w/c/99)
+- Adhere to Linux kernel coding style (modified)
+- Maximum cyclomatic complexity: 15
+- 100% test coverage for new features
+- Doxygen comments for public APIs
 
-This guide ensures a **structured and easy** contribution process for new developers. Let me know if you need modifications!
+```c
+/* Example of required documentation */
+/**
+ * @brief Compresses text buffer using LZ77 algorithm
+ * @param input Pointer to source buffer
+ * @param size Input buffer size in bytes
+ * @param output Pointer to destination buffer
+ * @return int Compression ratio (0-100) or error code
+ */
+int compress_buffer(const char* input, size_t size, char* output);
+```
+
+### Testing Protocol
+1. Unit tests: `make test-unit`
+2. Integration tests: `make test-integration`
+3. Fuzz testing: `make test-fuzz` (requires AFL++)
+4. Performance benchmarks: `make benchmark`
+
+---
+
+## 📝 Pull Request Process
+
+### PR Checklist
+- [ ] Signed-off-by (DCO)
+- [ ] Updated documentation
+- [ ] Added/updated tests
+- [ ] Passes CI pipeline
+- [ ] No merge conflicts
+- [ ] Descriptive title (fix|feat|chore|docs|refactor: ...)
+
+### CI Pipeline Stages
+```mermaid
+graph LR
+    A[Lint] --> B[Build]
+    B --> C[Unit Tests]
+    C --> D[Integration Tests]
+    D --> E[CodeQL Analysis]
+    E --> F[Coverage Report]
+    F --> G[Binary Packaging]
+```
+
+### Review Process
+1. Automated checks pass
+2. Maintainer review (72 hours)
+3. Security audit (for critical components)
+4. Final approval and squash merge
+
+---
+
+## 💡 Advanced Topics
+
+### Debugging Tips
+```bash
+# Use AddressSanitizer
+make SANITIZE=address
+
+# Generate flame graph
+make profile
+
+# Debug memory leaks
+valgrind --leak-check=full ./txtmax sample.txt
+```
+
+### Performance Optimization
+- Use `perf stat` for cycle analysis
+- Leverage PGO (Profile Guided Optimization)
+```bash
+make PGO=generate
+# Run benchmark workload
+make PGO=use
+```
+
+---
+
+## 📚 Documentation Standards
+
+### Doc Structure
+```markdown
+docs/
+├── API-REFERENCE.md
+├── ARCHITECTURE.md
+├── PERFORMANCE-GUIDE.md
+└── SECURITY-POLICY.md
+```
+
+### Documentation Build
+```bash
+make docs  # Generates HTML/PDF documentation
+```
+
+---
+
+## 🆘 Getting Help
+
+```
+| Channel         | Response Time | Best For                   |
+|-----------------|---------------|----------------------------|
+| GitHub Issues   | 48 hours      | Technical discussions      |
+| Email           | 72 hours      | Security-related matters   |
+```
+
+---
+
+## 🙌 Recognition Program
+
+Top contributors will be:
+- Featured in release notes
+- Added to `HALL_OF_FAME.md`
+- Eligible for maintainer status (after 3 major contributions)
+
+---
+
+```version
+Current Version: 14.5.14 | Last Updated: 2025-2-20
+```
+
+```license
+SPDX-License-Identifier: GPL-3.0-or-later
+```
+
+🚀 Happy Coding! Let's build something amazing together!
+```
