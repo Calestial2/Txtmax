@@ -366,16 +366,3 @@ Contributions are welcome! Here's how you can help:
 - Ensure your code follows the style and design of the project.
 
 For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Why Choose Txtmax?
-
-- **Comprehensive File Management:** Txtmax offers comprehensive file management, including creating, listing, viewing, searching files, deleting, and editing files and jumping to specific lines and Search And Replace.
-- **Version Control and Git Integration:** Supports robust Git integration and robust error handling for every command.
-- **Open Source and Free:** Fully open source and completely free (no hidden costs) under the GNU General Public License.
-- **Syntax Highlighting and Multi-Language Support:** Supports over 80 languages with extensive syntax highlighting.
-- **Compiling and Running Code:** Compile and run C, Python, JavaScript codes with compilers and interpreters such as GCC, Clang, Python, Node, Nasm, Tcl, Bash. without leaving Txtmax.
-- **Package and Dependency Management:** Install packages directly from the editor easily.
-- **Rich Documentation:** Detailed help and comprehensive manual for beginners and Had Examples of Hello world for various languages to get started 
-- **Extremely Fast and Easy to Use:** Faster than GNU Nano and Vim, and very easy to use with commands that are easy to understand and use, offering a lower learning curve.
-- **Terminal Integration**: Supports typing Terminal Commands in the Editor
-- **Frequent Major Updates:** Frequent new major updates
