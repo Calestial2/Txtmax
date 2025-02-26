@@ -157,8 +157,6 @@ In Txtmax, type the command `notebook`. It will go to `system()`, compile `noteb
 
 ## Txtmax Auto Completion 
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&width=435&lines=Txtmax+Auto+Completion+;Increasing+your+productivity+)](https://git.io/typing-svg)
-
 We introduced Txtmax Auto Completion to streamline the process of writing code, specifically C code. It's built from scratch to enhance your coding efficiency.
 
 In Txtmax, you can use the command `auto_completion` to activate Txtmax Auto Completion. 
