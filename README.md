@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F7992D&background=FF8C1100&width=435&lines=++++++++++++++++++++++++++++++++++Txtmax;Linux+Text-based+Editor)](https://git.io/typing-svg)
+
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-GPL%20v3-red)
@@ -18,15 +18,11 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 
 ## Features
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F73096&background=AFFF0000&width=435&lines=Txtmax+offers+set+of+features)](https://git.io/typing-svg)
-
 - **Feature-rich:** Txtmax is very powerful and robust making it ideal for developers wanting an robust text editor
 - **Lightweight and Fast:** Despite being Feature-rich, it is also lightweight with a super small size making it ideal for lower end environments and also had very fast performance
 - **Rich Resources:** There's resources like built-in help command, comprehensive manual, detailed readme and also had an active community with consist new updates
 
 ## Commands
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=AFFF0000&width=435&lines=Txtmax+offers+set+of+commands;Below+is+a+detailed+overview+of+all;Commands)](https://git.io/typing-svg)
 
 - **help:** List all available commands.
 - **man txtmax:** Access the comprehensive manual for Txtmax.
@@ -69,8 +65,6 @@ Txtmax is a modern, powerful, lightweight, fast, completely free, open-source ad
 
 ## Automation
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70101&background=FF0F0F00&width=435&lines=Txtmax+Automation+)](https://git.io/typing-svg)
-
 We have introduced an automation feature to simplify your tasks.
 
 **Commands:**
@@ -78,8 +72,6 @@ We have introduced an automation feature to simplify your tasks.
 - **gradle:** Build and test a Java project with Gradle. Provide the necessary inputs, and Txtmax will generate and run the code based on the inputs.
 
 ## AI
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F74D4D&background=AFFF0000&width=435&lines=Txtmax+AI;Increasing+your+productivity+)](https://git.io/typing-svg)
 
 We Introduced an Pattern-Matching AI to help users use Txtmax Better it's had many Predefined Questions and increase your productivity.
 
@@ -144,8 +136,6 @@ Conversations:
 
 ## Txtmax Notebook 
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F71212&width=435&lines=Txtmax+Notebook+)](https://git.io/typing-svg)
-
 **Txtmax Notebook** is an interactive notebook for Python developers written in C. 
 
 **Features:**
@@ -188,8 +178,6 @@ As you type code, Txtmax will suggest relevant keywords to assist you.
 
 ## Txtmax Tmux Intregration 
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Tmux+Intregration+)](https://git.io/typing-svg)
-
 The Txtmax Tmux Integration enables efficient multi-task management within Txtmax through seamless integration with Tmux.
 
 **Getting Started:**
@@ -223,14 +211,12 @@ To begin using Txtmax Tmux Integration, type "multiplexer" within Txtmax.
 4. **User Experience:**
    - Offers clear prompts and status messages.
    - Ensures a 1-second delay between commands for reliability.
-   - Attaches the final session for direct user interaction.
+   - Attaches the final sesion for direct user interaction.
 
 **Note:** 
 Tmux must be installed on the system. Tested on Linux systems with Tmux version 3.2+.
 
 ## Txtmax Security 
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Security+)](https://git.io/typing-svg)
 
 **Txtmax Security is a feature integrated with Txtmax. It integrates AES via OpenSSL and GPG.**
 
@@ -277,7 +263,6 @@ Enter command (type 'help' for options):
 **Note:** This code requires OpenSSL and GPG to be installed on the system. The functionality has been tested on Linux systems and may require adjustments for other platforms.
 
 ## Txtmax Deploy 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+Deploy+)](https://git.io/typing-svg)
 
 Txtmax Deploy is an integrated feature within Txtmax designed to deploy your code effortlessly to Heroku CLI.
 
@@ -315,7 +300,6 @@ Express yourself with Txtmax's themes! There are a variety of themes to choose f
 3. **Greyish Theme**: A gray theme. Install using: `install-gray-theme`
 
 ## Txtmax API Tester 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70000&background=DDFF7200&width=435&lines=Txtmax+API+Tester)](https://git.io/typing-svg)
 
 **Txtmax API Tester** is an advanced tool that enables comprehensive API testing. It supports request methods via `curl`, authentication, and scripting. This allows users to test APIs directly within Txtmax, eliminating the need for external tools like Postman. While Txtmax previously had API testing commands such as `api` and `axios`, this new API Tester is significantly more advanced.
 
