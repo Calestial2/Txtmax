@@ -1,16 +1,13 @@
+![Image](https://github.com/Calestial2/Txtmax/blob/8d27fd91a4ca8f583cdbe33f4ae5717a41127b4c/images/banner-image.png)
 
-
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![License](https://img.shields.io/badge/license-GPL%20v3-red)
-![Version](https://img.shields.io/badge/version-14.5.14-blue)
-![Code Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
-![Issues](https://img.shields.io/github/issues/Calestial2/Txtmax)
-![Pull Requests](https://img.shields.io/github/issues-pr/Calestial2/Txtmax)
-![Last Commit](https://img.shields.io/github/last-commit/Calestial2/Txtmax)
-![GitHub Stars](https://img.shields.io/github/stars/Calestial2/Txtmax?style=social)
-![Forks](https://img.shields.io/github/forks/Calestial2/Txtmax?style=social)
-![Contributors](https://img.shields.io/github/contributors/Calestial2/Txtmax)
-![Downloads](https://img.shields.io/github/downloads/Calestial2/Txtmax/total)
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; text-align: center;">
+    <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Status">
+    <img src="https://img.shields.io/badge/license-GPL%20v3-red" alt="License">
+    <img src="https://img.shields.io/badge/version-14.5.14-blue" alt="Version">
+    <img src="https://img.shields.io/github/forks/Calestial2/Txtmax?style=social" alt="Forks">
+    <img src="https://img.shields.io/github/contributors/Calestial2/Txtmax" alt="Contributors">
+    <img src="https://img.shields.io/github/downloads/Calestial2/Txtmax/total" alt="Downloads">
+</div>
 
 ## Txtmax 
 
