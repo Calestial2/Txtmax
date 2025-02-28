@@ -354,7 +354,7 @@ Extremely fast and lightweight, faster than GNU Nano and Vim because:
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0.
+This project is licensed under the GNU Lesser General Public License 
 You are free to use, modify, and distribute this software under the terms of the license. See the [LICENSE](LICENSE) file for more information.
 
 ## Contributing
